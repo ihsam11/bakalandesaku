@@ -22,7 +22,7 @@ Route::get('/penduduk', function(){return view('profiles.penduduk');});
 Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
 
-Route::get('/admin', 'HomeController@index');
+Route::get('/admin', function(){return view('admins.dashboard');});
 Route::resource('/posts', 'PostController');
 Route::resource('/categories', 'CategoryController');
 Route::resource('/users', 'UserController');
