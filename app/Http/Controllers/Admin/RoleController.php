@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Role;
 
 class RoleController extends Controller
 {
@@ -21,16 +22,8 @@ class RoleController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $roles = Role::all();
+        return view('admin.role.index', compact('roles'));
     }
 
     /**
@@ -42,6 +35,14 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate({
+            
+        });
+
+        Schema::create('roles', function(Request $request) {
+
+        });
+        
     }
 
     /**

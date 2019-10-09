@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title', 'Dashboard Admin Bakalandesaku')
+@section('title', 'Halaman Posting')
 
 @section('content')
-
+    ssss
 @endsection
