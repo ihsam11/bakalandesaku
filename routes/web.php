@@ -11,22 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
 Route::get('/penduduk', function(){return view('profiles.penduduk');});
 Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
 
-Route::get('/admin', function(){return view('admins.dashboard');});
-Route::resource('/posts', 'PostController');
-Route::resource('/categories', 'CategoryController');
-Route::resource('/users', 'UserController');
-Route::resource('/agendas', 'AgendaController');
-Route::resource('/roles', 'RoleController');
-Route::resource('/videos', 'VideoController');
+Route::get('admin', 'Admin\HomeController@index')->name('admin');
+Route::resource('admin/news', 'Admin\PostController');
+Route::resource('admin/categories', 'Admin\CategoryController');
+Route::resource('admin/users', 'Admin\UserController');
+Route::resource('admin/agendas', 'Admin\AgendaController');
+Route::resource('admin/roles', 'Admin\RoleController');
+Route::resource('admin/videos', 'Admin\VideoController');
 

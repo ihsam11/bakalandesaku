@@ -4,7 +4,7 @@
 <!-- Mirrored from demo.themekita.com/demo-millenium/millenium/examples/demo2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Oct 2018 03:50:15 GMT -->
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Millenium Bootstrap 4 Admin Dashboard</title>
+	<title>Admin Bakalandesaku</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="{{ asset('img/icon.ico') }}" type="image/x-icon"/>
 
@@ -27,13 +27,13 @@
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('css/demo.css') }}">
 </head>
-<body data-background-color="dark">
+<body data-background-color="bg3">
 	<div class="wrapper">
     <div class="main-header">
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark2">
         <a href="index.html" class="logo">
-          <img src="{{ asset('img/logo.svg') }}" alt="navbar brand" class="navbar-brand">
+          <img src="{{ asset('img/logo.svg') }}" alt="Bakalan Desa Logo" class="navbar-brand">
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="icon-menu"></i></span>
@@ -171,20 +171,24 @@
                     <div class="user-box">
                       <div class="avatar-lg"><img src="{{ asset('img/profile.jpg') }}" alt="image profile" class="avatar-img rounded"></div>
                       <div class="u-text">
-                        <h4>Hizrian</h4>
-                        <p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                        <h4>{{ Auth::user()->name }}</h4>
+                        <p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">My Profile</a>
-                    <a class="dropdown-item" href="#">My Balance</a>
-                    <a class="dropdown-item" href="#">Inbox</a>
+                    <div class="dropdown-divider"></div>                    
+                    <a class="dropdown-item" href="{{ url('/') }}">Back to Homepage</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Account Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+						Logout</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
                   </li>
                 </div>
               </ul>
@@ -195,274 +199,106 @@
       <!-- End Navbar -->
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar" data-background-color="dark2">
-      <div class="sidebar-wrapper scrollbar scrollbar-inner">
-        <div class="sidebar-content">
-          <div class="user">
-            <div class="avatar-sm float-left mr-2">
-              <img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
-            </div>
-            <div class="info">
-              <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                <span>
-                  Hizrian
-                  <span class="user-level">Administrator</span>
-                  <span class="caret"></span>
-                </span>
-              </a>
-              <div class="clearfix"></div>
+		<!-- Sidebar -->
+		<div class="sidebar" data-background-color="dark2">
+			<div class="sidebar-wrapper scrollbar scrollbar-inner">
+				<div class="sidebar-content">
+				<div class="user">
+					<div class="avatar-sm float-left mr-2">
+					<img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
+					</div>
+					<div class="info">
+					<a aria-expanded="true">
+						<span>
+						{{ Auth::user()->name }}
+						<span class="user-level">Administrator</span>
+						</span>
+					</a>
+					<div class="clearfix"></div>
 
-              <div class="collapse in" id="collapseExample">
-                <ul class="nav">
-                  <li><a href="#profile"><span class="link-collapse">My Profile</span></a></li>
-                  <li><a href="#edit"><span class="link-collapse">Edit Profile</span></a></li>
-                  <li><a href="#settings"><span class="link-collapse">Settings</span></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <ul class="nav nav-secondary">
-            <li class="nav-item active">
-              <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                <i class="fas fa-home"></i>
-                <p>Dashboard</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="dashboard">
-                <ul class="nav nav-collapse">
-                  <li><a href="http://demo.themekita.com/demo-millenium/millenium/examples/demo1/index.html"><span class="sub-item">Dashboard 1</span></a></li>
-                  <li><a href="index.html"><span class="sub-item">Dashboard 2</span></a></li>
-                  <li><a href="http://demo.themekita.com/demo-millenium/millenium/examples/demo3/index.html"><span class="sub-item">Dashboard 3</span></a></li>
-                  <li><a href="http://demo.themekita.com/demo-millenium/millenium/examples/demo4/index.html"><span class="sub-item">Dashboard 4</span></a></li>
-                  <li><a href="http://demo.themekita.com/demo-millenium/millenium/examples/demo5/index.html"><span class="sub-item">Dashboard 5</span></a></li>
-                  <li><a href="http://demo.themekita.com/demo-millenium/millenium/examples/demo6/index.html"><span class="sub-item">Dashboard 6</span></a></li>
-                  <li><a href="http://demo.themekita.com/demo-millenium/millenium/examples/demo7/index.html"><span class="sub-item">Dashboard 7</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-section">
-              <span class="sidebar-mini-icon"><i class="fa fa-ellipsis-h"></i></span>
-              <h4 class="text-section">Components</h4>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#base">
-                <i class="fas fa-layer-group"></i>
-                <p>Base</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="base">
-                <ul class="nav nav-collapse">
-                  <li><a href="components/avatars.html"><span class="sub-item">Avatars</span></a></li>
-                  <li><a href="components/buttons.html"><span class="sub-item">Buttons</span></a></li>
-                  <li><a href="components/gridsystem.html"><span class="sub-item">Grid System</span></a></li>
-                  <li><a href="components/panels.html"><span class="sub-item">Panels</span></a></li>
-                  <li><a href="components/notifications.html"><span class="sub-item">Notifications</span></a></li>
-                  <li><a href="components/sweetalert.html"><span class="sub-item">Sweet Alert</span></a></li>
-                  <li><a href="components/font-awesome-icons.html"><span class="sub-item">Font Awesome Icons</span></a></li>
-                  <li><a href="components/simple-line-icons.html"><span class="sub-item">Simple Line Icons</span></a></li>
-                  <li><a href="components/flaticons.html"><span class="sub-item">Flaticons</span></a></li>
-                  <li><a href="components/typography.html"><span class="sub-item">Typography</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#forms">
-                <i class="fas fa-pen-square"></i>
-                <p>Forms</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="forms">
-                <ul class="nav nav-collapse">
-                  <li><a href="forms/forms.html"><span class="sub-item">Basic Form</span></a></li>
-                  <li><a href="forms/formvalidation.html"><span class="sub-item">Form Validation</span></a></li>
-                  <li><a href="forms/formwidget.html"><span class="sub-item">Form Widget</span></a></li>
-                  <li><a href="forms/formwizard.html"><span class="sub-item">Form Wizard</span></a></li>
-                  <li><a href="forms/formupload.html"><span class="sub-item">Multiple Upload</span></a></li>
-                  <li><a href="forms/formwysiwyg.html"><span class="sub-item">WYSIWYG Editor</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#tables">
-                <i class="fas fa-table"></i>
-                <p>Tables</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="tables">
-                <ul class="nav nav-collapse">
-                  <li><a href="tables/tables.html"><span class="sub-item">Basic Table</span></a></li>
-                  <li><a href="tables/datatables.html"><span class="sub-item">Datatables</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#maps">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>Maps</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="maps">
-                <ul class="nav nav-collapse">
-                  <li><a href="maps/googlemaps.html"><span class="sub-item">Google Maps</span></a></li>
-                  <li><a href="maps/fullscreenmaps.html"><span class="sub-item">Full Screen Maps</span></a></li>
-                  <li><a href="maps/jqvmap.html"><span class="sub-item">JQVMap</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#charts">
-                <i class="far fa-chart-bar"></i>
-                <p>Charts</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="charts">
-                <ul class="nav nav-collapse">
-                  <li><a href="charts/charts.html"><span class="sub-item">Chart Js</span></a></li>
-                  <li><a href="charts/sparkline.html"><span class="sub-item">Sparkline</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="calendar.html">
-                <i class="far fa-calendar-alt"></i>
-                <p>Calendar</p>
-                <span class="badge badge-info">1</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="widgets.html">
-                <i class="fas fa-desktop"></i>
-                <p>Widgets</p>
-                <span class="badge badge-success">4</span>
-              </a>
-            </li>
-            <li class="nav-section">
-              <span class="sidebar-mini-icon">
-                <i class="fa fa-ellipsis-h"></i>
-              </span>
-              <h4 class="text-section">Snippets</h4>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#email-nav">
-                <i class="far fa-envelope"></i>
-                <p>Email</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="email-nav">
-                <ul class="nav nav-collapse">
-                  <li><a href="email-inbox.html"><span class="sub-item">Inbox</span></a></li>
-                  <li><a href="email-compose.html"><span class="sub-item">Email Compose</span></a></li>
-                  <li><a href="email-detail.html"><span class="sub-item">Email Detail</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#messages-app-nav">
-                <i class="far fa-paper-plane"></i>
-                <p>Messages App</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="messages-app-nav">
-                <ul class="nav nav-collapse">
-                  <li><a href="messages.html"><span class="sub-item">Messages</span></a></li>
-                  <li><a href="conversations.html"><span class="sub-item">Conversations</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="projects.html">
-                <i class="fas fa-file-signature"></i>
-                <p>Projects</p>
-                <span class="badge badge-count">5</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="boards.html">
-                <i class="fas fa-th-list"></i>
-                <p>Boards</p>
-                <span class="badge badge-count">4</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="invoice.html">
-                <i class="fas fa-file-invoice-dollar"></i>
-                <p>Invoices</p>
-                <span class="badge badge-count">6</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pricing.html">
-                <i class="fas fa-tag"></i>
-                <p>Pricing</p>
-                <span class="badge badge-count">6</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="faqs.html">
-                <i class="far fa-question-circle"></i>
-                <p>Faqs</p>
-                <span class="badge badge-count">6</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#custompages">
-                <i class="fas fa-paint-roller"></i>
-                <p>Custom Pages</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="custompages">
-                <ul class="nav nav-collapse">
-                  <li><a href="login.html"><span class="sub-item">Login & Register 1</span></a></li>
-                  <li><a href="login2.html"><span class="sub-item">Login & Register 2</span></a></li>
-                  <li><a href="login3.html"><span class="sub-item">Login & Register 3</span></a></li>
-                  <li><a href="userprofile.html"><span class="sub-item">User Profile</span></a></li>
-                  <li><a href="404.html"><span class="sub-item">404</span></a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a data-toggle="collapse" href="#submenu">
-                <i class="fas fa-bars"></i>
-                <p>Menu Levels</p>
-                <span class="caret"></span>
-              </a>
-              <div class="collapse" id="submenu">
-                <ul class="nav nav-collapse">
-                  <li>
-                    <a data-toggle="collapse" href="#subnav1">
-                      <span class="sub-item">Level 1</span>
-                      <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="subnav1">
-                      <ul class="nav nav-collapse subnav">
-                        <li><a href="#"><span class="sub-item">Level 2</span></a></li>
-                        <li><a href="#"><span class="sub-item">Level 2</span></a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li>
-                    <a data-toggle="collapse" href="#subnav2">
-                      <span class="sub-item">Level 1</span>
-                      <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="subnav2">
-                      <ul class="nav nav-collapse subnav">
-                        <li><a href="#"><span class="sub-item">Level 2</span></a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li><a href="#"><span class="sub-item">Level 1</span></a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- End Sidebar -->
+					</div>
+				</div>
+				<ul class="nav nav-secondary">
+					<li class="nav-item">
+					<a href="{{ url('admin') }}" aria-expanded="false">
+						<i class="fas fa-home"></i>
+						<p>Dashboard</p>                
+					</a>              
+					</li>                        
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#users" class="collapsed" aria-expanded="false">
+							<i class="fas fa-user"></i>
+							<p>Users</p>
+							<span class="caret"></span>                
+						</a>              				
+						<div class="collapse" id="users">
+							<ul class="nav nav-collapse">
+							<li><a href="{{ url('admin/roles') }}"><span class="sub-item">Roles</span></a></li>
+							<li><a href="{{ url('admin/users') }}"><span class="sub-item">Accounts</span></a></li>
+							</ul>
+						</div>				
+					</li>       
+					<li class="nav-item">
+						<a data-toggle="collapse" href="#posts" class="collapsed" aria-expanded="false">
+							<i class="fas fa-pen-alt"></i>
+							<p>Post</p>
+							<span class="caret"></span>                
+						</a>              				
+						<div class="collapse" id="posts">
+							<ul class="nav nav-collapse">
+							<li><a href="{{ url('admin/categories') }}"><span class="sub-item">Categories</span></a></li>
+							<li><a href="{{ url('admin/news') }}"><span class="sub-item">News</span></a></li>
+							<li><a href="{{ url('admin/announcements') }}"><span class="sub-item">Announcements</span></a></li>
+							</ul>
+						</div>				
+					</li>       
+					<li class="nav-item ">
+						<a data-toggle="collapse" href="#gallery" class="collapsed" aria-expanded="false">
+							<i class="fas fa-compact-disc"></i>
+							<p>Gallery</p>  
+							<span class="caret"></span> 				             
+						</a>              
+						<div class="collapse" id="gallery">
+							<ul class="nav nav-collapse">
+							<li><a href="{{ url('admin/photos') }}"><span class="sub-item">Photos</span></a></li>
+							<li><a href="{{ url('admin/videos') }}"><span class="sub-item">Videos</span></a></li>
+							</ul>
+						</div>	
+					</li>                                    
+					<li class="nav-item ">
+						<a data-toggle="collapse" href="services" class="collapsed" aria-expanded="false">
+							<i class="fas fa-concierge-bell"></i>
+							<p>Services</p>                
+						</a>              
+						<div class="collapse" id="services">
+							<ul class="nav nav-collapse">
+							<li><a href="{{ url('admin/photos') }}"><span class="sub-item">Photos</span></a></li>
+							<li><a href="{{ url('admin/videos') }}"><span class="sub-item">Videos</span></a></li>
+							</ul>
+						</div>	
+					</li>                                    
+					<li class="nav-item ">
+						<a href="{{ url('admin/setting') }}" aria-expanded="false">
+							<i class="fas fa-cog"></i>
+							<p>Setting</p>                				
+						</a>              
+					</li>                                    
+					<li class="nav-item ">
+						<a href="{{ url('admin/help') }}" aria-expanded="false">
+							<i class="fas fa-question-circle"></i>
+							<p>Help</p>                				
+						</a>              
+					</li>                                    
+				</ul>
+				</div>
+			</div>
+		</div>
+		<!-- End Sidebar -->
 
-		@yield('content')
+		<div class="main-panel">
+			@yield('content')
+		</div>
+
 		<div class="quick-sidebar">
 			<a href="#" class="close-quick-sidebar">
 				<i class="flaticon-cross"></i>
@@ -922,10 +758,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="custom-toggle">
-				<i class="flaticon-settings"></i>
-			</div>
+			</div>			
 		</div>
 		<!-- End Custom template -->
 	</div>
@@ -999,38 +832,8 @@
 	<!-- Millenium JS -->
 	<script src="{{ asset('js/millenium.min.js') }}"></script>
 
-	<!-- Millenium DEMO methods, don't include it in your project! -->
-	<script src="{{ asset('js/setting-demo.js') }}"></script>
-	<script src="{{ asset('js/demo.js') }}"></script>
-	<script>
-		$('#lineChart').sparkline([102,109,120,99,110,105,115], {
-			type: 'line',
-			height: '70',
-			width: '100%',
-			lineWidth: '2',
-			lineColor: '#177dff',
-			fillColor: 'rgba(23, 125, 255, 0.14)'
-		});
+	@yield('script')
 
-		$('#lineChart2').sparkline([99,125,122,105,110,124,115], {
-			type: 'line',
-			height: '70',
-			width: '100%',
-			lineWidth: '2',
-			lineColor: '#f3545d',
-			fillColor: 'rgba(243, 84, 93, .14)'
-		});
-
-		$('#lineChart3').sparkline([105,103,123,100,95,105,115], {
-			type: 'line',
-			height: '70',
-			width: '100%',
-			lineWidth: '2',
-			lineColor: '#ffa534',
-			fillColor: 'rgba(255, 165, 52, .14)'
-		});
-	</script>
 </body>
 
-<!-- Mirrored from demo.themekita.com/demo-millenium/millenium/examples/demo2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Oct 2018 03:50:58 GMT -->
 </html>
