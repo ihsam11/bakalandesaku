@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
 
-class HomeController extends Controller
+class SettingController extends Controller
 {
     //
     public function index()
     {
-        # code...
-        return view ('admin.home');
+        return view ('admin.setting.index');
     }
 }
