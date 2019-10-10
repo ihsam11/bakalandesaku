@@ -34,10 +34,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $this->validate({
-            
-        });
+
 
         Schema::create('roles', function(Request $request) {
 

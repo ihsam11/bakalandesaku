@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ asset('img/logo-99.png')}}" />
+    <link rel="shortcut icon" href="{{ asset('img/logo.png')}}" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm fixed-top">
         <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('img/logo-99.png')}}" style="height: 60px;">
+            <img src="{{ asset('img/logo.png')}}" style="height: 60px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNalakab" aria-controls="navbarNalakab" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
