@@ -98,7 +98,7 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin') }}">                                                    
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">                                                    
                                 <i class="fa fa-gear"></i> Admin Page
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"

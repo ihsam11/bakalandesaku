@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Profile;
+use App\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProfileController extends Controller
+class NewsController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -16,7 +26,6 @@ class ProfileController extends Controller
     public function create()
     {
         //
-        return view ('admin.user.profile.create');
     }
 
     /**
@@ -28,22 +37,15 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        Profile::create(
-            $request->all()
-        );
-
-        return redirect('admin/user')
-                ->with('status', 'Data Penduduk berhasil Ditambahkan!');
-        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(News $news)
     {
         //
     }
@@ -51,10 +53,10 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit(News $news)
     {
         //
     }
@@ -63,10 +65,10 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, News $news)
     {
         //
     }
@@ -74,10 +76,10 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
+     * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy(News $news)
     {
         //
     }
