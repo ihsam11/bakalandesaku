@@ -39,8 +39,8 @@
                                 <i class="fas fa-table"></i> &nbsp; Import dari Excel
                             </button>
                         </div>
-                        <div class="col-md-8 col-lg-6 text-right">
-                            <button class="btn btn-sm btn-success" id="btnRefs">
+                        <div class="col-md-8 col-lg-6">
+                            <button class="btn btn-sm btn-success" >
                                 <i class="fas fa-book"></i> &nbsp; Data Referensi
                             </button>
                         </div>

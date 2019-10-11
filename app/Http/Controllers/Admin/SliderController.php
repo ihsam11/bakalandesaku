@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Agenda;
+use App\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AgendaController extends Controller
+
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,10 @@ class AgendaController extends Controller
     public function index()
     {
         //
-        return view('admin.post.agenda.index');
+        $slider = Slider::all();
+        return view ('admin.slider.index', compact('slider'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,8 +30,7 @@ class AgendaController extends Controller
     public function create()
     {
         //
-        return view('admin.post.agenda.create');
-
+        return view('admin.slider.create');
     }
 
     /**
@@ -40,29 +42,33 @@ class AgendaController extends Controller
     public function store(Request $request)
     {
         //
-        return redirect('admin.post.index')
-                ->with('status', 'Data Agenda Berhasil Ditambahkan!');
+        $request->validate();
+
+        Slider::create([
+            
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Agenda  $agenda
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function show(Agenda $agenda)
+    public function show(Slider $slider)
     {
         //
-        
+        $slider = Slider::find($slider);
+        return view('admin.slider.show', compact('slider'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Agenda  $agenda
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Agenda $agenda)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -71,10 +77,10 @@ class AgendaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Agenda  $agenda
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Agenda $agenda)
+    public function update(Request $request, Slider $slider)
     {
         //
     }
@@ -82,12 +88,11 @@ class AgendaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Agenda  $agenda
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agenda $agenda)
+    public function destroy(Slider $slider)
     {
         //
-        
     }
 }

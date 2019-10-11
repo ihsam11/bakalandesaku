@@ -25,56 +25,40 @@
             </div>        
             <div class="card">        
                 <div class="card-header">
-                    <div class="card-title"><strong>
-                        <i class="fas fa-list"></i> &nbsp; Daftar Pengguna</strong> </div>
+                    <ul class="nav nav-pills nav-secondary">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Berita</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Agenda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pengumuman</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pengumuman</a>
+                        </li>
+                    </ul>
+                    <div class="card-title">
+                        <!-- <strong><i class="fas fa-list"></i> &nbsp; Daftar Pengguna</strong>  -->
+                    </div>
                 </div>
                 <div class="card-body bg-disabled">
                     <div class="row mb-2">
                         <div class="col-md-8 col-lg-6">
-                            <button class="btn btn-sm btn-primary" id="btnTambah">
+                            <button class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
                                 <i class="fas fa-plus"></i> &nbsp; Tambah Data
                             </button>
-                        </div>
-                        <div class="col-md-8 col-lg-6 text-right">
-                            <button class="btn btn-sm btn-success" id="btnRefs">
-                                <i class="fas fa-book"></i> &nbsp; Data Referensi
-                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" onclick="add('news')">Berita</a></li>                                
+                                <li><a href="#" onclick="add('agenda')">Agenda</a></li>                                
+                                <li><a href="#" onclick="add('announcement')">Announcement</a></li>                                
+                            </ul>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-responsive">
-                                <table id="multi-filter-select" class="display table table-striped table-hover" >
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIK</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Role</th>                                            
-                                            <th>Aksi</th>                                            
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIK</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Role</th>                                            
-                                            <th>Aksi</th>  
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="col">                            
+                            <textarea name="" id="" cols="30" rows="10" class="summernote"></textarea>
                         </div>
                     </div>
                 </div>
@@ -109,6 +93,13 @@
                     } );
                 } );
             }
+        });
+
+        $('.summernote').summernote({
+            placeholder: 'Millenium',
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+            tabsize: 2,
+            height: 300
         });
     </script>
 @endsection

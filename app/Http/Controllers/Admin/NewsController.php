@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\News;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         //
+        return view ('admin.post.news.index');
     }
 
     /**
@@ -26,6 +28,8 @@ class NewsController extends Controller
     public function create()
     {
         //
+        $category = Category::all();
+        return view ('admin.post.news.create', compact('category'));
     }
 
     /**

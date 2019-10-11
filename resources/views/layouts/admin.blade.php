@@ -26,6 +26,8 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('css/demo.css') }}">
+
+	@yield('style')
 </head>
 <body data-background-color="bg3">
 	<div class="wrapper">
@@ -232,19 +234,42 @@
 						</a>              				
 					</li>       
 					<li class="nav-item">
-						<a href="{{ route('admin.post') }}" class="collapsed" aria-expanded="false">
-							<i class="fas fa-pen-alt"></i>
-							<p>Posting</p>
+						<a href="{{ url('admin/slider') }}" class="collapsed" aria-expanded="false">
+							<i class="fas fa-film"></i>
+							<p>Slider</p>
 						</a>              				
 					</li>       
+					<li class="nav-item">
+						<a href="#posting" data-toggle="collapse">
+							<i class="fas fa-pen-alt"></i>
+							<p>Posting</p>
+							<span class="caret"></span>
+						</a>              
+						<div class="collapse" id="posting">
+							<ul class="nav nav-collapse">
+								<li><a href="{{ url('admin/news') }}"> <span class="sub-item"> Berita </span> </a></li>
+								<li><a href="{{ url('admin/agenda') }}"> <span class="sub-item"> Agenda </span> </a></li>
+								<li><a href="{{ url('admin/announcement') }}"> <span class="sub-item"> Pengumuman </span> </a></li>
+							</ul>
+						</div>				
+					</li>       
 					<li class="nav-item ">
-						<a href="{{ route('admin.gallery') }}" class="collapsed" aria-expanded="false">
+						<a href="#gallery" data-toggle="collapse">
 							<i class="fas fa-compact-disc"></i>
 							<p>Gallery</p>  
-						</a>              
+							<span class="caret"></span>
+						</a>     
+						<div class="collapse" id="gallery">
+							<ul class="nav nav-collapse">
+								<li><a href="{{ url('admin/photo') }}"> <span class="sub-item"> Foto </span> </a></li>
+								<li><a href="{{ url('admin/video') }}"> <span class="sub-item"> Video </span> </a></li>
+
+							</ul>						
+
+						</div>	          
 					</li>                                    
 					<li class="nav-item ">
-						<a href="{{ route('admin.service') }}" class="collapsed" aria-expanded="false">
+						<a href="{{ route('admin.service') }}" aria-expanded="true">
 							<i class="fas fa-concierge-bell"></i>
 							<p>Layanan</p>                
 						</a>              

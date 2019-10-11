@@ -39,7 +39,7 @@
                             <div class="card-title"><strong>
                                 <i class="fas fa-list"></i> &nbsp; Tambah Data Penduduk</strong> </div>
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="col-6 pull-right">
                             <a href="/admin/user" class="btn btn-sm btn-warning"><i class="fas fa-arrow-left"></i> Kembali</a>
                         </div>
                     </div>
