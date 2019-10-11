@@ -178,9 +178,9 @@
                   </li>
                   <li>
                     <div class="dropdown-divider"></div>                    
-                    <a class="dropdown-item" href="{{ url('/') }}">Back to Homepage</a>
+                    <a class="dropdown-item" href="{{ url('/') }}">Halaman Utama</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Account Setting</a>
+                    <a class="dropdown-item" href="#">Pengaturan Akun</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -220,73 +220,45 @@
 				</div>
 				<ul class="nav nav-secondary">
 					<li class="nav-item">
-					<a href="{{ url('admin') }}" aria-expanded="false">
+					<a href="{{ route('admin.home') }}" aria-expanded="false">
 						<i class="fas fa-home"></i>
-						<p>Dashboard</p>                
+						<p>Beranda</p>                
 					</a>              
 					</li>                        
 					<li class="nav-item">
-						<a data-toggle="collapse" href="#users" class="collapsed" aria-expanded="false">
+						<a href="{{ route('admin.user') }}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-user"></i>
-							<p>Users</p>
-							<span class="caret"></span>                
+							<p>Pengguna</p>
 						</a>              				
-						<div class="collapse" id="users">
-							<ul class="nav nav-collapse">
-							<li><a href="{{ url('admin/roles') }}"><span class="sub-item">Roles</span></a></li>
-							<li><a href="{{ url('admin/users') }}"><span class="sub-item">Accounts</span></a></li>
-							</ul>
-						</div>				
 					</li>       
 					<li class="nav-item">
-						<a data-toggle="collapse" href="#posts" class="collapsed" aria-expanded="false">
+						<a href="{{ route('admin.post') }}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-pen-alt"></i>
-							<p>Post</p>
-							<span class="caret"></span>                
+							<p>Posting</p>
 						</a>              				
-						<div class="collapse" id="posts">
-							<ul class="nav nav-collapse">
-							<li><a href="{{ url('admin/categories') }}"><span class="sub-item">Categories</span></a></li>
-							<li><a href="{{ url('admin/news') }}"><span class="sub-item">News</span></a></li>
-							<li><a href="{{ url('admin/announcements') }}"><span class="sub-item">Announcements</span></a></li>
-							</ul>
-						</div>				
 					</li>       
 					<li class="nav-item ">
-						<a data-toggle="collapse" href="#gallery" class="collapsed" aria-expanded="false">
+						<a href="{{ route('admin.gallery') }}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-compact-disc"></i>
 							<p>Gallery</p>  
-							<span class="caret"></span> 				             
 						</a>              
-						<div class="collapse" id="gallery">
-							<ul class="nav nav-collapse">
-							<li><a href="{{ url('admin/photos') }}"><span class="sub-item">Photos</span></a></li>
-							<li><a href="{{ url('admin/videos') }}"><span class="sub-item">Videos</span></a></li>
-							</ul>
-						</div>	
 					</li>                                    
 					<li class="nav-item ">
-						<a data-toggle="collapse" href="services" class="collapsed" aria-expanded="false">
+						<a href="{{ route('admin.service') }}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-concierge-bell"></i>
-							<p>Services</p>                
+							<p>Layanan</p>                
 						</a>              
-						<div class="collapse" id="services">
-							<ul class="nav nav-collapse">
-							<li><a href="{{ url('admin/photos') }}"><span class="sub-item">Photos</span></a></li>
-							<li><a href="{{ url('admin/videos') }}"><span class="sub-item">Videos</span></a></li>
-							</ul>
-						</div>	
 					</li>                                    
 					<li class="nav-item ">
-						<a href="{{ url('admin/setting') }}" aria-expanded="false">
+						<a href="{{ route('admin.setting') }}" aria-expanded="false">
 							<i class="fas fa-cog"></i>
-							<p>Setting</p>                				
+							<p>Pengaturan</p>                				
 						</a>              
 					</li>                                    
 					<li class="nav-item ">
-						<a href="{{ url('admin/help') }}" aria-expanded="false">
+						<a href="{{ route('admin.help') }}" aria-expanded="false">
 							<i class="fas fa-question-circle"></i>
-							<p>Help</p>                				
+							<p>Bantuan</p>                				
 						</a>              
 					</li>                                    
 				</ul>
@@ -831,7 +803,7 @@
 
 	<!-- Millenium JS -->
 	<script src="{{ asset('js/millenium.min.js') }}"></script>
-
+	
 	@yield('script')
 
 </body>

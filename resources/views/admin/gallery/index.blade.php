@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Admin Posting')
+@section('title', 'Halaman Admin Galeri')
 
 @section('content')
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Halaman Admin Posting</h4>
+                <h4 class="page-title">Halaman Admin Galeri</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">                        
                         <a href="{{ route('admin.home') }}">
@@ -17,8 +17,8 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.user') }}">                            
-                            Posting
+                        <a href="{{ route('admin.gallery') }}">                            
+                            Galeri
                         </a>
                     </li>                    
                 </ul>

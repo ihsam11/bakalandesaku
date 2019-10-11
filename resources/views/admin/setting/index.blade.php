@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
-@section('title', 'Agenda Page')
+@section('title', 'Halaman Pengaturan')
 
 @section('content')
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Halaman Users</h4>
+                <h4 class="page-title">Halaman Admin Pengaturan</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">                        
-                        <a href="{{ url('admin') }}">
+                        <a href="{{ route('admin.home') }}">
                             <i class="flaticon-home"></i>
                         </a>
                     </li>
@@ -17,16 +17,8 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/users') }}">                            
-                            Master Data                        
-                        </a>
-                    </li>                    
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('admin/users') }}">
-                            Users                        
+                        <a href="{{ route('admin.setting') }}">                            
+                            Pengaturan
                         </a>
                     </li>                    
                 </ul>
