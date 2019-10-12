@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Recording;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\UserImport;
 
-class UserController extends Controller
+class RecordingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-
-        return view ('admin.user.index', compact('user'));
+        //
     }
 
     /**
@@ -46,10 +42,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Video $video)
     {
         //
     }
@@ -57,10 +53,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Video $video)
     {
         //
     }
@@ -69,10 +65,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Video $video)
     {
         //
     }
@@ -80,37 +76,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Video $video)
     {
         //
     }
-
-    public function import(Request $request) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$file_name = rand().$file->getClientOriginalName();
- 
-		// upload ke folder di dalam folder public
-		$file->move('doc',$file_name);
- 
-		// import data
-		Excel::import(new UserImport, public_path('/doc/'.$file_name));
- 
-		// notifikasi dengan session
-		// Session::flash('sukses','Data User Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect('/admin/user');
-	}
 }

@@ -4,9 +4,9 @@
 <!-- Mirrored from demo.themekita.com/demo-millenium/millenium/examples/demo2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Oct 2018 03:50:15 GMT -->
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Admin Bakalandesaku</title>
+	<title>@yield('title')</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{{ asset('img/icon.ico') }}" type="image/x-icon"/>
+	<link rel="icon" href="{{ asset('img/logo-99.png') }}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="{{ asset('js/webfont.min.js') }}"></script>
@@ -35,7 +35,8 @@
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark2">
         <a href="index.html" class="logo">
-          <img src="{{ asset('img/logo.svg') }}" alt="Bakalan Desa Logo" class="navbar-brand">
+          <img src="{{ asset('img/logo-99.png') }}" alt="Bakalan Desa Logo" class="navbar-brand" width="50">
+		  <h4 style="display:inline"class="text-white"><strong>Admin Page</strong></h4>
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="icon-menu"></i></span>
@@ -234,12 +235,6 @@
 						</a>              				
 					</li>       
 					<li class="nav-item">
-						<a href="{{ url('admin/slider') }}" class="collapsed" aria-expanded="false">
-							<i class="fas fa-film"></i>
-							<p>Slider</p>
-						</a>              				
-					</li>       
-					<li class="nav-item">
 						<a href="#posting" data-toggle="collapse">
 							<i class="fas fa-pen-alt"></i>
 							<p>Posting</p>
@@ -247,9 +242,9 @@
 						</a>              
 						<div class="collapse" id="posting">
 							<ul class="nav nav-collapse">
-								<li><a href="{{ url('admin/news') }}"> <span class="sub-item"> Berita </span> </a></li>
+								<li><a href="{{ url('admin/bulletin') }}"> <span class="sub-item"> Berita </span> </a></li>
 								<li><a href="{{ url('admin/agenda') }}"> <span class="sub-item"> Agenda </span> </a></li>
-								<li><a href="{{ url('admin/announcement') }}"> <span class="sub-item"> Pengumuman </span> </a></li>
+								<li><a href="{{ url('admin/broadcast') }}"> <span class="sub-item"> Pengumuman </span> </a></li>
 							</ul>
 						</div>				
 					</li>       
@@ -261,8 +256,8 @@
 						</a>     
 						<div class="collapse" id="gallery">
 							<ul class="nav nav-collapse">
-								<li><a href="{{ url('admin/photo') }}"> <span class="sub-item"> Foto </span> </a></li>
-								<li><a href="{{ url('admin/video') }}"> <span class="sub-item"> Video </span> </a></li>
+								<li><a href="{{ url('admin/photograph') }}"> <span class="sub-item"> Potret </span> </a></li>
+								<li><a href="{{ url('admin/recording') }}"> <span class="sub-item"> Rekaman </span> </a></li>
 
 							</ul>						
 

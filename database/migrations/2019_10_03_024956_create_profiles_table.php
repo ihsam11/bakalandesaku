@@ -15,15 +15,27 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->dateTime('register_date');
             $table->unsignedBigInteger('nik')->unique();
+            $table->unsignedBigInteger('kk_id');                        
             $table->string('name');
             $table->string('birth_place');
             $table->date('birth_date');
-            $table->enum('blood_type',['A', 'B', 'AB', 'O'])->nullable();
+            $table->unsignedBigInteger('blood_type')->nullable();
             $table->string('address');
-            $table->string('religion');
-            $table->enum('marital_status',['Single', 'Married' ,'Widowed']);
-            $table->string('job');                        
+            $table->unsignedBigInteger('religion');
+            $table->unsignedBigInteger('marriage');
+            $table->string('job');              
+            $table->enum('gender', [ 'Pria', 'Wanita' ]);                        
+            $table->smallInteger('rt');            
+            $table->smallInteger('rw');            
+            $table->unsignedBigInteger('education');            
+            $table->enum('citizenship', [ 'WNI', 'WNA' ]);            
+            $table->unsignedBigInteger('lineage');            
+            $table->string('father_name')->nullable();            
+            $table->string('mother_name')->nullable();            
+            $table->string('photo_path')->nullable();            
+            $table->boolean('status');             
             $table->timestamps();
         });
     }
