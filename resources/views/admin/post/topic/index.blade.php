@@ -140,17 +140,17 @@
                 },
                 submitHandler: function (data) {                
                     $.ajax ({
-url: "{{ url('admin/topic') }}",
-type: "POST",
-data: $('modal form').serialize(),
-dataType: 'json',
-success: function (response) {
-        alert('Berhasil');
+                        url: "{{ url('admin/topic') }}",
+                        type: "POST",
+                        data: $('modal form').serialize(),
+                        dataType: 'json',
+                        success: function (response) {
+                                alert('Berhasil');
 
-},
-error: function () {
-    alert('gagal');
-}
+                        },
+                        error: function () {
+                            alert('gagal');
+                        }
 
                     });
 
