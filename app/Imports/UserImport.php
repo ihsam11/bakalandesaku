@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class UserImport implements ToModel
@@ -16,7 +17,7 @@ class UserImport implements ToModel
     {
         return new User([
             'nik' => $row[1],
-            'password' => $row[2],
+            'password' => Hash::make($row[2]),
             'name' => $row[3],
             'email' => $row[4],
             'role_id' => '5'
