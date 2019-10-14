@@ -1,16 +1,16 @@
 <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form method="post" action="/user/import" enctype="multipart/form-data">
+        <form method="POST" action="user/import" enctype="multipart/form-data">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-secondary">
                     <h4 class="modal-title" id="exampleModalLabel">
-                    <i class="fas fa-table"></i> &nbsp; Import Excel</h4>
+                        <strong><i class="fas fa-table"></i> &nbsp; Import Excel </strong></h4>
                 </div>
                 <div class="modal-body">
                     @csrf
-                    <label>Pilih file excel</label>
                     <div class="form-group">
-                        <input type="file" name="file" required="required">
+                        <label class="form-label">Pilih file excel</label>
+                        <input type="file" name="file" required="required" class="form-control">
                     </div>
 
                 </div>

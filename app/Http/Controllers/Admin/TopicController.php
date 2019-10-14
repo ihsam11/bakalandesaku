@@ -8,11 +8,6 @@ use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
@@ -20,68 +15,47 @@ class TopicController extends Controller
         return view('admin.post.topic.index', compact('topics'));
     }    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {           
         //
         $request->validate([
-            'name' => [ 'required', 'string', 'unique:name' ],
-            'description' => [ 'required', 'string' ]
+            'name'        => [ 'required', 'unique:topics' ],
+            'description' => [ 'required' ]
         ]);
 
-        Topic::create($request->all());
+        $userId = $request->id;
+        $data = Topic::updateOrCreate([ "id" => $userId ], [
+            "name"        => ucwords($request->name),
+            "description" => ucfirst($request->description)
+        ]);        
 
-        return redirect('admin/topic')
-                ->with('status', 'Data Topik Berhasil Ditambahkan!');
+        if ( $data ) {
+            $arr = array ( 'message' => 'Data Topik Berhasil Ditambahkan !' );
+        }
+
+        return Response()->json($arr);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
+    public function edit($id)
+    {
+        //                
+        $where = array ("id" => $id);
+        $topic = Topic::where($where)->first();
+
+        return Response()->json($topic);
+    }
+    
+
+    public function destroy($id)
     {
         //
+        $topic = Topic::where('id', $id)->delete();
+
+        return Response()->json($topic);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
+    public function datatables() {
+        $topics = Topic::all();
+        return Response()->json($topics);
     }
 }

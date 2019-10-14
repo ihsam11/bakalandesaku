@@ -24,6 +24,10 @@
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/millenium.min.css') }}">
 
+	<!-- Summernote -->
+	<link rel="stylesheet" href="{{ asset('css/summernote-bs4.css') }}">
+
+
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('css/demo.css') }}">
 
@@ -229,7 +233,7 @@
 					</a>              
 					</li>                        
 					<li class="nav-item">
-						<a href="{{ route('admin.user') }}" class="collapsed" aria-expanded="false">
+						<a href="{{ url('admin/user') }}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-user"></i>
 							<p>Pengguna</p>
 						</a>              				
@@ -251,13 +255,13 @@
 					<li class="nav-item ">
 						<a href="#gallery" data-toggle="collapse">
 							<i class="fas fa-compact-disc"></i>
-							<p>Gallery</p>  
+							<p>Galeri</p>  
 							<span class="caret"></span>
 						</a>     
 						<div class="collapse" id="gallery">
 							<ul class="nav nav-collapse">
-								<li><a href="{{ url('admin/photograph') }}"> <span class="sub-item"> Potret </span> </a></li>
-								<li><a href="{{ url('admin/recording') }}"> <span class="sub-item"> Rekaman </span> </a></li>
+								<li><a href="{{ url('admin/photograph') }}"> <span class="sub-item"> Foto </span> </a></li>
+								<li><a href="{{ url('admin/recording') }}"> <span class="sub-item"> Video </span> </a></li>
 
 							</ul>						
 

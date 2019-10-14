@@ -18,7 +18,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.user') }}">                            
+                        <a href="{{ url('admin/user') }}">                            
                             Pengguna
                         </a>
                     </li>                    
@@ -98,32 +98,30 @@
 @endsection
 
 @section ('script') 
-
     <script>
-    
-            $('#multi-filter-select').DataTable( {
-                "pageLength": 4,
-                initComplete: function () {
-                    this.api().columns().every( function () {
-                        var column = this;
-                        var select = $('<select class="form-control"><option value=""></option></select>')
-                        .appendTo( $(column.footer()).empty() )
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                                );
+        $('#multi-filter-select').DataTable( {
+            "pageLength": 4,
+            initComplete: function () {
+                this.api().columns().every( function () {
+                    var column = this;
+                    var select = $('<select class="form-control"><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                            );
 
-                            column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                        } );
-
-                        column.data().unique().sort().each( function ( d, j ) {
-                            select.append( '<option value="'+d+'">'+d+'</option>' )
-                        } );
+                        column
+                        .search( val ? '^'+val+'$' : '', true, false )
+                        .draw();
                     } );
-                }
-            });
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+d+'">'+d+'</option>' )
+                    } );
+                } );
+            }
+        });
     </script>
 @endsection
 

@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Posting Berita')
+@section('title', 'Halaman Galeri Foto')
 
 @section('content')
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Halaman Posting Berita</h4>
+                <h4 class="page-title">Halaman Galeri Foto</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">                        
                         <a href="{{ route('admin.home') }}">
@@ -17,8 +17,16 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/user') }}">                            
-                            Posting Berita
+                        <a href="#">                            
+                            Galeri
+                        </a>
+                    </li>                    
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/photograph') }}">                            
+                            Foto
                         </a>
                     </li>                    
                 </ul>
@@ -26,22 +34,17 @@
             <div class="card">        
                 <div class="card-header">
                     <div class="card-title">
-                        <strong><i class="fas fa-list"></i> &nbsp; Daftar Posting Berita</strong> 
+                        <strong><i class="fas fa-list"></i> &nbsp; Daftar Foto</strong> 
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-6">
                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create">
-                                <i class="fas fa-plus-circle"></i> &nbsp; Tambah Berita
+                                <i class="fas fa-plus-circle"></i> &nbsp; Tambah Foto
                             </button>
                         </div>
-                        <div class="col-6 text-right">
-                            <a class="btn btn-sm btn-secondary" href="{{ url('admin/topic') }}">
-                                <i class="fas fa-list"></i> &nbsp; Daftar Topik
-                            </a>                            
-                        </div>
-                    </div>
+                    </div>                    
                     <div class="row">
                         <div class="col-12">                            
                             <div class="card">
@@ -51,30 +54,26 @@
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
-                                                    <th>KATEGORI</th>
                                                     <th>JUDUL</th>
-                                                    <th>TANGGAL POSTING</th>
-                                                    <th>VIEWER</th>
+                                                    <th>KETERANGAN</th>
                                                     <th>AKSI</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($bulletin as $list)
-                                                <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $list->topic }}</td>
-                                                    <td>{{ $list->title }}</td>
-                                                    <td>{{ $list->created_at }}</td>
-                                                    <td>{{ $list->viewer }}</td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#edit">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($topics as $list)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $list->name }}</td>
+                                                        <td>{{ $list->description }}</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-sm btn-warning" onclick="edit({{ $list->id }})">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-danger" onclick="delete({{ $list->id }})">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -86,9 +85,13 @@
                 </div>
             </div>
         </div>
-    </div>        
+    </div>    
 
-    @include('admin.post.bulletin.create', [ 'topic' => $topic ])
+    @include('admin.post.topic.create')
+    
+   <div id="edit_form">
+   
+   </div> 
 
 @endsection
 
@@ -98,8 +101,18 @@
 
         });
 
-        $('#create #content').summernote({});
+        function edit(id) {
+            $.ajax ({
+                url: "{{ url('admin/photograph') }}",
+                type: 'POST',
+                dataType: 'html',
+                success: function (e) {
+                    $('#edit_form').html(e.edit_form);
+                }
+            });
+        }
+
+    
         
-        $('#edit #content').summernote({});
     </script>
 @endsection

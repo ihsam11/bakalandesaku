@@ -16,16 +16,8 @@ class BroadcastController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $broadcasts = Broadcast::all();
+        return view ('admin.post.broadcast.index', compact('broadcasts'));
     }
 
     /**
@@ -37,6 +29,21 @@ class BroadcastController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            "title"          => [ 'required' ],
+            "description"    => [ 'required' ],
+            "active_range"   => [ 'required' ]
+        ]);
+
+        Broadcast::create([
+            "title"           => $request->title,
+            "description"     => $request->description,
+            "active_range"    => $request->active_range,
+        ]);
+
+        return view ('admin/broadcast')
+                ->with('status', 'Data Pengumuman Berhasil Ditambahkan!');
+
     }
 
     /**
@@ -45,9 +52,10 @@ class BroadcastController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function show(Announcement $announcement)
+    public function show(Broadcast $broadcast)
     {
         //
+        
     }
 
     /**
@@ -56,7 +64,7 @@ class BroadcastController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit(Broadcast $broadcast)
     {
         //
     }
@@ -68,7 +76,7 @@ class BroadcastController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(Request $request, Broadcast $broadcast)
     {
         //
     }
@@ -79,8 +87,9 @@ class BroadcastController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy(Broadcast $broadcast)
     {
         //
+
     }
 }

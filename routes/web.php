@@ -22,17 +22,18 @@ Route::group
 ([ "as" => "admin.", "prefix" => "admin", "middleware" => 'auth' ], function () {
     
     Route::get('/', 'Admin\HomeController@index')->name('home');
-    Route::get('/user', 'Admin\UserController@index')->name('user');    
     Route::get('/setting', 'Admin\SettingController@index')->name('setting');
     Route::get('/help', 'Admin\HelpController@index')->name('help');
     Route::get('/service', 'Admin\ServiceController@index')->name('service');     
-    Route::resource('/profile', 'Admin\ProfileController');
-    Route::resource('/topic', 'Admin\TopicController');
-    Route::resource('/bulletin', 'Admin\BulletinController');
-    Route::resource('/agenda', 'Admin\AgendaController');
-    Route::resource('/broadcast', 'Admin\BroadcastController');
-    Route::resource('/photograph', 'Admin\PhotographController');
-    Route::resource('/recording', 'Admin\RecordingController');
+    Route::post('/user/import', 'Admin\UserController@import');
+    Route::resource('user', 'Admin\UserController');
+    Route::resource('profile', 'Admin\ProfileController');
+    Route::resource('topic', 'Admin\TopicController');    
+    Route::resource('bulletin', 'Admin\BulletinController');
+    Route::resource('agenda', 'Admin\AgendaController');
+    Route::resource('broadcast', 'Admin\BroadcastController');
+    Route::resource('photograph', 'Admin\PhotographController');
+    Route::resource('recording', 'Admin\RecordingController');
 });
 
 

@@ -14,12 +14,14 @@ class UserImport implements ToModel
     */
     public function model(array $row)
     {
-        return new User([
-            'nik' => $row[1],
-            'password' => $row[2],
-            'name' => $row[3],
-            'email' => $row[4],
-            'role_id' => '5'
-        ]);
+        // return new User ([
+        //     'nik' => $row['1'],
+        //     'password' => $row['2'],
+        //     'name' => $row['3'],
+        //     'email' => $row['4'],
+        //     'role_id' => '2'
+        // ]);
+        dd($row);
+        
     }
 }

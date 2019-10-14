@@ -111,6 +111,6 @@ class UserController extends Controller
 		// Session::flash('sukses','Data User Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect('/admin/user');
+		return redirect('admin/user');
 	}
 }
