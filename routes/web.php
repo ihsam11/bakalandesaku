@@ -13,28 +13,28 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::get('/penduduk', function(){return view('profiles.penduduk');});
+Route::get('/penduduk', 'Admin\ProfileController@index');
+Route::get('/penduduk/userlist', 'Admin\ProfileController@userlist');
 Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
 Route::post('/user/import', 'Admin\UserController@import');    
 
-Route::group 
+Route::group
 ([ "as" => "admin.", "prefix" => "admin", "middleware" => 'auth' ], function () {
     
     Route::get('/', 'Admin\HomeController@index')->name('home');
-    Route::get('/user', 'Admin\UserController@index')->name('user');
-    Route::get('/post', 'Admin\PostController@index')->name('post');
-    Route::get('/gallery', 'Admin\GalleryController@index')->name('gallery');
     Route::get('/setting', 'Admin\SettingController@index')->name('setting');
     Route::get('/help', 'Admin\HelpController@index')->name('help');
-    Route::get('/service', 'Admin\ServiceController@index')->name('service'); 
-    Route::resource('/profile', 'Admin\ProfileController');
-    Route::resource('/category', 'Admin\CategoryController');
-    Route::resource('/news', 'Admin\NewsController');
-    Route::resource('/agenda', 'Admin\AgendaController');
-    Route::resource('/announcement', 'Admin\AnnouncementController');
-    Route::resource('/photo', 'Admin\PhotoController');
-    Route::resource('/video', 'Admin\VideoController');
+    Route::get('/service', 'Admin\ServiceController@index')->name('service');     
+    Route::post('/user/import', 'Admin\UserController@import');
+    Route::resource('user', 'Admin\UserController');
+    // Route::resource('profile', 'Admin\ProfileController');
+    Route::resource('topic', 'Admin\TopicController');    
+    Route::resource('bulletin', 'Admin\BulletinController');
+    Route::resource('agenda', 'Admin\AgendaController');
+    Route::resource('broadcast', 'Admin\BroadcastController');
+    Route::resource('photograph', 'Admin\PhotographController');
+    Route::resource('recording', 'Admin\RecordingController');
 });
 
 

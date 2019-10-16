@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Profile;
+use App\User;
+use Datatables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,6 +16,22 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index(){
+
+        return view('profiles.penduduk');
+    }
+
+    public function userlist(){
+
+        $table = DB::table('profiles');
+        // $table = Profile::all();
+        // $umur = usia($table->value('birth_date'));
+        
+        // dd($table->get());
+
+        return datatables()->of($table)->make(true);
+    }
+
     public function create()
     {
         //

@@ -8,34 +8,26 @@
             <h1 class="display-4">Data Penduduk th. 2019</h1>
         </div>
         <hr class="border-warning"/>
-        <table class="table" style="width:100%">
+        <table class="table" id="users" style="width:100%">
             <thead class="thead-light bg-info">
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
+                    <th scope="col">Jenis Kelamin</th>
                     <th scope="col">Usia</th>
                     <th scope="col">Alamat</th>
                 </tr>
             </thead>
             <tbody>
+                {{-- @foreach ($data as $item)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Rohmat Hidayat</td>
-                    <td>26 tahun</td>
-                    <td>Dusun Bakalan 01 RT:01 RW:02</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $item["name"] }}</td>
+                    <td>{{ $item["gender"] }}</td>
+                    <td>{{ usia($item["birth_date"])." th" }}</td>
+                    <td>{{ $item["address"].' RT : '.$item["rt"].' RW : '.$item["rw"] }}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Rohmat Hidayat</td>
-                    <td>26 tahun</td>
-                    <td>Dusun Bakalan 01 RT:01 RW:02</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Rohmat Hidayat</td>
-                    <td>26 tahun</td>
-                    <td>Dusun Bakalan 01 RT:01 RW:02</td>
-                </tr>
+                @endforeach --}}
             </tbody>
         </table>
     </div>
@@ -142,9 +134,23 @@
 </script>
 <script>
 $(document).ready(function() {
-    $('.table').DataTable( {
-        "info":     false
-    } );
-} );
+    var user = $('#users').DataTable( {
+        processing: true,
+        serverSide: true,
+        ajax: "{{ url('penduduk/userlist') }}",
+        columns: [
+            { data: 'id' },
+            { data: 'name' },
+            { data: 'gender' },
+            { data: 'birth_date' },
+            { data: 'address' }
+        ]
+    });
+    // user.on( 'order.dt search.dt', function () {
+    //     user.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+    //         cell.innerHTML = i+1;
+    //     } );
+    // } ).draw();
+});
 </script>
 @endsection

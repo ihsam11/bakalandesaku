@@ -16,16 +16,8 @@ class AgendaController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $agendas = Agenda::all();
+        return view('admin.post.agenda.index', compact('agendas'));
     }
 
     /**
@@ -37,6 +29,27 @@ class AgendaController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            "title"         => [ 'required' ],
+            "date_start"    => [ 'required' ],
+            "date_finish"   => [ 'required' ],
+            "time_start"    => [ 'required' ],
+            "time_finish"   => [ 'required' ],
+            "description"   => [ 'required' ],            
+        ]);
+
+        Agenda::create([
+            "title"         => ucwords($request->title),
+            "date_start"    => $request->date_start,
+            "date_finish"   => $request->date_finish,
+            "time_start"    => $request->time_start,
+            "time_finish"   => $request->time_finish,
+            "description"   => ucfirst($request->description),
+            "display"       => 1
+        ]);
+
+        return redirect()->back()
+                ->with('status', 'Data Agenda Berhasil Ditambahkan!');
     }
 
     /**
@@ -48,6 +61,7 @@ class AgendaController extends Controller
     public function show(Agenda $agenda)
     {
         //
+        
     }
 
     /**
@@ -59,6 +73,7 @@ class AgendaController extends Controller
     public function edit(Agenda $agenda)
     {
         //
+        
     }
 
     /**
@@ -71,6 +86,8 @@ class AgendaController extends Controller
     public function update(Request $request, Agenda $agenda)
     {
         //
+        return redirect()->back()
+                ->with('status', 'Data Agenda Berhasil Diperbarui !');
     }
 
     /**
@@ -82,5 +99,7 @@ class AgendaController extends Controller
     public function destroy(Agenda $agenda)
     {
         //
+        return redirect()->back()
+        ->with('status', 'Data Agenda Berhasil Dihapus !');
     }
 }
