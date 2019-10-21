@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}"/>
-    {{-- <link rel="stylesheet" href="{{ asset('css/docs.theme.min.css') }}"/> --}}
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -23,8 +22,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    @yield('style')
 </head>
 <body style="overflow-x: hidden">
 <div id="app">
@@ -99,9 +97,20 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.home') }}">                                                    
+                            @auth
+                            @if( Auth::user()->role_id == 2)
+                            <a class="dropdown-item" href="{{ url('profiles/'.Auth::user()->id.'/edit') }}">
+                                <i class="fa fa-gear"></i> Edit Profile
+                            </a>
+                            @else
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">
                                 <i class="fa fa-gear"></i> Admin Page
                             </a>
+                            <a class="dropdown-item" href="{{ url('profiles/'.Auth::user()->id.'/edit') }}">
+                                <i class="fa fa-gear"></i> Edit Profile
+                            </a>
+                            @endif
+                            @endauth
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -158,7 +167,7 @@
             &copy; <script>document.write(new Date().getFullYear());</script> Nalakab <br>
         </div>
         <div class="row text-white justify-content-center">
-            <p>Website ini dibuat oleh Rohmat Hidayat & M Ihsan.</p>
+            <p>Website ini dibuat oleh Rohmat Hidayat & Muhammad Ikhsan.</p>
         </div>
     </div>
 </footer>

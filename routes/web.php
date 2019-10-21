@@ -13,11 +13,12 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::get('/penduduk', 'Admin\ProfileController@index');
-Route::get('/penduduk/userlist', 'Admin\ProfileController@userlist');
+Route::resource('profiles', 'Admin\ProfileController');
+Route::get('/penduduk', function(){return view('profiles.penduduk');});
+Route::get('/penduduk/userdatatable', 'Admin\ProfileController@userdatatable');
+Route::get('/penduduk/userchart', 'Admin\ProfileController@userchart');
 Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
-Route::post('/user/import', 'Admin\UserController@import');    
 
 Route::group
 ([ "as" => "admin.", "prefix" => "admin", "middleware" => 'auth' ], function () {
@@ -28,7 +29,6 @@ Route::group
     Route::get('/service', 'Admin\ServiceController@index')->name('service');     
     Route::post('/user/import', 'Admin\UserController@import');
     Route::resource('user', 'Admin\UserController');
-    // Route::resource('profile', 'Admin\ProfileController');
     Route::resource('topic', 'Admin\TopicController');    
     Route::resource('bulletin', 'Admin\BulletinController');
     Route::resource('agenda', 'Admin\AgendaController');

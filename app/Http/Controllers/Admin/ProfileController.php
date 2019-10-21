@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Profile;
 use App\User;
+use Carbon\Carbon;
 use Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -11,31 +12,28 @@ use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(){
+    public function userchart(){
+        
+        $get = Profile::select('birth_date')->where('id', 1)->json();
+        $now = Carbon::now();
+        $b_day = Carbon::parse($get);
+        $age = $b_day->diffInYears($now);
 
-        return view('profiles.penduduk');
+        dd($b_day);
     }
 
-    public function userlist(){
+    public function userdatatable(){
 
-        $table = DB::table('profiles');
-        // $table = Profile::all();
-        // $umur = usia($table->value('birth_date'));
+        $table = DB::table('profiles')->select('id', 'nik', 'name', 'gender', DB::RAW('TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS usia'), 'address', 'rt', 'rw');
         
-        // dd($table->get());
-
         return datatables()->of($table)->make(true);
+        // return response()->json($table);
     }
 
     public function create()
     {
         //
-        return view ('admin.user.profile.create');
+        return view ('user.userprofile');
     }
 
     /**
@@ -75,7 +73,14 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        //
+        $profile = DB::table('users')
+                    ->join('profiles', 'profiles.nik', '=', 'users.nik')
+                    ->select('profiles.*', 'users.email as email')          
+                    ->where('profiles.id', $profile->id)
+                    ->first();
+        
+        // dd($profile);
+        return view('user.editprofile', compact('profile'));
     }
 
     /**
