@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Topic;
+use DataTables, Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,52 +11,74 @@ class TopicController extends Controller
 {
     public function index()
     {
-        //
+        //        
         $topics = Topic::all();
-        return view('admin.post.topic.index', compact('topics'));
+        return view ('admin.post.topic.index', compact('topics'));
     }    
+
+    public function create() {        
+        $topics = Topic::all();        
+        return view ('admin.post.topic.create', compact('topics'));
+    }
 
     public function store(Request $request)
     {           
-        //
-        $request->validate([
+        Validator::make($request->all(), [
             'name'        => [ 'required', 'unique:topics' ],
             'description' => [ 'required' ]
-        ]);
-
-        $userId = $request->id;
-        $data = Topic::updateOrCreate([ "id" => $userId ], [
+        ])->validate();
+                
+        Topic::create ([
             "name"        => ucwords($request->name),
             "description" => ucfirst($request->description)
-        ]);        
-
-        if ( $data ) {
-            $arr = array ( 'message' => 'Data Topik Berhasil Ditambahkan !' );
-        }
-
-        return Response()->json($arr);
+        ]);                                       
+        
+        return redirect('/admin/topic')
+                ->with('message', 'Data Topik Berhasil Ditambahkan !')
+                ->with('alert', 'alert-success text-success')
+                ->with('icon', 'fa-check');
     }
 
     public function edit($id)
     {
-        //                
-        $where = array ("id" => $id);
-        $topic = Topic::where($where)->first();
+        //                        
+        $topic = Topic::find($id);
+        $topics = Topic::all();      
 
-        return Response()->json($topic);
+        return view ('admin.post.topic.edit', compact('topic', 'topics'));
     }
-    
+
+    public function update(Request $request, Topic $topic)
+    {           
+        //
+        Validator::make($request->all(), [
+            'name'          => [ 'required' ],
+            'description'   => [ 'required' ]
+        ])->validate();
+
+        $topic = Topic::find($topic->id);
+
+        $topic->name        = ucwords($request->name);
+        $topic->description = ucfirst($request->description);
+
+        $topic->save();
+
+        return redirect ('/admin/topic')
+                ->with('message', 'Data Topik Berhasil Diperbarui !')
+                ->with('alert', 'alert-success text-success')
+                ->with('icon', 'fa-check');
+        
+    }    
 
     public function destroy($id)
     {
         //
-        $topic = Topic::where('id', $id)->delete();
+        Topic::destroy($id);
 
-        return Response()->json($topic);
+        return redirect ('/admin/topic')
+                ->with('message', 'Data Topik Berhasil Dihapus')
+                ->with('alert', 'alert-success text-success')
+                ->with('icon', 'fa-check');
     }
 
-    public function datatables() {
-        $topics = Topic::all();
-        return Response()->json($topics);
-    }
 }

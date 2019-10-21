@@ -98,9 +98,15 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.home') }}">                                                    
+                            @if (Auth::user()->role_id == 1)
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">
                                 <i class="fa fa-gear"></i> Admin Page
                             </a>
+                            @else
+                            <a class="dropdown-item" href="{{ route('admin.home') }}">                                                    
+                                <i class="fa fa-gear"></i> User Page
+                            </a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->dateTime('register_date');
-            $table->unsignedBigInteger('nik')->unique();
+            $table->string('nik', 16)->unique();
             $table->unsignedBigInteger('kk_id');                        
             $table->string('name');
             $table->string('birth_place');

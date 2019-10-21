@@ -18,10 +18,9 @@ class CreateBulletinsTable extends Migration
             $table->unsignedBigInteger('topic_id');
             $table->string('image_path');
             $table->string('title');
-            $table->string('content');
+            $table->longtext('content');
             $table->unsignedBigInteger('user_id');                        
-            $table->enum('status',['Approved','Pending','Rejected'])->default('Pending');                        
-            $table->boolean('display')->default(true);
+            $table->integer('display')->nullable();
             $table->unsignedInteger('viewer')->default(0);
             $table->timestamps();
         });
