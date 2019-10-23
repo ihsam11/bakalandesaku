@@ -63,7 +63,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Galeri</a>
+                    <a class="nav-link disabled" href="#">Galeri</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="Organisasi" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Organisasi</a>
@@ -77,7 +77,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Layanan</a>
+                    <a class="nav-link disabled" href="#">Layanan</a>
                 </li>                
             </ul>
 
@@ -149,8 +149,8 @@
                             <a href="http://facebook.com/devusion" class="text-white">
                                 <i class="fa fa-facebook fa-2x"></i>
                             </a>
-                            <a href="http://twitter.com/gizonezkoen" class="text-white">
-                                <i class="fa fa-twitter fa-2x"></i>
+                            <a href="http://instagram.com/rohmathdy" class="text-white">
+                                <i class="fa fa-instagram fa-2x"></i>
                             </a>
                         </div>
                         <div class="card-text d-flex justify-content-around">

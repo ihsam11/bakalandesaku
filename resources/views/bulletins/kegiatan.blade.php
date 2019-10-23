@@ -11,7 +11,7 @@
         @foreach ($kegiatan as $item)
         <div class="col-auto mb-3">
             <div class="card" style="width: 20rem;">
-            <img class="card-img-top rounded-lg" src="{{ asset('img/perangkat.jpeg') }}" alt="">
+            <img class="card-img-top rounded-lg" src="{{ asset($item->image_path) }}" alt="">
             <div class="card-body">
                 <h4 class="card-title">{{ $item->title }}</h4>
                 <p class="card-text">

@@ -25,6 +25,8 @@ Route::get('/penduduk/userdatatable', 'User\ProfilController@userdatatable');
 Route::get('/penduduk/userchart', 'User\ProfilController@userchart');
 Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
+Route::get('/kesehatan', function(){return view('profiles.kesehatan');});
+Route::get('/industri', function(){return view('profiles.industri');});
 
 Route::group
 ([ "as" => "admin.", "prefix" => "admin", "middleware" => 'auth' ], function () {
