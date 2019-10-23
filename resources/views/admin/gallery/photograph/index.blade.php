@@ -49,13 +49,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="media-items row">
                         @foreach ($photographs as $list)
-                            <div class="col-3 mb-2">
-                                <div class="img-thumbnail">
-                                    <img src="{{ $list->path }}" alt="Gambar" width="200" height="200">
+                        <div class="col-lg-4 col-md-4 col-sm-4 mb-4">
+                            <div class="media-item">
+                                <div class="media-image">
+                                    <img src="{{ $list->path }}" alt="Gambar" height="200" width="200">
+                                </div>
+                                <div class="media-description">
+                                    <p>{{ $list->title }}</p>
+                                    <a href="photograph/{{ $list->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                        <form action="../admin/photograph/{{ $list->id }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </form>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -90,14 +101,6 @@
                 <div class="modal-footer">
                     <a href="{{ url('admin/photograph') }}" class="btn btn-secondary">Tutup</a>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="show">
-        <div class="modal-dialog">
-            <div class="modal-content">
             </div>
         </div>
     </div>

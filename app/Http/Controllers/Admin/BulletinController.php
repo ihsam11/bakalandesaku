@@ -111,7 +111,7 @@ class BulletinController extends Controller
          Validator::make($request->all(), [
             "topic_id"   => [ 'required' ],
             "image"      => [ 'required', 'mimes:jpeg,png,jpg,gif,svg','max:4096' ],
-            "title"      => [ 'required', 'unique:bulletins' ],
+            "title"      => [ 'required' ],
             "content"    => [ 'required' ]
         ])->validate();
 

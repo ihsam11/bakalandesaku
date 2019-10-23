@@ -13,12 +13,13 @@ class CreatePhotographsTable extends Migration
      */
     public function up()
     {
-        Schema::create('photographs', function (Blueprint $table) {            
+        Schema::create('photographs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->UnsignedBigInteger('topic_id');
             $table->string('title');
             $table->string('path');
             $table->text('description')->nullable();
-            $table->boolean('display')->default(true);            
+            $table->boolean('display')->default(true);
             $table->timestamps();
         });
     }

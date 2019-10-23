@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Halaman Upload Foto')
+@section('title', 'Halaman Edit Foto')
 
 @section('content')
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Halaman Upload Foto</h4>
+                <h4 class="page-title">Halaman Edit Foto</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
                         <a href="{{ route('admin.home') }}">
@@ -34,21 +34,13 @@
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="card-title text-white">
-                        <strong><i class="fas fa-plus-circle"></i> &nbsp; Upload Foto</strong>
+                        <strong><i class="fas fa-plus-circle"></i> &nbsp; Edit Foto</strong>
                     </div>
                 </div>
-                <form action="../photograph" method="POST" enctype="multipart/form-data">
+                <form action="../{{ $photograph->id }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card-body">
-                        @if (session('message'))
-                        <div class="row">
-                            <div class="col">
-                                <div class="alert alert-success">
-                                    {{ session('message') }}
-                                </div>
-                            </div>
-                        </div>
-                        @endif
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -56,7 +48,7 @@
                                     <select name="topic" id="topic" class="form-control @error('topic') is-invalid @enderror">
                                         <option value="">Pilih Kategori Foto</option>
                                         @foreach ($topics as $list)
-                                        <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                        <option value="{{ $list->id }}" @if ($photograph->topic_id == $list->id) selected @endif>{{ $list->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('topic')
@@ -67,7 +59,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Judul</label>
-                                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') }}">
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ $photograph->title }}">
                                     @error('title')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
@@ -76,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Keterangan</label>
-                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"></textarea>
+                                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description">{{ $photograph->description }}</textarea>
                                     @error('description')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
@@ -93,6 +85,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                    <img src="{{ $photograph->path }}" alt="Gambar" width="200" height="150">
                                 </div>
                             </div>
 
