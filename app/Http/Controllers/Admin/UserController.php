@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Jobs\ImportJob;
+use Maatwebsite\Excel\Facades\DB;
 use App\Imports\UserImport;
 
 class UserController extends Controller
@@ -31,6 +32,17 @@ class UserController extends Controller
     public function create()
     {
         //
+        $jobs        = DB::table('jobs')::get();
+        $religions   = DB::table('religions')::get();
+        $marriages   = DB::table('marriages')::get();
+        $blood_types = DB::table('blood_types')::get();
+        $roles       = DB::table('roles')::get();
+        $lineages    = DB::table('lineages')::get();
+        $educations  = DB::table('educations')::get();
+
+        $arr = ['jobs', 'religions', 'marriages', 'blood_types', 'roles', 'lineages', 'educations'];
+        return view ('admin.user.create', compact($arr));
+
     }
 
     /**
@@ -42,6 +54,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+
+        Validator::make ($input, [
+
+        ]);
+
+
+        User::create ([
+            ""
+        ]);
     }
 
     /**
@@ -88,4 +110,30 @@ class UserController extends Controller
     {
         //
     }
+
+    public function import(Request $request)
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		// menangkap file excel
+		$file = $request->file('file');
+
+		// membuat nama file unik
+		$file_name = rand().$file->getClientOriginalName();
+
+		// upload ke folder di dalam folder public
+		$file->move('doc',$file_name);
+
+		// import data
+		Excel::import(new UserImport, public_path('/doc/'.$file_name));
+
+		// notifikasi dengan session
+		// Session::flash('sukses','Data User Berhasil Diimport!');
+
+		// alihkan halaman kembali
+		return redirect('admin/user');
+	}
 }

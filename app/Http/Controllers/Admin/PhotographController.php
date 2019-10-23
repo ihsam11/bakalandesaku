@@ -19,7 +19,7 @@ class PhotographController extends Controller
     public function index()
     {
         //
-        $photographs = DB::table('photographs')->paginate(15);
+        $photographs = Photograph::paginate(10);
 
         return view('admin.gallery.photograph.index', compact('photographs'));
     }
@@ -47,14 +47,22 @@ class PhotographController extends Controller
     {
         //
         $request->validate ([
+            "topic"       => [ 'required' ],
             "title"       => [ 'required' ],
+            "image"       => [ 'required', 'image', 'mimes:jpg,png,bmp,jpeg', 'max:20000' ],
             "description" => [ 'required' ]
         ]);
 
-        Topic::create ([
+        $file = $request->file('image');
+        $imageName = rand().".".$file->getClientOriginalExtension();
+
+        request()->image->move(public_path('img/photograph'), $imageName);
+        Photograph::create ([
+            "topic_id"      =>  $request->topic,
             "title"         =>  $request->title,
+            "path"          => "/img/photograph/".$imageName,
             "description"   =>  $request->description,
-            "status"        =>  1
+            "display"       =>  1
         ]);
 
         return redirect()->back()
@@ -70,10 +78,6 @@ class PhotographController extends Controller
         $validator = Validator::make( $input, [
             "file" => [ 'required', 'image', 'mimes:jpg,png,bmp,jpeg', 'max:20000' ]
         ]);
-
-        // if ($validator->fails()) {
-        //     return response()->json('error', 400);
-        // }
 
         $file = $request->file('file');
         $imageName = rand().".".$file->getClientOriginalExtension();
@@ -97,7 +101,7 @@ class PhotographController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Photograph $photo)
     {
         //
         $topic = Topic::find($photo->id);
@@ -107,55 +111,71 @@ class PhotographController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Photograph  $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit(Photograph $photograph)
     {
         //
-        $topic = Topic::find($photo->id);
-        return view ('admin.gallery.photograph.edit', compact('topic'));
+        $topics = Topic::all();
+        $photograph = Photograph::find($photograph->id);
+        return view ('admin.gallery.photograph.edit', compact('photograph', 'topics'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Photo  $photo
+     * @param  \App\Photograph  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, Photograph $photograph)
     {
         //
-        $topic = Topic::find($request->id);
+        $input = $request->all();
 
-        $topic->title       = $request->title;
-        $topic->description = $request->description;
-        $topic->status      = $request->status;
-        $topic->save();
+        $validator = Validator::make( $input, [
+            "file"        => [ 'required', 'image', 'mimes:jpg,png,bmp,jpeg', 'max:20000' ],
+            "topic"       => [ 'required' ],
+            "title"       => [ 'required' ],
+            "image"       => [ 'required', 'image', 'mimes:jpg,png,bmp,jpeg', 'max:20000' ],
+            "description" => [ 'required' ]
+        ]);
+
+        $file = $request->file('image');
+        $imageName = rand().".".$file->getClientOriginalExtension();
+
+        request()->image->move(public_path('img/photograph'), $imageName);
+
+        $photograph = Photograph::find($photograph->id);
+
+        $photograph->title       = $request->title;
+        $photograph->path        = "/img/photograph/".$imageName;
+        $photograph->description = $request->description;
+        $photograph->display     = 1;
+        $photograph->save();
 
         return redirect ('admin/photograph')
                 ->with('message', 'Foto berhasil diperbarui !')
                 ->with('alert', 'alert-success text-success')
                 ->with('icon', 'fa-success');
-
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Photo  $photo
+     * @param  \App\Photograph  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(Photograph $photograph)
     {
         //
-        Topic::destroy($photo->id);
+        Photograph::destroy($photograph->id);
 
         return redirect ('admin/photograph')
                 ->with('message', 'Foto berhasil dihapus !')
                 ->with('alert', 'alert-success text-success')
                 ->with('icon', 'fa-success');
+
     }
 }

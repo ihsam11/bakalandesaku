@@ -27,7 +27,7 @@
 	<!-- Summernote -->
 	<link rel="stylesheet" href="{{ asset('css/summernote-bs4.css') }}">
 
-	<!-- DateRange Picker -->	
+	<!-- DateRange Picker -->
 	<link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
 
 
@@ -57,7 +57,7 @@
 
       <!-- Navbar Header -->
       <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
-        
+
         <div class="container-fluid">
           <div class="collapse" id="search-nav">
             <form class="navbar-left navbar-form nav-search mr-md-3">
@@ -78,7 +78,7 @@
               <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
                 <li>
                   <div class="dropdown-title d-flex justify-content-between align-items-center">
-                    Messages                  
+                    Messages
                     <a href="#" class="small">Mark all as read</a>
                   </div>
                 </li>
@@ -90,7 +90,7 @@
                         <div class="notif-content">
                           <span class="subject">Jimmy Denis</span>
                           <span class="block">How are you ?</span>
-                          <span class="time">5 minutes ago</span> 
+                          <span class="time">5 minutes ago</span>
                         </div>
                       </a>
                       <a href="#">
@@ -98,7 +98,7 @@
                         <div class="notif-content">
                           <span class="subject">Chad</span>
                           <span class="block">Ok, Thanks !</span>
-                          <span class="time">12 minutes ago</span> 
+                          <span class="time">12 minutes ago</span>
                         </div>
                       </a>
                       <a href="#">
@@ -106,9 +106,9 @@
                         <div class="notif-content">
                           <span class="subject">Jhon Doe</span>
                           <span class="block">Ready for the meeting today...</span>
-                          <span class="time">12 minutes ago</span> 
+                          <span class="time">12 minutes ago</span>
                         </div>
-                      </a>                      
+                      </a>
                     </div>
                   </div>
                 </li>
@@ -131,30 +131,30 @@
                         <div class="notif-icon notif-primary"> <i class="fa fa-user-plus"></i> </div>
                         <div class="notif-content">
                           <span class="block">New user registered</span>
-                          <span class="time">5 minutes ago</span> 
+                          <span class="time">5 minutes ago</span>
                         </div>
                       </a>
                       <a href="#">
                         <div class="notif-icon notif-success"> <i class="fa fa-comment"></i> </div>
                         <div class="notif-content">
                           <span class="block">Rahmad commented on Admin</span>
-                          <span class="time">12 minutes ago</span> 
+                          <span class="time">12 minutes ago</span>
                         </div>
                       </a>
                       <a href="#">
-                        <div class="notif-img"> 
+                        <div class="notif-img">
                           <img src="" alt="Img Profile">
                         </div>
                         <div class="notif-content">
                           <span class="block">Reza send messages to you</span>
-                          <span class="time">12 minutes ago</span> 
+                          <span class="time">12 minutes ago</span>
                         </div>
                       </a>
                       <a href="#">
                         <div class="notif-icon notif-danger"> <i class="fa fa-heart"></i> </div>
                         <div class="notif-content">
                           <span class="block">Farrah liked Admin</span>
-                          <span class="time">17 minutes ago</span> 
+                          <span class="time">17 minutes ago</span>
                         </div>
                       </a>
                     </div>
@@ -174,15 +174,15 @@
                       <div class="avatar-lg"><img src="{{ asset('img/profile.jpg') }}" alt="image profile" class="avatar-img rounded"></div>
                       <div class="u-text">
                         <h4>{{ Auth::user()->name }}</h4>
-                        <p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                        <p class="text-muted">{{ Auth::user()->email }}</p>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <div class="dropdown-divider"></div>                    
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ url('/') }}">Halaman Utama</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Pengaturan Akun</a>
+                    <a class="dropdown-item" href="{{ url('admin/setting') }}">Pengaturan Akun</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -224,62 +224,73 @@
 					<li class="nav-item">
 					<a href="{{ route('admin.home') }}" aria-expanded="false">
 						<i class="fas fa-home"></i>
-						<p>Beranda</p>                
-					</a>              
-					</li>                        
+						<p>Beranda</p>
+					</a>
+					</li>
 					<li class="nav-item">
 						<a href="{{ url('admin/user') }}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-user"></i>
 							<p>Pengguna</p>
-						</a>              				
-					</li>       
+						</a>
+					</li>
 					<li class="nav-item">
 						<a href="#posting" data-toggle="collapse">
 							<i class="fas fa-pen-alt"></i>
 							<p>Posting</p>
 							<span class="caret"></span>
-						</a>              
+						</a>
 						<div class="collapse" id="posting">
 							<ul class="nav nav-collapse">
 								<li><a href="{{ url('admin/bulletin') }}"> <span class="sub-item"> Berita </span> </a></li>
 								<li><a href="{{ url('admin/agenda') }}"> <span class="sub-item"> Agenda </span> </a></li>
 								<li><a href="{{ url('admin/broadcast') }}"> <span class="sub-item"> Pengumuman </span> </a></li>
+								<li><a href="{{ url('admin/comments') }}"> <span class="sub-item"> Komentar </span> </a></li>
 							</ul>
-						</div>				
-					</li>       
+						</div>
+					</li>
 					<li class="nav-item ">
 						<a href="#gallery" data-toggle="collapse">
 							<i class="fas fa-compact-disc"></i>
-							<p>Galeri</p>  
+							<p>Galeri</p>
 							<span class="caret"></span>
-						</a>     
+						</a>
 						<div class="collapse" id="gallery">
 							<ul class="nav nav-collapse">
 								<li><a href="{{ url('admin/photograph') }}"> <span class="sub-item"> Foto </span> </a></li>
 								<li><a href="{{ url('admin/recording') }}"> <span class="sub-item"> Video </span> </a></li>
 
-							</ul>						
+							</ul>
 
-						</div>	          
-					</li>                                    
+						</div>
+					</li>
 					<li class="nav-item ">
-						<a href="{{ route('admin.service') }}" aria-expanded="true">
+						<a href="#service" data-toggle="collapse">
 							<i class="fas fa-concierge-bell"></i>
-							<p>Layanan</p>                
-						</a>              
-					</li>                                    
+							<p>Layanan</p>
+							<span class="caret"></span>
+						</a>
+						<div class="collapse" id="service">
+							<ul class="nav nav-collapse">
+								<li><a href="{{ url('admin/kk') }}"> <span class="sub-item"> KK </span> </a></li>
+								<li><a href="{{ url('admin/kia') }}"> <span class="sub-item"> KIA </span> </a></li>
+								<li><a href="{{ url('admin/kis') }}"> <span class="sub-item"> KIS </span> </a></li>
+								<li><a href="{{ url('admin/ktp') }}"> <span class="sub-item"> KTP </span> </a></li>
+								<li><a href="{{ url('admin/letters') }}"> <span class="sub-item"> Surat-Surat </span> </a></li>
+							</ul>
+						</div>
+					</li>
 					<li class="nav-item ">
-						<a href="{{ route('admin.setting') }}" aria-expanded="false">
+						<a href="{{ url('admin/setting') }}" aria-expanded="false">
 							<i class="fas fa-cog"></i>
-							<p>Pengaturan</p>                				
-						</a>              
-					</li>                                    
+							<p>Pengaturan</p>
+						</a>
+					</li>
 					<li class="nav-item ">
 						<a href="{{ route('admin.help') }}" aria-expanded="false">
 							<i class="fas fa-question-circle"></i>
-							<p>Bantuan</p>                				
-						</a>              
-					</li>                                    
+							<p>Bantuan</p>
+						</a>
+					</li>
 				</ul>
 				</div>
 			</div>
@@ -748,7 +759,7 @@
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
 		<!-- End Custom template -->
 	</div>
@@ -825,7 +836,7 @@
 	<!-- Millenium JS -->
   <script src="{{ asset('js/millenium.min.js') }}"></script>
 
-	
+
 	@yield('script')
 
 </body>

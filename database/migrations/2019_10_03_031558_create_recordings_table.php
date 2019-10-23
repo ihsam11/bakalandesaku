@@ -15,7 +15,7 @@ class CreateRecordingsTable extends Migration
     {
         Schema::create('recordings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->UnsignedBigInteger('topic_id');
             $table->string('url');
             $table->string('description')->nullable();
             $table->boolean('display')->default(true);
