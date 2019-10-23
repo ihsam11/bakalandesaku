@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="margin-top:100px;">
     <div class="row" style="margin-top:50px;">
-        <h1 class="display-4">Profil Saya</h1>
+        <h2 class="display-5">Profil Saya</h1>
     </div>
 <div class="main-panel">
     <div class="content">

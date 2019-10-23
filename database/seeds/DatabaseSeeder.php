@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             ReligionsTableSeeder::class,
             RolesTableSeeder::class,
             MarriagesTableSeeder::class,
-            ProfileTableSeeder::class
+            ProfileTableSeeder::class,
+            TopicsTableSeeder::class
         ]);
     }
 }

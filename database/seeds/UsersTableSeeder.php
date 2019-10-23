@@ -40,5 +40,19 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert($data);
+        //
+        $users = array(
+            [
+                'nik' => '2222222222222222',
+                'password' => Hash::make('user'),
+                'name' => ucwords('user'),
+                'email' => 'usr@usr.com',
+                'role_id' => '2',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')            
+            ]
+        );
+
+        DB::table('users')->insert($users);
     }
 }

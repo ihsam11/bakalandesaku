@@ -13,23 +13,31 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::resource('profiles', 'Admin\ProfileController');
+Route::resource('profiles', 'User\ProfilController');
+Route::get('/kegiatan', 'User\BeritaController@kegiatan');
+Route::get('/agenda', 'User\BeritaController@agenda');
+Route::get('/agenda/agendatable', 'User\BeritaController@agendatable');
+Route::get('/pembangunan', 'User\BeritaController@pembangunan');
+Route::get('/pengumuman', 'User\BeritaController@pengumuman');
+
 Route::get('/penduduk', function(){return view('profiles.penduduk');});
-Route::get('/penduduk/userdatatable', 'Admin\ProfileController@userdatatable');
-Route::get('/penduduk/userchart', 'Admin\ProfileController@userchart');
+Route::get('/penduduk/userdatatable', 'User\ProfilController@userdatatable');
+Route::get('/penduduk/userchart', 'User\ProfilController@userchart');
 Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
 
 Route::group
 ([ "as" => "admin.", "prefix" => "admin", "middleware" => 'auth' ], function () {
-    
+
     Route::get('/', 'Admin\HomeController@index')->name('home');
     Route::get('/setting', 'Admin\SettingController@index')->name('setting');
     Route::get('/help', 'Admin\HelpController@index')->name('help');
-    Route::get('/service', 'Admin\ServiceController@index')->name('service');     
+    Route::get('/service', 'Admin\ServiceController@index')->name('service');
     Route::post('/user/import', 'Admin\UserController@import');
+    Route::post('/photograph/store_multiple', 'Admin\PhotographController@store_multiple');
     Route::resource('user', 'Admin\UserController');
     Route::resource('topic', 'Admin\TopicController');    
+    Route::resource('profile', 'Admin\ProfileController');
     Route::resource('bulletin', 'Admin\BulletinController');
     Route::resource('agenda', 'Admin\AgendaController');
     Route::resource('broadcast', 'Admin\BroadcastController');

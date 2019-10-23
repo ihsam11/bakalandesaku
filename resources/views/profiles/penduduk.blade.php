@@ -5,10 +5,10 @@
     <div class="container" style="margin-top:100px;">
         {{-- <canvas id="populate"></canvas> --}}
         <div class="row" style="margin-top:50px;">
-            <h1 class="display-4">Data Penduduk th. 2019</h1>
+            <h2 class="display-5">Data Penduduk th. 2019</h1>
         </div>
         <hr class="border-warning"/>
-        <table class="table" id="users" style="width:100%">
+        <table class="table" id="users" style="width:100%;">
             <thead class="thead-light bg-info">
                 <tr>
                     <th scope="col">NO</th>
@@ -19,17 +19,6 @@
                     <th scope="col">ALAMAT</th>
                 </tr>
             </thead>
-            <tbody>
-                {{-- @foreach ($data as $item)
-                <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $item["name"] }}</td>
-                    <td>{{ $item["gender"] }}</td>
-                    <td>{{ usia($item["birth_date"])." th" }}</td>
-                    <td>{{ $item["address"].' RT : '.$item["rt"].' RW : '.$item["rw"] }}</td>
-                </tr>
-                @endforeach --}}
-            </tbody>
         </table>
     </div>
 @endsection
@@ -180,6 +169,10 @@ $(document).ready(function() {
     var user = $('#users').DataTable( {
         processing: true,
         serverSide: true,
+        responsive: true,
+        columnDefs: [
+            { responsivePriority: 1, targets: 2 }
+        ],
         ajax: "{{ url('penduduk/userdatatable') }}",
         columns: [
             { data: 'id' },

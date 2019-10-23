@@ -175,7 +175,7 @@
         <div id="step3">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card border-primary">
+                    <div class="card border-primary mb-2">
                         <div class="card-header">
                             DATA PRIBADI
                         </div>
@@ -230,7 +230,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card border-primary mt-2">
+                            <div class="card border-primary">
                                 <div class="card-header">
                                     DATA KELUARGA
                                 </div>

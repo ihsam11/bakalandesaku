@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Contracts\Queue\ShouldQueue; //IMPORT SHOUDLQUEUE
 use Maatwebsite\Excel\Concerns\WithChunkReading; //IMPORT CHUNK READING
 
+
 class UserImport implements ToModel
 {
     /**
@@ -51,6 +52,15 @@ class UserImport implements ToModel
 
         // dd($data);
         return $data;
+
+        return new User([
+            'nik' => $row[1],
+            'password' => Hash::make($row[2]),
+            'name' => $row[3],
+            'email' => $row[4],
+            'role_id' => '5'
+        ]);
+        
     }
     // public function chunkSize(): int
     // {

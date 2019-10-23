@@ -20,7 +20,8 @@ class CreateAgendasTable extends Migration
             $table->date('date_finish');
             $table->time('time_start');
             $table->time('time_finish');
-            $table->longtext('description')->nullable();            
+            $table->unsignedBigInteger('user_id');
+            $table->longtext('description');            
             $table->boolean('display');
             $table->timestamps();
         });

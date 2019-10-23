@@ -17,7 +17,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/user') }}">                            
+                        <a href="{{ url('admin/bulletin') }}">                            
                             Posting Berita
                         </a>
                     </li>                    
@@ -26,40 +26,48 @@
             <div class="card">        
                 <div class="card-header">
                     <div class="card-title">
-                        <strong><i class="fas fa-list"></i> &nbsp; Daftar Posting Berita</strong> 
+                        <strong><i class="fas fa-newspaper"></i> &nbsp; Daftar Posting Berita</strong> 
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
-                        <div class="col-6">
-                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create">
+                        <div class="col">
+                            <a class="btn btn-sm btn-primary" href="bulletin/create">
                                 <i class="fas fa-plus-circle"></i> &nbsp; Tambah Berita
-                            </button>
+                            </a>
+                            <a class="btn btn-sm btn-secondary" href="/admin/topic">
+                                <i class="fas fa-list"></i> &nbsp; Daftar Topik Berita
+                            </a>                                                        
                         </div>
-                        <div class="col-6 text-right">
-                            <a class="btn btn-sm btn-secondary" href="{{ url('admin/topic') }}">
-                                <i class="fas fa-list"></i> &nbsp; Daftar Topik
-                            </a>                            
+                    </div>   
+                    @if ( session('message') )
+                    <div class="row">
+                        <div class="col">
+                            <div class="alert {{ session('alert') }}">
+                                <i class="fas {{ session('icon') }}"></i> &nbsp;
+                                {{ session('message') }}
+                            </div>                            
                         </div>
-                    </div>
+                    </div>                 
+                    @endif
                     <div class="row">
                         <div class="col-12">                            
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body">                                                                            
                                     <div class="table-responsive">                                    
-                                        <table class="table table-striped" id="index">
+                                        <table class="table table-striped text-center" id="index">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
                                                     <th>KATEGORI</th>
-                                                    <th>JUDUL</th>
-                                                    <th>TANGGAL POSTING</th>
+                                                    <th>JUDUL BERITA</th>
+                                                    <th>TANGGAL POST</th>
                                                     <th>VIEWER</th>
                                                     <th>AKSI</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                @foreach ($bulletin as $list)
+                                            <tbody>           
+                                                @foreach ( $bulletins as $list )                                      
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $list->topic }}</td>
@@ -67,13 +75,11 @@
                                                     <td>{{ $list->created_at }}</td>
                                                     <td>{{ $list->viewer }}</td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#edit">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-secondary" onclick="show({{ $list->id }})">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>                                              
                                                     </td>
+                                                    
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -86,20 +92,32 @@
                 </div>
             </div>
         </div>
-    </div>        
+    </div>    
 
-    @include('admin.post.bulletin.create', [ 'topic' => $topic ])
+    <div class="modal fade" id="show">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">                
+            </div>
+        </div>
+    </div>
 
 @endsection
 
-@section('script')
-    <script>
-        $('#index').DataTable({
+@section ('script')
+    <script type="text/javascript">
+        $('#index').DataTable ({
 
         });
 
-        $('#create #content').summernote({});
-        
-        $('#edit #content').summernote({});
+        function show(id) {            
+            $.get('bulletin/'+ id, function (data) {
+                $('#show .modal-content').html('');                
+                $('#show .modal-content').html(data);
+                $('#show').modal('show');
+            });
+        }
+
     </script>
+
 @endsection
+

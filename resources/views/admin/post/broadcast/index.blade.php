@@ -34,17 +34,26 @@
             <div class="card">        
                 <div class="card-header">
                     <div class="card-title">
-                        <strong><i class="fas fa-list"></i> &nbsp; Daftar Pengumuman</strong> 
+                        <strong><i class="fas fa-bullhorn"></i> &nbsp; Daftar Pengumuman</strong> 
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-6">
-                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create">
+                            <a class="btn btn-sm btn-primary" href="broadcast/create">
                                 <i class="fas fa-plus-circle"></i> &nbsp; Tambah Pengumuman
-                            </button>
+                            </a>
                         </div>
                     </div>                    
+                    @if (session('message'))
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert {{ session('alert') }}">
+                                    <i class="fas {{ session('icon') }}"></i> &nbsp; {{ session('message') }}
+                                </div>                                
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-12">                            
                             <div class="card">
@@ -56,21 +65,20 @@
                                                     <th>NO</th>
                                                     <th>JUDUL</th>
                                                     <th>KETERANGAN</th>
+                                                    <th>TANGGAL AKTIF</th>
                                                     <th>AKSI</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($agendas as $list)
+                                                @foreach ($broadcasts as $list)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $list->title }}</td>
                                                         <td>{{ $list->description }}</td>
+                                                        <td>{{ $list->active_range }}</td>
                                                         <td>
-                                                            <button type="button" class="btn btn-sm btn-warning" onclick="edit({{ $list->id }})">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                            <button type="button" class="btn btn-sm btn-danger" onclick="delete({{ $list->id }})">
-                                                                <i class="fas fa-trash"></i>
+                                                            <button class="btn btn-sm btn-secondary" type="button" onclick="show({{ $list->id }})">
+                                                                <i class="fas fa-eye"></i>
                                                             </button>
                                                         </td>
                                                     </tr>
@@ -87,11 +95,13 @@
         </div>
     </div>    
 
-    @include('admin.post.broadcast.create')
-    
-   <div id="edit_form">
-   
-   </div> 
+    <div class="modal fade" id="show">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+       
 
 @endsection
 
@@ -101,18 +111,13 @@
 
         });
 
-        function edit(id) {
-            $.ajax ({
-                url: "{{ url('admin/broadcast') }}",
-                type: 'POST',
-                dataType: 'html',
-                success: function (e) {
-                    $('#edit_form').html(e.edit_form);
-                }
+        function show(id) {            
+            $.get('broadcast/'+ id, function (data) {
+                $('#show .modal-content').html('');                
+                $('#show .modal-content').html(data);
+                $('#show').modal('show');
             });
         }
 
-    
-        
     </script>
 @endsection

@@ -14,6 +14,7 @@ class Agenda extends Model
         'time_start',
         'time_finish',
         'description',
+        'user_id',
         'display'
     ];
 }

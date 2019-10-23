@@ -3,103 +3,114 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Agenda;
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class AgendaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
         $agendas = Agenda::all();
+
         return view('admin.post.agenda.index', compact('agendas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
-        $request->validate([
-            "title"         => [ 'required' ],
-            "date_start"    => [ 'required' ],
-            "date_finish"   => [ 'required' ],
+        Validator::make($request->all(), [
+            "title"         => [ 'required', 'unique:agendas' ],
+            "date_start"    => [ 'required', 'after_or_equal:today' ],
+            "date_finish"   => [ 'required', 'after_or_equal:date_start'],
             "time_start"    => [ 'required' ],
-            "time_finish"   => [ 'required' ],
-            "description"   => [ 'required' ],            
-        ]);
+            "time_finish"   => [ 'required', 'after:time_start' ],
+            "description"   => [ 'required' ],        
+
+        ])->validate();
 
         Agenda::create([
             "title"         => ucwords($request->title),
-            "date_start"    => $request->date_start,
-            "date_finish"   => $request->date_finish,
+            "date_start"    => date('Y-m-d',strtotime($request->date_start)),
+            "date_finish"   => date('Y-m-d',strtotime($request->date_finish)),
             "time_start"    => $request->time_start,
             "time_finish"   => $request->time_finish,
             "description"   => ucfirst($request->description),
+            "user_id"       => Auth::user()->nik,
             "display"       => 1
         ]);
 
-        return redirect()->back()
-                ->with('status', 'Data Agenda Berhasil Ditambahkan!');
+        return redirect('admin/agenda')
+                ->with('message', 'Data Agenda Berhasil Ditambahkan!')
+                ->with('alert', 'alert-success text-success')
+                ->with('icon', 'fa-check');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
+    public function create()
+    {
+        //        
+        return view ('admin.post.agenda.create');
+        
+    }
+
     public function show(Agenda $agenda)
     {
         //
+        $agendas = Agenda::find($agenda->id);
+
+        return View::make('admin.post.agenda.show', compact('agenda'))->render();
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Agenda $agenda)
     {
         //
-        
+        $agenda = Agenda::find($agenda->id);
+
+        return view ('admin.post.agenda.edit', compact('agenda'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Agenda $agenda)
     {
         //
-        return redirect()->back()
-                ->with('status', 'Data Agenda Berhasil Diperbarui !');
+        Validator::make($request->all(), [
+            "title"         => [ 'required' ],
+            "date_start"    => [ 'required', 'after_or_equal:today' ],
+            "date_finish"   => [ 'required', 'after_or_equal:date_start'],
+            "time_start"    => [ 'required' ],
+            "time_finish"   => [ 'required', 'after:time_start' ],
+            "description"   => [ 'required' ],        
+
+        ])->validate();
+
+        $agenda = Agenda::find($agenda->id);
+        $agenda->title          = ucwords($request->title);
+        $agenda->date_start     = date('Y-m-d',strtotime($request->date_start));
+        $agenda->date_finish    = date('Y-m-d',strtotime($request->date_finish));
+        $agenda->time_start     = $request->time_start;
+        $agenda->time_finish    = $request->time_finish;
+        $agenda->description    = ucfirst($request->description);
+
+        $agenda->save();
+
+        return redirect('admin/agenda')
+                ->with('message', 'Data Agenda Berhasil Diperbarui !')
+                ->with('alert', 'alert-success text-success')
+                ->with('icon', 'fa-check');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Agenda $agenda)
     {
-        //
-        return redirect()->back()
-        ->with('status', 'Data Agenda Berhasil Dihapus !');
+        Agenda::destroy($agenda->id);
+
+        return redirect('admin/agenda')
+                ->with('message', 'Data Agenda Berhasil Dihapus !')
+                ->with('alert', 'alert-success text-success')
+                ->with('icon', 'fa-check');
     }
 }

@@ -27,6 +27,9 @@
 	<!-- Summernote -->
 	<link rel="stylesheet" href="{{ asset('css/summernote-bs4.css') }}">
 
+	<!-- DateRange Picker -->	
+	<link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
+
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('css/demo.css') }}">
@@ -83,7 +86,7 @@
                   <div class="message-notif-scroll scrollbar-outer">
                     <div class="notif-center">
                       <a href="#">
-                        <div class="notif-img"><img src="{{ asset('img/jm_denis.jpg') }}" alt="Img Profile"></div>
+                        <div class="notif-img"><img src="}" alt="Img Profile"></div>
                         <div class="notif-content">
                           <span class="subject">Jimmy Denis</span>
                           <span class="block">How are you ?</span>
@@ -91,7 +94,7 @@
                         </div>
                       </a>
                       <a href="#">
-                        <div class="notif-img"><img src="{{ asset('img/chadengle.jpg') }}" alt="Img Profile"></div>
+                        <div class="notif-img"><img src="" alt="Img Profile"></div>
                         <div class="notif-content">
                           <span class="subject">Chad</span>
                           <span class="block">Ok, Thanks !</span>
@@ -99,21 +102,13 @@
                         </div>
                       </a>
                       <a href="#">
-                        <div class="notif-img"><img src="{{ asset('img/mlane.jpg') }}" alt="Img Profile"></div>
+                        <div class="notif-img"><img src="" alt="Img Profile"></div>
                         <div class="notif-content">
                           <span class="subject">Jhon Doe</span>
                           <span class="block">Ready for the meeting today...</span>
                           <span class="time">12 minutes ago</span> 
                         </div>
-                      </a>
-                      <a href="#">
-                        <div class="notif-img"><img src="{{ asset('img/talha.jpg') }}" alt="Img Profile"></div>
-                        <div class="notif-content">
-                          <span class="subject">Talha</span>
-                          <span class="block">Hi, Apa Kabar ?</span>
-                          <span class="time">17 minutes ago</span> 
-                        </div>
-                      </a>
+                      </a>                      
                     </div>
                   </div>
                 </li>
@@ -148,7 +143,7 @@
                       </a>
                       <a href="#">
                         <div class="notif-img"> 
-                          <img src="{{ asset('img/profile2.jpg') }}" alt="Img Profile">
+                          <img src="" alt="Img Profile">
                         </div>
                         <div class="notif-content">
                           <span class="block">Reza send messages to you</span>
@@ -225,7 +220,7 @@
 
 					</div>
 				</div>
-				<ul class="nav nav-secondary">
+				<ul class="nav nav-secondary" id="nav">
 					<li class="nav-item">
 					<a href="{{ route('admin.home') }}" aria-expanded="false">
 						<i class="fas fa-home"></i>
@@ -314,16 +309,16 @@
 										<span class="category-title mt-0">Contacts</span>
 										<div class="avatar-group">
 											<div class="avatar">
-												<img src="./assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+												<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 											</div>
 											<div class="avatar">
-												<img src="./assets/img/chadengle.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+												<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 											</div>
 											<div class="avatar">
-												<img src="./assets/img/mlane.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+												<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 											</div>
 											<div class="avatar">
-												<img src="./assets/img/talha.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+												<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 											</div>
 											<div class="avatar">
 												<span class="avatar-title rounded-circle border border-white">+</span>
@@ -356,7 +351,7 @@
 											<div class="user">
 												<a href="#">
 													<div class="avatar avatar-offline">
-														<img src="./assets/img/mlane.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+														<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 													</div>
 													<div class="user-data">
 														<span class="name">John Doe</span>
@@ -370,7 +365,7 @@
 											<div class="user">
 												<a href="#">
 													<div class="avatar avatar-online">
-														<img src="./assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+														<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 													</div>
 													<div class="user-data2">
 														<span class="name">Jimmy Denis</span>
@@ -381,7 +376,7 @@
 											<div class="user">
 												<a href="#">
 													<div class="avatar avatar-offline">
-														<img src="./assets/img/chadengle.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+														<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 													</div>
 													<div class="user-data2">
 														<span class="name">Chad</span>
@@ -392,7 +387,7 @@
 											<div class="user">
 												<a href="#">
 													<div class="avatar avatar-away">
-														<img src="./assets/img/talha.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+														<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 													</div>
 													<div class="user-data2">
 														<span class="name">Talha</span>
@@ -409,7 +404,7 @@
 							<div class="messages-title">
 								<div class="user">
 									<div class="avatar avatar-offline float-right ml-2">
-										<img src="./assets/img/chadengle.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+										<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 									</div>
 									<span class="name">Chad</span>
 									<span class="last-active">Active 2h ago</span>
@@ -422,7 +417,7 @@
 								<div class="message-content-wrapper">
 									<div class="message message-in">
 										<div class="avatar avatar-sm">
-											<img src="./assets/img/chadengle.jpg" alt="..." class="avatar-img rounded-circle border border-white">
+											<img src="" alt="..." class="avatar-img rounded-circle border border-white">
 										</div>
 										<div class="message-body">
 											<div class="message-content">
@@ -603,7 +598,6 @@
 											</label>
 										</li>
 									</ul>
-
 									<div class="mt-3">
 										<div class="btn btn-primary btn-rounded btn-sm">
 											<span class="btn-label">
@@ -816,6 +810,9 @@
   <!-- jQuery Validation -->
   <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 
+  <!-- Date RangePicker -->
+  <script src="{{ asset('js/daterangepicker.min.js') }}"></script>
+
   <!-- Summernote -->
   <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
 
@@ -826,7 +823,8 @@
   <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
 	<!-- Millenium JS -->
-	<script src="{{ asset('js/millenium.min.js') }}"></script>
+  <script src="{{ asset('js/millenium.min.js') }}"></script>
+
 	
 	@yield('script')
 

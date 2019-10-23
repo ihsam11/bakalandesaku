@@ -17,7 +17,9 @@ class CreateBroadcastsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->timestamp('active_range');
+            $table->unsignedBigInteger('user_id');
+            $table->date('date_start');
+            $table->date('date_finish');
             $table->timestamps();
         });
     }

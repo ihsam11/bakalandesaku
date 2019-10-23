@@ -4,7 +4,7 @@
 @section('content')
     <div class="container" style="margin-top:100px;">
         <div class="row">
-            <h1 class="display-4">Pendidikan di Desa Bakalan</h1>
+            <h2 class="display-5">Pendidikan di Desa Bakalan</h1>
         </div>
         <hr class="border-warning"/>
         <ul class="nav nav-tabs justify-content-between" id="Tabs" role="tablist">

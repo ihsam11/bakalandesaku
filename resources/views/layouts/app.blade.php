@@ -49,23 +49,21 @@
                         <a class="dropdown-item" href="{{ url('/penduduk') }}">Penduduk</a>
                         <a class="dropdown-item" href="{{ url('/infrastruktur') }}">Infrastruktur</a>
                         <a class="dropdown-item" href="{{ url('/pendidikan') }}">Pendidikan</a>
-                        <a class="dropdown-item" href="#">Kesehatan</a>
-                        <a class="dropdown-item" href="#">Industri</a>
+                        <a class="dropdown-item" href="{{ url('/kesehatan') }}">Kesehatan</a>
+                        <a class="dropdown-item" href="{{ url('/industri') }}">Industri</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="Berita" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Berita</a>
                     <div class="dropdown-menu" aria-labelledby="Berita">
-                        <a class="dropdown-item" href="#">Agenda</a>
-                        <a class="dropdown-item" href="#">Pembangunan</a>
-                        <a class="dropdown-item" href="#">Kegiatan</a>
+                        <a class="dropdown-item" href="{{ url('/agenda') }}">Agenda Desa</a>
+                        <a class="dropdown-item" href="{{ url('/pembangunan') }}">Pembangunan</a>
+                        <a class="dropdown-item" href="{{ url('/kegiatan') }}">Kegiatan</a>
+                        <a class="dropdown-item" href="{{ url('/pengumuman') }}">Pengumuman</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Galeri</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pengumuman</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="Organisasi" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Organisasi</a>
@@ -141,16 +139,48 @@
                 <p class="card-text">Desa Bakalan adalah salah satu desa berkembang di Kecamatan Bululawang, Kabupaten Malang.</p>
                 </div>
             </div>
-            <div class="card-transparent text-white" style="width: 20rem;">
-                <h4 class="card-title">Ikuti Kami</h4>
+            <div class="card-transparent text-white" style="width: 25rem;">
+                <h4 class="card-title">Kritik & Saran</h4>
                 <hr class="border-warning"/>
-                <div class="card-body">
-                <p class="card-text">
-                    <i class="fa fa-facebook-square"> Facebook</i>
-                </p>
-                <p class="card-text">
-                    <i class="fa fa-twitter-square"> Twitter</i>
-                </p>
+                <div class="card-body row">
+                    <div class="col-6">
+                        <div class="card-title text-center"><strong>Rohmat Hidayat</strong></div>
+                        <div class="card-text d-flex justify-content-around mb-3">
+                            <a href="http://facebook.com/devusion" class="text-white">
+                                <i class="fa fa-facebook fa-2x"></i>
+                            </a>
+                            <a href="http://twitter.com/gizonezkoen" class="text-white">
+                                <i class="fa fa-twitter fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="card-text d-flex justify-content-around">
+                            <a href="http://linkedin.com/in/rohmat-hidayat-38648a140" class="text-white">
+                                <i class="fa fa-linkedin fa-2x"></i>
+                            </a>
+                            <a href="https://wa.me/6285755667699" class="text-white">
+                                <i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card-title text-center"><strong>Muhammad Ikhsan</strong></div>
+                        <div class="card-text d-flex justify-content-around mb-3">
+                            <a href="#" class="text-white">
+                                <i class="fa fa-facebook fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-white">
+                                <i class="fa fa-twitter fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="card-text d-flex justify-content-around">
+                            <a href="#" class="text-white">
+                                <i class="fa fa-linkedin fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-white">
+                                <i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-transparent text-white" style="width: 20rem;">
@@ -184,13 +214,13 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
 <script src="{{ asset('js/jquery.lettering.js') }}"></script>
 <script src="{{ asset('js/jquery.textillate.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.js') }}"></script>
-<script>
+{{-- <script>
 AOS.init();
-</script>
+</script> --}}
 @yield('script')
 </div>
 </body>
