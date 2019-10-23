@@ -95,6 +95,10 @@ class RecordingController extends Controller
     public function update(Request $request, Recording $recording)
     {
         //
+        if (is_null($request->display)) {
+            $request->display = 0;
+        }
+
         $input = $request->all();
         $validator = Validator::make($input, [
             "description"   => [ 'required' ],
@@ -105,6 +109,7 @@ class RecordingController extends Controller
 
         $recording->description   = $request->description;
         $recording->url           = $request->url;
+        $recording->display       = $request->display;
 
         $recording->save();
 

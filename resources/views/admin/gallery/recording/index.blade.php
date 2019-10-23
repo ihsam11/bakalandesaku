@@ -55,6 +55,7 @@
                                             <th>KETERANGAN</th>
                                             <th>URL</th>
                                             <th>TANGGAL UPLOAD</th>
+                                            <th>STATUS</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -63,13 +64,23 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $list->description }}</td>
-                                            <td>{{ $list->url }}</td>
+                                            <td>
+                                                <a href="http://www.youtube.com/embed/{{ $list->url }}" target="_blank">http://www.youtube.com/embed/{{ $list->url }}</a>
+
+                                            </td>
                                             <td>
                                                 <span class="badge badge-primary">
                                                     <strong>
                                                         {{ date('d M Y', strtotime($list->created_at)) }}
                                                     </strong>
                                                 </span>
+                                            </td>
+                                            <td>
+                                                @if ($list->display > 0)
+                                                    <span class="badge badge-success">TAMPIL</span>
+                                                @else
+                                                    <span class="badge badge-danger">OFF</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="recording/{{ $list->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>

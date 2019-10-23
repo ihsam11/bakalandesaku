@@ -51,7 +51,14 @@
                         @endif
                         <div class="form-group">
                             <label for="url">URL Video</label>
-                            <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror col-4" value="{{ old('url') }}">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        http://www.youtube.com/embed/
+                                    </span>
+                                </div>
+                                <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror col-4" value="{{ old('url') }}">
+                            </div>
                             @error('url')
                                 <div class="alert alert-danger mt-2 col-4">
                                     {{ $message }}
