@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container" style="margin-top:100px;">
-        {{-- <canvas id="populate"></canvas> --}}
+        <canvas id="populate"></canvas>
         <div class="row" style="margin-top:50px;">
             <h2 class="display-5">Data Penduduk th. 2019</h1>
         </div>
@@ -23,7 +23,7 @@
     </div>
 @endsection
 @section('script')
-{{-- <script>
+<script>
     var ctx = document.getElementById("populate").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -121,8 +121,8 @@
             }
         }
     });
-</script> --}}
-<script>
+</script>
+{{-- <script>
     var year = ['2013','2014','2015', '2016'];
     var data_click = ;
     var data_viewer = ;
@@ -162,7 +162,7 @@
             }
         });
     };
-</script>
+</script> --}}
 
 <script>
 $(document).ready(function() {

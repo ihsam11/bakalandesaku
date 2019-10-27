@@ -13,7 +13,8 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::resource('profiles', 'User\ProfilController');
+Route::resource('profile', 'User\ProfilController');
+
 Route::get('/kegiatan', 'User\BeritaController@kegiatan');
 Route::get('/agenda', 'User\BeritaController@agenda');
 Route::get('/agenda/agendatable', 'User\BeritaController@agendatable');
@@ -27,6 +28,9 @@ Route::get('/pendidikan', function(){return view('profiles.pendidikan');});
 Route::get('/infrastruktur', function(){return view('profiles.infrastruktur');});
 Route::get('/kesehatan', function(){return view('profiles.kesehatan');});
 Route::get('/industri', function(){return view('profiles.industri');});
+
+Route::get('/galeri', function(){return view('galeries.index');});
+
 
 Route::group
 ([ "as" => "admin.", "prefix" => "admin", "middleware" => 'auth' ], function () {

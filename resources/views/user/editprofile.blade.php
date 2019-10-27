@@ -14,16 +14,17 @@
     <div class="card-header" id="smartwizard">
         <ul>
             <li class="nav-item w-25">
-                <a class="nav-link" href="#step1">Step 1 (Data Pribadi)</a>
+                <a class="nav-link" href="#step1">Step 1<br/><small>Data Pribadi</small></a>
             </li>
             <li class="nav-item w-25">
-                <a class="nav-link" href="#step2">Step 2 (Data Keluarga)</a>
+                <a class="nav-link" href="#step2">Step 2<br/><small>Data Keluarga</small></a>
             </li>
             <li class="nav-item w-25">
-                <a class="nav-link" href="#step3">Step 3 (Konfirmasi)</a>
+                <a class="nav-link" href="#step3">Step 3<br/><small>Konfirmasi</small></a>
             </li>
         </ul>
-    <div class="card-body">
+        <div class="card-body">
+
         <div id="step1">
             <div class="row">
                 <div class="col-md-4">
@@ -51,27 +52,39 @@
                     </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="religion">AGAMA</label>
-                            <input type="text" name="religion" id="religion" class="form-control" value="{{ $profile->religion }}">
+                            <select class="form-control">
+                                @foreach ($religion as $rel)
+                                <option @if ($rel->id == $profile->religion)
+                                    selected
+                                @endif value="{{ $rel->id }}">{{ $rel->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="education">PENDIDIKAN</label>
-                            <input type="text" name="education" id="education" class="form-control" value="{{ $profile->education }}">
+                            <select class="form-control">
+                                @foreach ($education as $rel)
+                                <option @if ($rel->id == $profile->education)
+                                    selected
+                                @endif value="{{ $rel->id }}">{{ $rel->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <fieldset class="form-group">
                             <legend for="gender" class="col-form-label">JENIS KELAMIN *</legend>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="laki-laki" name="gender" class="custom-control-input">
+                                <input type="radio" id="laki-laki" name="gender" class="custom-control-input" {{ ($profile->gender=="Laki-laki")? "checked" : "" }}>
                                 <label class="custom-control-label" for="laki-laki">Laki-laki</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="perempuan" name="gender" class="custom-control-input">
+                                <input type="radio" id="perempuan" name="gender" class="custom-control-input" {{ ($profile->gender=="Perempuan")? "checked" : "" }}>
                                 <label class="custom-control-label" for="perempuan">Perempuan</label>
                             </div>
                         </fieldset>
@@ -97,7 +110,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>STATUS KAWIN *</label>
-                        <input type="text" name="marriage" id="marriage" class="form-control" value="{{ $profile->marriage }}">
+                        <select class="form-control">
+                            @foreach ($marriage as $rel)
+                            <option @if ($rel->id == $profile->marriage)
+                                selected
+                            @endif value="{{ $rel->id }}">{{ $rel->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -109,10 +128,18 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
-                    <label>ALAMAT *</label>
+                    <label>ALAMAT (DUSUN) *</label>
                     <div class="row">
                         <div class="col-md-5 mb-1">
-                            <input type="text" name="address" id="address" class="form-control" value="{{ $profile->address }}">
+                            <select class="form-control">
+                                <option value= {{ ($profile->address=="?")? "selected" : "" }}>Pilih Dusun</option>
+                                <option value="DUSUN BAKALAN 01" {{ ($profile->address=="BAKALAN 01")? "selected" : "" }}>BAKALAN 01</option>
+                                <option value="DUSUN BAKALAN 02" {{ ($profile->address=="BAKALAN 02")? "selected" : "" }}>BAKALAN 02</option>
+                                <option value="DUSUN BANJARSARI 01" {{ ($profile->address=="BANJARSARI 01")? "selected" : "" }}>BANJARSARI 01</option>
+                                <option value="DUSUN BANJARSARI 02" {{ ($profile->address=="BANJARSARI 02")? "selected" : "" }}>BANJARSARI 02</option>
+                                <option value="DUSUN JAMURAN" {{ ($profile->address=="JAMURAN")? "selected" : "" }}>JAMURAN</option>
+                                <option value="DUSUN KEBONJATI" {{ ($profile->address=="KEBONJATI")? "selected" : "" }}>KEBONJATI</option>
+                            </select>
                         </div>
                         <div class="input-group col-md-2 mb-1">
                             <div class="input-group-prepend">
@@ -131,13 +158,23 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="citizenship">KEWARGANEGARAAN</label>
-                        <input type="text" name="citizenship" id="citizenship" class="form-control" value="{{ $profile->citizenship }}">
+                        <select class="form-control">
+                            <option value="WNI" {{ ($profile->citizenship=="WNI")? "selected" : "" }}>WNI</option>
+                            <option value="WNA" {{ ($profile->citizenship=="WNA")? "selected" : "" }}>WNA</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="blood_type">GOL. DARAH</label>
-                        <input type="text" name="blood_type" id="blood_type" class="form-control" value="{{ $profile->blood_type }}">
+                        <select class="form-control">
+                            <option selected>-</option>
+                            @foreach ($blood_type as $rel)
+                            <option @if ($rel->id == $profile->blood_type)
+                                selected
+                            @endif value="{{ $rel->id }}">{{ $rel->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
@@ -155,7 +192,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="lineage">HUB. DALAM KELUARGA *</label>
-                        <input type="text" name="lineage" id="lineage" class="form-control" value="{{ $profile->lineage }}" aria-invalid="true">
+                        <select class="form-control">
+                            @foreach ($lineage as $rel)
+                            <option @if ($rel->id == $profile->lineage)
+                                selected
+                            @endif value="{{ $rel->id }}">{{ $rel->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -273,13 +316,12 @@
     $(document).ready(function(){
         $('#smartwizard').smartWizard({
             showStepURLhash: false,
+            lang: {
+                next: 'Berikutnya',
+                previous: 'Sebelumnya',
+            },
         });
     });
-    $("form").validate({
-    rules: {
-        name: "required"
-    }
-});
 </script>
 <script>
 function readURL(input) {
