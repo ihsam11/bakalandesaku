@@ -15,7 +15,6 @@ class CreateRecordingsTable extends Migration
     {
         Schema::create('recordings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->UnsignedBigInteger('topic_id');
             $table->string('url');
             $table->string('description')->nullable();
             $table->boolean('display')->default(true);
@@ -23,11 +22,6 @@ class CreateRecordingsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('recordings');
