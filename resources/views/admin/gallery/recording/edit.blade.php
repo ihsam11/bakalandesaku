@@ -43,33 +43,21 @@
                     <div class="card-body ">
                         <div class="form-group">
                             <label for="url">URL Video</label>
-                            <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        http://www.youtube.com/embed/
-                                    </span>
-                                    <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror col-4" value="{{ $recording->url }}" placeholder="Masukkan kode video">
+                            <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror col-4" value="{{ $recording->url }}">
+                            @error('url')
+                                <div class="alert alert-danger mt-2 col-4">
+                                    {{ $message }}
                                 </div>
-                                @error('url')
-                                    <div class="alert alert-danger mt-2 col-4">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Keterangan</label>
-                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror col-8" placeholder="Masukkan keterangan video">{{ $recording->description }}</textarea>
+                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror col-8">{{ $recording->description }}</textarea>
                             @error('description')
                                 <div class="alert alert-danger mt-2 col-8">
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
-                      <div class="form-check">
-                            <label class="form-check-label" for="display">
-                                <input type="checkbox" name="display" id="display" value="1" @if ($recording->display > 0) checked @endif>
-                                <span class="form-check-sign">Ditampilkan</span>
-                            </label>
-
                         </div>
                     </div>
                     <div class="card-footer">

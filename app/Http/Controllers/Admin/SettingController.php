@@ -12,4 +12,16 @@ class SettingController extends Controller
     {
         return view ('admin.setting.index');
     }
+
+    public function show() {
+
+    }
+
+    public function edit() {
+
+    }
+
+    public function update() {
+
+    }
 }

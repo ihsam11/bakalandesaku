@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body d-flex justify-content-between">
+            <div class="card-body row d-flex justify-content-between">
                 <div class="card col-md-3">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <div class="card-body d-flex justify-content-center">
@@ -124,8 +124,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body d-flex justify-content-around" style="height: 100%;">
-                        <div class="hovereffect rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                    <div class="card-body row d-flex justify-content-around" style="height: 100%;">
+                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
                             <img class="img-responsive" src="{{ asset('img/-.jpeg') }}" alt="">
                             <div class="overlay">
                                 <p>
@@ -135,7 +135,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="hovereffect rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
                             <img class="img-responsive" src="{{ asset('img/keuangan.jpeg') }}" alt="">
                             <div class="overlay">
                                 <p>
@@ -145,7 +145,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="hovereffect rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
                             <img class="img-responsive" src="{{ asset('img/-.jpeg') }}" alt="">
                             <div class="overlay">
                                 <p>

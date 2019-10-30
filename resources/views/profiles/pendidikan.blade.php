@@ -4,7 +4,7 @@
 @section('content')
     <div class="container" style="margin-top:100px;">
         <div class="row">
-            <h1 class="display-4">Pendidikan di Desa Bakalan</h1>
+            <h2 class="display-5">Pendidikan di Desa Bakalan</h1>
         </div>
         <hr class="border-warning"/>
         <ul class="nav nav-tabs justify-content-between" id="Tabs" role="tablist">
@@ -25,7 +25,7 @@
             <div class="tab-pane fade show active" id="tk" role="tabpanel" aria-labelledby="tk-tab">
                 <div class="row mt-4">
                     <div class="col-lg-5">
-                        <img class="img-responsive rounded-lg" src="{{ asset('img/99.JPG')}}" style="height: 300px;">
+                        <img class="img-responsive rounded-lg" src="http://placehold.it/450x300" style="height: 300px;">
                     </div>
                     <div class="col-lg-7" style="height: 300px;">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia maiores quae est id dolor repudiandae placeat modi facere ipsam, excepturi temporibus, provident, nam similique quia dolore nemo vitae earum iste?
@@ -36,7 +36,7 @@
             <div class="tab-pane fade" id="sd" role="tabpanel" aria-labelledby="sd-tab">
                 <div class="row mt-4">
                     <div class="col-lg-5">
-                        <img class="img-responsive rounded-lg" src="{{ asset('img/99.JPG')}}" style="height: 300px;">
+                        <img class="img-responsive rounded-lg" src="http://placehold.it/450x300" style="height: 300px;">
                     </div>
                     <div class="col-lg-7" style="height: 300px;">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia maiores quae est id dolor repudiandae placeat modi facere ipsam, excepturi temporibus, provident, nam similique quia dolore nemo vitae earum iste?
@@ -47,7 +47,7 @@
             <div class="tab-pane fade" id="smp" role="tabpanel" aria-labelledby="smp-tab">
                 <div class="row mt-4">
                     <div class="col-lg-5">
-                        <img class="img-responsive rounded-lg" src="{{ asset('img/99.JPG')}}" style="height: 300px;">
+                        <img class="img-responsive rounded-lg" src="http://placehold.it/450x300" style="height: 300px;">
                     </div>
                     <div class="col-lg-7" style="height: 300px;">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia maiores quae est id dolor repudiandae placeat modi facere ipsam, excepturi temporibus, provident, nam similique quia dolore nemo vitae earum iste?
@@ -58,7 +58,7 @@
             <div class="tab-pane fade" id="sma" role="tabpanel" aria-labelledby="sma-tab">
                 <div class="row mt-4">
                     <div class="col-lg-5">
-                        <img class="img-responsive rounded-lg" src="{{ asset('img/99.JPG')}}" style="height: 300px;">
+                        <img class="img-responsive rounded-lg" src="http://placehold.it/450x300" style="height: 300px;">
                     </div>
                     <div class="col-lg-7" style="height: 300px;">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia maiores quae est id dolor repudiandae placeat modi facere ipsam, excepturi temporibus, provident, nam similique quia dolore nemo vitae earum iste?

@@ -135,6 +135,7 @@ class PhotographController extends Controller
         $input = $request->all();
 
         $validator = Validator::make( $input, [
+            "file"        => [ 'required', 'image', 'mimes:jpg,png,bmp,jpeg', 'max:20000' ],
             "topic"       => [ 'required' ],
             "title"       => [ 'required' ],
             "image"       => [ 'required', 'image', 'mimes:jpg,png,bmp,jpeg', 'max:20000' ],

@@ -68,9 +68,9 @@
                                                     Upload Gambar Berita
                                                 </label>
                                                 <img class="img-upload-preview" width="300" height="100" src="http://placehold.it/300x100" alt="preview">
-                                                <input type="file" class="form-control form-control-file @error('image_path') is-invalid @enderror" id="image" name="image" accept="image/*">
+                                                <input type="file" class="form-control form-control-file @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
                                             </div>
-                                            @error('image_path')
+                                            @error('image')
                                                 <div class="alert alert-danger mt-2" role="alert">
                                                     {{ $message }}
                                                 </div>

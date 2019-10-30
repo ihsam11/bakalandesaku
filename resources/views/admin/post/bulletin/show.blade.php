@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <label>Tampil Di Headline</label>        
+                <label>Tampil Di Headline</label>
                 <span class="form-control">
                     @if ($bulletin->display > 0)
                         <span class="text-success"><i class="fas fa-check"></i> &nbsp; Ya</span>
@@ -15,43 +15,45 @@
                 </span>
             </div>
             <div class="form-group">
-                <label>Kategori</label>        
+                <label>Kategori</label>
                 <span class="form-control">{{ $bulletin->topic }}</span>
-            </div>            
+            </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <label>Penulis</label>        
+                <label>Penulis</label>
                 <span class="form-control">{{ $bulletin->uploader }}</span>
-            </div>                
+            </div>
             <div class="form-group">
-                <label>Tanggal Upload</label>        
-                <span class="form-control">{{ date('d-M-y', strtotime($bulletin->created_at)) }}</span>
-            </div>                
+                <label>Tanggal Upload</label>
+                <span class="form-control">{{ $bulletin->post_date }}</span>
+            </div>
         </div>
     </div>
     <div class="form-group">
-        <label>Judul</label>        
+        <label>Judul</label>
         <span class="form-control">{{ $bulletin->title }}</span>
     </div>
     <div class="row">
         <div class="col-8">
             <div class="form-group">
-                <label>Konten</label>     
+                <label>Konten</label>
                 <div class="form-control">
-                    {!! $bulletin->content !!}            
-                </div>   
-            </div>      
+                    <span style="display: block;height: 25em;overflow-y: auto;padding: 0 2em 0 0;height: 30;">
+                    {!! $bulletin->content !!}
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="col-4">
             <div class="form-group">
-                <label>Gambar</label>     
+                <label>Gambar</label>
                 <div class="thumbnail">
                     <img src="{{ $bulletin->image_path }}" width="100%">
-                </div>   
-            </div>      
+                </div>
+            </div>
         </div>
-    </div>    
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -59,6 +61,6 @@
     <form action="bulletin/{{ $bulletin->id }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" class="btn btn-danger">Hapus</button>                        
+        <button type="submit" class="btn btn-danger">Hapus</button>
     </form>
 </div>

@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/logo-99.png')}}" />
     <!-- CSRF Token -->
@@ -12,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}"/>
-    {{-- <link rel="stylesheet" href="{{ asset('css/docs.theme.min.css') }}"/> --}}
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    @yield('style')
 </head>
 <body style="overflow-x: hidden">
 <div id="app">
@@ -50,23 +49,21 @@
                         <a class="dropdown-item" href="{{ url('/penduduk') }}">Penduduk</a>
                         <a class="dropdown-item" href="{{ url('/infrastruktur') }}">Infrastruktur</a>
                         <a class="dropdown-item" href="{{ url('/pendidikan') }}">Pendidikan</a>
-                        <a class="dropdown-item" href="#">Kesehatan</a>
-                        <a class="dropdown-item" href="#">Industri</a>
+                        <a class="dropdown-item" href="{{ url('/kesehatan') }}">Kesehatan</a>
+                        <a class="dropdown-item" href="{{ url('/industri') }}">Industri</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="Berita" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Berita</a>
                     <div class="dropdown-menu" aria-labelledby="Berita">
-                        <a class="dropdown-item" href="#">Agenda</a>
-                        <a class="dropdown-item" href="#">Pembangunan</a>
-                        <a class="dropdown-item" href="#">Kegiatan</a>
+                        <a class="dropdown-item" href="{{ url('/agenda') }}">Agenda Desa</a>
+                        <a class="dropdown-item" href="{{ url('/pembangunan') }}">Pembangunan</a>
+                        <a class="dropdown-item" href="{{ url('/kegiatan') }}">Kegiatan</a>
+                        <a class="dropdown-item" href="{{ url('/pengumuman') }}">Pengumuman</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Galeri</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pengumuman</a>
+                    <a class="nav-link disabled" href="#">Galeri</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="Organisasi" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Organisasi</a>
@@ -80,7 +77,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Layanan</a>
+                    <a class="nav-link disabled" href="#">Layanan</a>
                 </li>                
             </ul>
 
@@ -89,7 +86,7 @@
                 <!-- Authentication Links -->
                 @guest                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link disabled" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>                    
                 @else
                     <li class="nav-item dropdown">
@@ -98,15 +95,20 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @if (Auth::user()->role_id == 1)
+                            @auth
+                            @if( Auth::user()->role_id == 2)
+                            <a class="dropdown-item" href="{{ url('profiles/'.Auth::user()->id.'/edit') }}">
+                                <i class="fa fa-gear"></i> Edit Profile
+                            </a>
+                            @else
                             <a class="dropdown-item" href="{{ route('admin.home') }}">
                                 <i class="fa fa-gear"></i> Admin Page
                             </a>
-                            @else
-                            <a class="dropdown-item" href="{{ route('admin.home') }}">                                                    
-                                <i class="fa fa-gear"></i> User Page
+                            <a class="dropdown-item" href="{{ url('profiles/'.Auth::user()->id.'/edit') }}">
+                                <i class="fa fa-gear"></i> Edit Profile
                             </a>
                             @endif
+                            @endauth
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -137,16 +139,48 @@
                 <p class="card-text">Desa Bakalan adalah salah satu desa berkembang di Kecamatan Bululawang, Kabupaten Malang.</p>
                 </div>
             </div>
-            <div class="card-transparent text-white" style="width: 20rem;">
-                <h4 class="card-title">Ikuti Kami</h4>
+            <div class="card-transparent text-white" style="width: 25rem;">
+                <h4 class="card-title">Kritik & Saran</h4>
                 <hr class="border-warning"/>
-                <div class="card-body">
-                <p class="card-text">
-                    <i class="fa fa-facebook-square"> Facebook</i>
-                </p>
-                <p class="card-text">
-                    <i class="fa fa-twitter-square"> Twitter</i>
-                </p>
+                <div class="card-body row">
+                    <div class="col-6">
+                        <div class="card-title text-center"><strong>Rohmat Hidayat</strong></div>
+                        <div class="card-text d-flex justify-content-around mb-3">
+                            <a href="http://facebook.com/devusion" class="text-white">
+                                <i class="fa fa-facebook fa-2x"></i>
+                            </a>
+                            <a href="http://instagram.com/rohmathdy" class="text-white">
+                                <i class="fa fa-instagram fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="card-text d-flex justify-content-around">
+                            <a href="http://linkedin.com/in/rohmat-hidayat-38648a140" class="text-white">
+                                <i class="fa fa-linkedin fa-2x"></i>
+                            </a>
+                            <a href="https://wa.me/6285755667699" class="text-white">
+                                <i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card-title text-center"><strong>Muhammad Ikhsan</strong></div>
+                        <div class="card-text d-flex justify-content-around mb-3">
+                            <a href="#" class="text-white">
+                                <i class="fa fa-facebook fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-white">
+                                <i class="fa fa-twitter fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="card-text d-flex justify-content-around">
+                            <a href="#" class="text-white">
+                                <i class="fa fa-linkedin fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-white">
+                                <i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-transparent text-white" style="width: 20rem;">
@@ -163,7 +197,7 @@
             &copy; <script>document.write(new Date().getFullYear());</script> Nalakab <br>
         </div>
         <div class="row text-white justify-content-center">
-            <p>Website ini dibuat oleh Rohmat Hidayat & M Ihsan.</p>
+            <p>Website ini dibuat oleh Rohmat Hidayat & Muhammad Ikhsan.</p>
         </div>
     </div>
 </footer>
@@ -174,20 +208,19 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
 <script src="{{ asset('js/jquery.lettering.js') }}"></script>
 <script src="{{ asset('js/jquery.textillate.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.js') }}"></script>
-<script>
+{{-- <script>
 AOS.init();
-</script>
+</script> --}}
 @yield('script')
 </div>
 </body>

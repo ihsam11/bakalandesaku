@@ -8,7 +8,7 @@
             <div class="page-header">
                 <h4 class="page-title">Halaman Pengumuman</h4>
                 <ul class="breadcrumbs">
-                    <li class="nav-home">                        
+                    <li class="nav-home">
                         <a href="{{ route('admin.home') }}">
                             <i class="flaticon-home"></i>
                         </a>
@@ -17,24 +17,24 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">                            
+                        <a href="#">
                             Posting
                         </a>
-                    </li>                    
+                    </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/broadcast') }}">                            
+                        <a href="{{ url('admin/broadcast') }}">
                             Pengumuman
                         </a>
-                    </li>                    
+                    </li>
                 </ul>
-            </div>        
-            <div class="card">        
+            </div>
+            <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <strong><i class="fas fa-bullhorn"></i> &nbsp; Daftar Pengumuman</strong> 
+                        <strong><i class="fas fa-bullhorn"></i> &nbsp; Daftar Pengumuman</strong>
                     </div>
                 </div>
                 <div class="card-body">
@@ -44,21 +44,21 @@
                                 <i class="fas fa-plus-circle"></i> &nbsp; Tambah Pengumuman
                             </a>
                         </div>
-                    </div>                    
+                    </div>
                     @if (session('message'))
                         <div class="row">
                             <div class="col">
                                 <div class="alert {{ session('alert') }}">
                                     <i class="fas {{ session('icon') }}"></i> &nbsp; {{ session('message') }}
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-12">                            
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="table-responsive">                                    
+                                    <div class="table-responsive">
                                         <table class="table table-striped" id="index">
                                             <thead>
                                                 <tr>
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
     <div class="modal fade" id="show">
         <div class="modal-dialog">
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-       
+
 
 @endsection
 
@@ -111,9 +111,9 @@
 
         });
 
-        function show(id) {            
+        function show(id) {
             $.get('broadcast/'+ id, function (data) {
-                $('#show .modal-content').html('');                
+                $('#show .modal-content').html('');
                 $('#show .modal-content').html(data);
                 $('#show').modal('show');
             });

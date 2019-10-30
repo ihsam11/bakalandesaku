@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             BloodTypesTableSeeder::class,
             EducationsTableSeeder::class,
-            JobsTableSeeder::class,
+            WorksTableSeeder::class,
             LineagesTableSeeder::class,
             ReligionsTableSeeder::class,
             RolesTableSeeder::class,
             MarriagesTableSeeder::class,
+            ProfileTableSeeder::class,
             TopicsTableSeeder::class
         ]);
     }

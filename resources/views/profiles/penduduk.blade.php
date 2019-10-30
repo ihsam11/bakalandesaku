@@ -3,50 +3,32 @@
 
 @section('content')
     <div class="container" style="margin-top:100px;">
-        <canvas id="populate"></canvas>
+        {{-- <canvas id="populate"></canvas> --}}
         <div class="row" style="margin-top:50px;">
-            <h1 class="display-4">Data Penduduk th. 2019</h1>
+            <h2 class="display-5">Data Penduduk th. 2019</h1>
         </div>
         <hr class="border-warning"/>
-        <table class="table" style="width:100%">
+        <table class="table" id="users" style="width:100%;">
             <thead class="thead-light bg-info">
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Usia</th>
-                    <th scope="col">Alamat</th>
+                    <th scope="col">NO</th>
+                    <th scope="col">NIK</th>
+                    <th scope="col">NAMA</th>
+                    <th scope="col">JENIS KELAMIN</th>
+                    <th scope="col">USIA</th>
+                    <th scope="col">ALAMAT</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Rohmat Hidayat</td>
-                    <td>26 tahun</td>
-                    <td>Dusun Bakalan 01 RT:01 RW:02</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Rohmat Hidayat</td>
-                    <td>26 tahun</td>
-                    <td>Dusun Bakalan 01 RT:01 RW:02</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Rohmat Hidayat</td>
-                    <td>26 tahun</td>
-                    <td>Dusun Bakalan 01 RT:01 RW:02</td>
-                </tr>
-            </tbody>
         </table>
     </div>
 @endsection
 @section('script')
-<script>
+{{-- <script>
     var ctx = document.getElementById("populate").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni"],
+            labels: ["Bakalan 01", "Bakalan 02", "Banjarsari 01", "Banjarsari 02", "Jamuran", "Kebonjati"],
             datasets: [{
                 label: '< 5 tahun',
                 data: [120, 190, 30, 230, 20, 30],
@@ -139,12 +121,78 @@
             }
         }
     });
+</script> --}}
+<script>
+    var year = ['2013','2014','2015', '2016'];
+    var data_click = ;
+    var data_viewer = ;
+
+    var barChartData = {
+        labels: year,
+        datasets: [{
+            label: 'Click',
+            backgroundColor: "rgba(220,220,220,0.5)",
+            data: data_click
+        }, {
+            label: 'View',
+            backgroundColor: "rgba(151,187,205,0.5)",
+            data: data_viewer
+        }]
+    };
+
+
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Yearly Website Visitor'
+                }
+            }
+        });
+    };
 </script>
+
 <script>
 $(document).ready(function() {
-    $('.table').DataTable( {
-        "info":     false
-    } );
-} );
+    var user = $('#users').DataTable( {
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        columnDefs: [
+            { responsivePriority: 1, targets: 2 }
+        ],
+        ajax: "{{ url('penduduk/userdatatable') }}",
+        columns: [
+            { data: 'id' },
+            { data: 'nik' },
+            { data: 'name' },
+            { data: 'gender' },
+            { data: 'usia',
+                render: function ( data, type, row ) {
+                    return data + ' th';
+                },
+                searchable: false,
+            },{ 
+                data: null,
+                render: function ( data, type, row ) {
+                    return data.address +' RT: '+ data.rt +' RW: '+ data.rw;
+                },
+                searchable: false,
+             }
+        ]
+    });
+});
 </script>
 @endsection

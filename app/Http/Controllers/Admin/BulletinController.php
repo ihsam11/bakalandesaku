@@ -18,7 +18,7 @@ class BulletinController extends Controller
 
         $bulletins = DB::table('bulletins')
                         ->join('topics', 'topics.id', '=', 'bulletins.topic_id')
-                        ->select('bulletins.id','topics.name as topic', 'bulletins.title', 'bulletins.created_at', 'bulletins.viewer')
+                        ->select('bulletins.id','topics.name as topic', 'bulletins.title', DB::RAW('DATE_FORMAT(bulletins.created_at, \'%e %M %Y\') as created_at'), 'bulletins.viewer')
                         ->get();
 
         return view ('admin.post.bulletin.index', compact('bulletins'));
@@ -32,7 +32,7 @@ class BulletinController extends Controller
                         ->where('bulletins.id', $bulletin->id)
                         ->join('topics', 'topics.id', '=', 'bulletins.topic_id')
                         ->join('users', 'users.nik', '=', 'bulletins.user_id')
-                        ->select('bulletins.*', 'topics.name as topic', 'users.name as uploader')
+                        ->select('bulletins.*', 'topics.name as topic', 'users.name as uploader', DB::RAW('DATE_FORMAT(bulletins.created_at, \'%e %M %Y\') as post_date'))
                         ->first();
 
         $view = View::make('admin.post.bulletin.show', compact('bulletin'))->render();
@@ -65,13 +65,13 @@ class BulletinController extends Controller
         //
         Validator::make($request->all(), [
             "topic_id"   => [ 'required' ],
-            "image"      => [ 'required', 'mimes:jpeg,png,jpg,gif,svg','max:4096' ],
+            "image"      => [ 'required|image|max:2048' ],
             "title"      => [ 'required', 'unique:bulletins'],
             "content"    => [ 'required' ]
-        ])->validate();
+        ]);
 
         $file = $request->file('image');
-        $imageName = rand()."".$file->getClientOriginalExtension();
+        $imageName = rand().".".$file->getClientOriginalExtension();
 
         request()->image->move(public_path('img/post'), $imageName);
 
@@ -110,7 +110,7 @@ class BulletinController extends Controller
         //
          Validator::make($request->all(), [
             "topic_id"   => [ 'required' ],
-            "image"      => [ 'required', 'mimes:jpeg,png,jpg,gif,svg','max:4096' ],
+            "image"      => [ 'required', 'mimes:jpeg,png,jpg,gif,svg','max:2048' ],
             "title"      => [ 'required' ],
             "content"    => [ 'required' ]
         ])->validate();

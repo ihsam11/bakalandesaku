@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Profile;
+use App\User;
+use Carbon\Carbon;
+use Datatables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
-        return view ('admin.user.profile.create');
+        return view ('user.userprofile');
     }
 
     /**
@@ -56,7 +56,14 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        //
+        $profile = DB::table('users')
+                    ->join('profiles', 'profiles.nik', '=', 'users.nik')
+                    ->select('profiles.*', 'users.email as email')          
+                    ->where('profiles.id', $profile->id)
+                    ->first();
+        
+        // dd($profile);
+        return view('user.editprofile', compact('profile'));
     }
 
     /**

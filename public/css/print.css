@@ -1,0 +1,26 @@
+/* Layanan Blangko KTP */
+
+#ktp {
+	@page {
+		size: legal;
+
+	}
+}
+
+/* Layanan Blangko KIA */
+
+#kia {
+	@page {
+		margin: 1cm;
+	}
+}
+
+/* Layanan Blangko KK */
+
+#kk {
+	@page {
+		margin: 1cm;
+	}
+}
+
+
