@@ -65,10 +65,10 @@ class BulletinController extends Controller
         //
         Validator::make($request->all(), [
             "topic_id"   => [ 'required' ],
-            "image"      => [ 'required|image|max:2048' ],
+            "image"      => [ 'required', 'image', 'max:2048', 'mimes:jpeg,png,jpg,gif,svg' ],
             "title"      => [ 'required', 'unique:bulletins'],
             "content"    => [ 'required' ]
-        ]);
+        ])->validate();
 
         $file = $request->file('image');
         $imageName = rand().".".$file->getClientOriginalExtension();
@@ -110,20 +110,21 @@ class BulletinController extends Controller
         //
          Validator::make($request->all(), [
             "topic_id"   => [ 'required' ],
-            "image"      => [ 'required', 'mimes:jpeg,png,jpg,gif,svg','max:2048' ],
+            "image"      => [ 'mimes:jpeg,png,jpg,gif,svg','max:2048' ],
             "title"      => [ 'required' ],
             "content"    => [ 'required' ]
         ])->validate();
-
-        $file = $request->file('image');
-        $imageName = rand().$file->getClientOriginalExtension();
-
-        request()->image->move(public_path('img/post'), $imageName);
-
+        
         $bulletin = Bulletin::find($bulletin->id);
 
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $imageName = rand().$file->getClientOriginalExtension();
+            request()->image->move(public_path('img/post'), $imageName);
+            $bulletin->image_path = '/img/post/'.$imageName;
+        }
+
         $bulletin->topic_id   = $request->topic_id;
-        $bulletin->image_path = '/img/post/'.$imageName;
         $bulletin->title      = $request->title;
         $bulletin->content    = $request->content;
         $bulletin->display    = $request->display;
@@ -144,10 +145,7 @@ class BulletinController extends Controller
         $topic->post_count = (int) $topic->post_count - 1;
         $topic->save();
 
-        return redirect('admin/bulletin')
-                ->with('message', 'Data Berita Berhasil Dihapus !')
-                ->with('alert', 'alert-success text-success')
-                ->with('icon', 'fa-check');
+        return redirect('admin/bulletin');
     }
 
 }

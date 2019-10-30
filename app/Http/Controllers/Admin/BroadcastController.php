@@ -122,10 +122,7 @@ class BroadcastController extends Controller
         //
         Broadcast::find($broadcast->id);
 
-        return redirect ('admin/broadcast')
-                ->with('message', 'Data Pengumuman Berhasil Dihapus !')
-                ->with('alert', 'alert-success text-success')
-                ->with('icon', 'fa-check');
+        return redirect ('admin/broadcast');
 
     }
 }

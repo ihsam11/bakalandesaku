@@ -17,8 +17,8 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/bulletin') }}">                            
-                            Posting Berita
+                        <a href="#">                            
+                            Posting 
                         </a>
                     </li>                    
                     <li class="separator">
@@ -26,7 +26,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('admin/topic') }}">                            
-                            Topik Berita
+                            Topik
                         </a>
                     </li>                    
                 </ul>
@@ -51,7 +51,8 @@
                     @if ( session('message') )
                     <div class="row">
                         <div class="col">
-                            <div class="alert {{ session('alert') }}">
+                            <div class="alert {{ session('alert') }} alert-dismissable">
+                                <button class="close" type="close" data-dismiss="alert">&times;</button>
                                 <i class="fas {{ session('icon') }}"></i> &nbsp;
                                 {{ session('message') }}
                             </div>                            
@@ -89,15 +90,16 @@
                                                     <td>
                                                         <a class="btn btn-warning btn-sm" href="topic/{{ $list->id }}/edit">
                                                             <i class="fas fa-edit"></i>
-                                                        </a>                                                        
-                                                        <form method="POST" action="topic/{{ $list->id }}" class="d-inline">
+                                                        </a>       
+                                                        @if ($list->post_count < 1)                                                 
+                                                        <button class="btn btn-danger btn-sm" type="button" id="delete">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                        <form method="POST" action="topic/{{ $list->id }}" class="d-none" id="frmDelete">
                                                             @csrf 
-                                                            @method('DELETE')
-                                                            <button class="btn btn-danger btn-sm" type="submit">
-                                                                <i class="fas fa-trash"></i>
-                                                            </button>
+                                                            @method('DELETE')                                                            
                                                         </form>
-
+                                                        @endif
                                                     </td>
                                                     
                                                 </tr>
@@ -121,6 +123,44 @@
         $('#index').DataTable ({
 
         });
+
+        $('#delete').click(function(e) {
+            swal({
+                title: 'Anda Yakin?',
+                text: "Data yang telah dihapus tidak dapat dikembalikan!",
+                type: 'warning',
+                buttons:{
+                    confirm: {
+                        text : 'Asiyap !',
+                        className : 'btn btn-success'
+                    },
+                    cancel: {
+                        visible: true,
+                        text : 'Tidak, kembali!',
+                        className: 'btn btn-danger'
+                    }        			
+                }
+            }).then((willDelete) => {
+                if (willDelete) {                    
+                    swal("Data topik telah berhasil dihapus !", {
+                        icon: "success",
+                        buttons: false
+                    });
+                    $('#frmDelete').submit();
+                } else {
+                    swal("Data Topik tidak dihapus!", {
+                        icon: "success",
+                        buttons : {
+                            confirm : {
+                                className: 'btn btn-success'
+                            }
+                        }
+                    });
+                }
+            });        
+        });
+
+		
 
     </script>
 

@@ -65,7 +65,7 @@
                                 <label for="role">Role Pengguna</label>
                                 <select name="role" id="role" class="form-control ">
                                     @foreach ($roles as $list)
-                                        <option value="{{ $list->id }}" @if ($list->id == $user->role_id) 'selected'@endif >{{ $list->name }}</option>
+                                        <option value="{{ $list->id }}" @if ($list->id == $user->role_id) selected @endif >{{ $list->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('role')

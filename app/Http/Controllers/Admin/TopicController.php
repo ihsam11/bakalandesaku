@@ -75,10 +75,7 @@ class TopicController extends Controller
         //
         Topic::destroy($id);
 
-        return redirect ('/admin/topic')
-                ->with('message', 'Data Topik Berhasil Dihapus')
-                ->with('alert', 'alert-success text-success')
-                ->with('icon', 'fa-check');
+        return redirect ('/admin/topic');
     }
 
 }

@@ -58,9 +58,9 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
     <a href="bulletin/{{ $bulletin->id }}/edit" class="btn btn-warning">Edit</a>
-    <form action="bulletin/{{ $bulletin->id }}" method="POST">
+    <button type="button" id="delete" class="btn btn-danger">Hapus</button>
+    <form action="bulletin/{{ $bulletin->id }}" method="POST" id="frmDelete" class="d-none">
         @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">Hapus</button>
+        @method('DELETE')        
     </form>
 </div>

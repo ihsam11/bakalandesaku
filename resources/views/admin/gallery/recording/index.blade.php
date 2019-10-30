@@ -55,6 +55,7 @@
                                             <th>KETERANGAN</th>
                                             <th>URL</th>
                                             <th>TANGGAL UPLOAD</th>
+                                            <th>STATUS</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -63,20 +64,15 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $list->description }}</td>
-                                            <td>{{ $list->url }}</td>
-                                            <td>
-                                                <span class="badge badge-primary">
-                                                    <strong>
-                                                        {{ date('d M Y', strtotime($list->created_at)) }}
-                                                    </strong>
-                                                </span>
-                                            </td>
+                                            <td>{{ "http://www.youtube.com/embed/".$list->url }}</td>
+                                            <td>{{ $list->created_at }}</td>
+                                            <td>{{ $list->display ? "Aktif" : "Nonaktif" }}</td>
                                             <td>
                                                 <a href="recording/{{ $list->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                                <form action="recording/{{ $list->id }}" method="POST" class="d-inline">
+                                                <button class="btn btn-sm btn-danger" type="button" id="delete"><i class="fas fa-trash"></i></button>
+                                                <form action="recording/{{ $list->id }}" method="POST" class="d-none" id="frmDelete">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -112,5 +108,41 @@
                 $('#show').modal('show');
             });
         }
+
+        $('#delete').on('click', function (e) {
+            swal({
+                title: 'Anda Yakin?',
+                text: "Data yang telah dihapus tidak dapat dikembalikan!",
+                type: 'warning',
+                buttons:{
+                    confirm: {
+                        text : 'Asiyap !',
+                        className : 'btn btn-success'
+                    },
+                    cancel: {
+                        visible: true,
+                        text : 'Tidak, kembali!',
+                        className: 'btn btn-danger'
+                    }        			
+                }
+            }).then((willDelete) => {
+                if (willDelete) {                    
+                    swal("Data Video telah berhasil dihapus !", {
+                        icon: "success",
+                        buttons: false
+                    });
+                    $('#frmDelete').submit();
+                } else {
+                    swal("Data Video tidak dihapus!", {
+                        icon: "success",
+                        buttons : {
+                            confirm : {
+                                className: 'btn btn-success'
+                            }
+                        }
+                    });
+                }
+            });        
+        });
     </script>
 @endsection

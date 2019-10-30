@@ -32,7 +32,7 @@
                 </ul>
             </div>
             <div class="card">
-                <div class="card-header bg-primary">
+                <div class="card-header bg-warning">
                     <div class="card-title text-white">
                         <strong><i class="fas fa-plus-circle"></i> &nbsp; Edit Video</strong>
                     </div>
@@ -43,7 +43,12 @@
                     <div class="card-body ">
                         <div class="form-group">
                             <label for="url">URL Video</label>
-                            <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror col-4" value="{{ $recording->url }}">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">http://www.youtube.com/embed/</span>
+                                    <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror" value="{{ old('url') }}" placeholder="Kode Video Youtube">
+                                </div>
+                            </div>
                             @error('url')
                                 <div class="alert alert-danger mt-2 col-4">
                                     {{ $message }}
@@ -61,13 +66,10 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{ url('admin/recording') }}" class="btn btn-warning">Kembali</a>
-                            </div>
+                        <div class="row">                            
                             <div class="col text-right">
-                                <button class="btn btn-danger" type="reset">Reset</button>
-                                <button class="btn btn-primary" type="submit">Simpan</button>
+                                <a href="{{ url('admin/recording') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> &nbsp; Kembali</a>
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> &nbsp;Simpan</button>
                             </div>
                         </div>
 

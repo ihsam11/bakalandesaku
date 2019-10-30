@@ -108,9 +108,6 @@ class AgendaController extends Controller
     {
         Agenda::destroy($agenda->id);
 
-        return redirect('admin/agenda')
-                ->with('message', 'Data Agenda Berhasil Dihapus !')
-                ->with('alert', 'alert-success text-success')
-                ->with('icon', 'fa-check');
+        return redirect('admin/agenda');
     }
 }

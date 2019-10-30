@@ -20,15 +20,15 @@ class RecordingController extends Controller
     public function index()
     {
         //
-        $recordings = Recording::all();
+        $recordings = DB::table('recordings')
+                        ->select('id', 'url', 'description', DB::RAW('DATE_FORMAT(created_at, "%e %M %Y") as created_at'), 'display')
+                        ->get();
 
         return view ('admin.gallery.recording.index', compact('recordings'));
     }
 
     public function create() {
-
-        $topics = Topic::all();
-        return View::make('admin.gallery.recording.create', compact('topics'));
+        return View::make('admin.gallery.recording.create');
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class RecordingController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             "description"   => [ 'required' ],
-            "url"           => [ 'required','max:7' ]
+            "url"           => [ 'required' ]
         ])->validate();
 
 
@@ -63,9 +63,8 @@ class RecordingController extends Controller
     {
         //
         $recording = DB::table('recordings')
-                        ->where('recordings.id', $recording->id)
-                        ->join('topics', 'topics.id', '=', 'recordings.topic_id')
-                        ->select('topics.name as topic', 'recordings.description', 'recordings.url')
+                        ->where('recordings.id', $recording->id)                        
+                        ->select('recordings.description', 'recordings.url', 'recordings.id')
                         ->first();
 
         return View::make('admin.gallery.recording.show', compact('recording'))
@@ -85,13 +84,6 @@ class RecordingController extends Controller
         return View::make('admin.gallery.recording.edit', compact('recording'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Recording  $recording
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Recording $recording)
     {
         //
@@ -125,9 +117,6 @@ class RecordingController extends Controller
         //
         Recording::destroy($recording->id);
 
-        return redirect('admin/recording')
-                ->with('message', 'Video Berhasil Dihapus !')
-                ->with('alert', 'alert-success text-success')
-                ->with('icon', 'fa-check');
+        return redirect('admin/recording');
     }
 }

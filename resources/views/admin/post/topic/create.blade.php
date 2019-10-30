@@ -17,8 +17,16 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
+                        <a href="#">                            
+                             Posting
+                        </a>
+                    </li>                    
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('admin/bulletin') }}">                            
-                            Posting Berita
+                             Berita
                         </a>
                     </li>                    
                     <li class="separator">
@@ -26,7 +34,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('admin/topic') }}">                            
-                            Topik Berita
+                            Topik 
                         </a>
                     </li>                    
                 </ul>
@@ -134,7 +142,7 @@
                     },
                     message: {
                         name: {
-                            required: "Nama Topik TIdak Boleh Kosong"
+                            required: "Nama Topik Tidak Boleh Kosong"
                         },
                         description: {
                             required: "Keterangan Topik Tidak Boleh Kosong"

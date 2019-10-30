@@ -18,8 +18,16 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
+                        <a href="#">
+                            Posting 
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('admin/bulletin') }}">
-                            Posting Berita
+                            Berita
                         </a>
                     </li>
                 </ul>
@@ -106,8 +114,9 @@
 
 @section ('script')
     <script type="text/javascript">
-        $('#index').DataTable ({
 
+        $('#index').DataTable ({
+            
         });
 
         function show(id) {
@@ -116,7 +125,44 @@
                 $('#show .modal-content').html(data);
                 $('#show').modal('show');
             });
-        }
+        }        
+
+        $(document).on('click', '#delete', function() {
+            swal({
+                title: 'Anda Yakin?',
+                text: "Data yang telah dihapus tidak dapat dikembalikan!",
+                type: 'warning',
+                buttons:{
+                    confirm: {
+                        text : 'Asiyap !',
+                        className : 'btn btn-success'
+                    },
+                    cancel: {
+                        visible: true,
+                        text : 'Tidak, kembali!',
+                        className: 'btn btn-danger'
+                    }        			
+                }
+            }).then((willDelete) => {
+                if (willDelete) {                    
+                    swal("Data Berita telah berhasil dihapus !", {
+                        icon: "success",
+                        buttons: false
+                    });
+                    $('#frmDelete').submit();
+                } else {
+                    swal("Data Berita tidak dihapus!", {
+                        icon: "success",
+                        buttons : {
+                            confirm : {
+                                className: 'btn btn-success'
+                            }
+                        }
+                    });
+                }
+            });        
+        });
+
 
     </script>
 
