@@ -7,7 +7,7 @@
 			<div class="content">
 				<div class="panel-header bg-secondary-gradient">
 					<div class="page-inner pt-5 pb-5">
-						<h2 class="text-white pb-2">Selamat Datang {{ Auth::user()->name }}!</h2>
+						<h2 class="text-white pb-2 fw-bold">Selamat Datang, {{ Auth::user()->name }} !</h2>
 						<h5 class="text-white op-7 mb-2">Berikut kami tampilkan record progress web terkini.</h5>
 					</div>
 				</div>
@@ -86,6 +86,51 @@
 											</div>
 										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title fw-bold"><i class="la flaticon-clock-1 text-secondary"></i> &nbsp; Aktivitas Terkini</div>
+								</div>
+								<div class="card-body">
+									@if ($activities) 
+										<ol class="activity-feed">										
+											@foreach ($activities as $list)
+												<li class="feed-item feed-item-secondary">
+													<time class="date" datetime="">{{ $list }}</time>
+													<span class="text"> {{ $loop->iteration }}</span>
+												</li>	
+											@endforeach
+										</ol>
+									@else 
+										<h3 class="text">Belum ada Aktivitas</h3>
+									@endif
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title fw-bold"><i class="la flaticon-hands text-info"></i> &nbsp; Popular Post</div>	
+								</div>
+								<div class="card-body">									
+										@foreach ($bulletins as $list)
+										<div class="d-flex">
+											<div class="avatar">
+												<img src="{{ $list->image_path }}" alt="icon" class="img rounded-circle">
+											</div>
+											<div class="flex-1">
+												<h6 class="fw-bold">{{ $list->title }}</h6>
+											</div>
+											<div class="flex-1 ">
+												<h6 class="text-info fw-bold">{{ $list->viewer }}</h6>
+											</div>
+										</div>
+										@endforeach
 								</div>
 							</div>
 						</div>
