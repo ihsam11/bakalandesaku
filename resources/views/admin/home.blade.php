@@ -100,9 +100,9 @@
 									@if ($activities) 
 										<ol class="activity-feed">										
 											@foreach ($activities as $list)
-												<li class="feed-item feed-item-secondary">
-													<time class="date" datetime="">{{ $list }}</time>
-													<span class="text"> {{ $loop->iteration }}</span>
+												<li class="feed-item feed-item-{{$list->theme}}">
+													<time class="date" datetime="{{ $list->created_at }}">{{ $list->created_at }}</time>
+													<span class="text"> {{ $list->description }}</span>
 												</li>	
 											@endforeach
 										</ol>
@@ -119,17 +119,11 @@
 								</div>
 								<div class="card-body">									
 										@foreach ($bulletins as $list)
-										<div class="d-flex">
-											<div class="avatar">
-												<img src="{{ $list->image_path }}" alt="icon" class="img rounded-circle">
-											</div>
-											<div class="flex-1">
-												<h6 class="fw-bold">{{ $list->title }}</h6>
-											</div>
-											<div class="flex-1 ">
-												<h6 class="text-info fw-bold">{{ $list->viewer }}</h6>
-											</div>
-										</div>
+											<ol class="list-group">
+											  <li class="list-group-item">
+													{{ $list->title}}
+												</li>	
+											</ol>
 										@endforeach
 								</div>
 							</div>

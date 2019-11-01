@@ -9,14 +9,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+use App\Traits\ActivityTrait;
 
 class RecordingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    use ActivityTrait;
+
     public function index()
     {
         //
@@ -46,6 +45,9 @@ class RecordingController extends Controller
             "url"           => $request->url,
             "display"       => 1
         ]);
+
+        $this->added(3, 'Video');
+
 
         return redirect()->back()
                 ->with('message', 'Video Berhasil Ditambahkan !')
@@ -99,6 +101,8 @@ class RecordingController extends Controller
         $recording->url           = $request->url;
 
         $recording->save();
+        $this->updated(3, 'Video');
+
 
         return redirect('admin/recording')
                 ->with('message', 'Video Berhasil Diperbarui !')
@@ -116,6 +120,8 @@ class RecordingController extends Controller
     {
         //
         Recording::destroy($recording->id);
+        $this->deleted(3, 'Video');
+
 
         return redirect('admin/recording');
     }

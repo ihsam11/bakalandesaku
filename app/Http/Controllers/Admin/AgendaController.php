@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Traits\ActivityTrait;
 
 class AgendaController extends Controller
 {
+    use ActivityTrait;
+
     public function index()
     {
         //
@@ -42,6 +45,8 @@ class AgendaController extends Controller
             "user_id"       => Auth::user()->nik,
             "display"       => 1
         ]);
+
+        $this->added(2, 'Agenda');
 
         return redirect('admin/agenda')
                 ->with('message', 'Data Agenda Berhasil Ditambahkan!')
@@ -97,6 +102,7 @@ class AgendaController extends Controller
         $agenda->description    = ucfirst($request->description);
 
         $agenda->save();
+        $this->updated(2, 'Agenda');
 
         return redirect('admin/agenda')
                 ->with('message', 'Data Agenda Berhasil Diperbarui !')
@@ -107,6 +113,8 @@ class AgendaController extends Controller
     public function destroy(Agenda $agenda)
     {
         Agenda::destroy($agenda->id);
+        $this->deleted(2, 'Agenda');
+
 
         return redirect('admin/agenda');
     }

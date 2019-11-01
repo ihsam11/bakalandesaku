@@ -32,7 +32,6 @@
 
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" href="{{ asset('css/demo.css') }}">
 
 	@yield('style')
 </head>
@@ -118,10 +117,10 @@
 	                </li>
 	              </ul>
 	            </li> -->
-	            <li class="nav-item dropdown hidden-caret">
+	            <!-- <li class="nav-item dropdown hidden-caret">
 	              <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                <i class="fa fa-bell"></i>
-	                <span class="notification">4</span>
+	                <span class="notification"></span>
 	              </a>
 	              <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
 	                <li><div class="dropdown-title">You have 4 new notification</div></li>
@@ -163,11 +162,11 @@
 	                </li>
 	                <li><a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i> </a></li>
 	              </ul>
-	            </li>
+	            </li> -->
 	            <li class="nav-item dropdown hidden-caret">
 	              <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-	                <div class="avatar-sm"><img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle"></div>
-	              </a>
+	                <div class="avatar-sm"><img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle"></div>																		
+	              </a>								
 	              <ul class="dropdown-menu dropdown-user animated fadeIn">
 	                <div class="dropdown-user-scroll scrollbar-outer">
 	                  <li>

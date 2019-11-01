@@ -18,18 +18,26 @@ class HomeController extends Controller
 		$recording	= DB::table('recordings');
 		$broadcast	= DB::table('broadcasts');
 
-    	$counts = (object) array (
-    		"bulletin" 	 => $bulletin->count(),
-    		"agenda"	 => $agenda->count(),
-    		"photograph" => $photograph->count(),
-    		"recording"	 => $recording->count()
-    	);
+		$counts = (object) array (
+			"bulletin" 	 => $bulletin->count(),
+			"agenda"	 	 => $agenda->count(),
+			"photograph" => $photograph->count(),
+			"recording"	 => $recording->count()
+		);
 
-		$activities = [1,2,3,4,5,6,7,8];
-		
-		$bulletins = DB::table('bulletins')->orderBy('viewer', 'desc')->limit(5)->get();
+		$activities = DB::table('activities')
+									->select('description', DB::RAW('DATE_FORMAT(created_at, "%e %M %Y") as created_at'), 'theme')
+									->orderBy('id', 'desc')
+									->get();
 
-        return view ('admin.home', compact('counts', 'activities', 'bulletins'));
+		$bulletins = DB::table('bulletins')
+									->where('viewer', '>', 0)
+									->orderBy('viewer', 'desc')
+									->limit(5)
+									->get();
+
+		return view ('admin.home', compact('counts', 'activities', 'bulletins'));
+		// dd($unread);
     }
 
 

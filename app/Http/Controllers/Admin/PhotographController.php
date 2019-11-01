@@ -8,14 +8,13 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Traits\ActivityTrait;
 
 class PhotographController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    use ActivityTrait;
+
     public function index()
     {
         //
@@ -65,6 +64,8 @@ class PhotographController extends Controller
             "display"       =>  1
         ]);
 
+        $this->added(3, 'Foto');
+
         return redirect()->back()
                 ->with('message', 'Foto berhasil ditambahkan !')
                 ->with('alert', 'alert-success text-success')
@@ -83,7 +84,7 @@ class PhotographController extends Controller
         $imageName = rand().".".$file->getClientOriginalExtension();
 
         request()->file->move(public_path('img/photograph'), $imageName);
-
+        
         Photograph::create ([
             "title"         => "title",
             "path"          => "/img/photograph/".$imageName,
@@ -91,16 +92,12 @@ class PhotographController extends Controller
             "display"       => 1
         ]);
 
+        $this->added(3, 'Foto');
+
         return response()->json('Foto Berhasil Ditambahkan', 200);
         // dd($imageName);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Photo  $photo
-     * @return \Illuminate\Http\Response
-     */
     public function show(Photograph $photo)
     {
         //
@@ -108,12 +105,6 @@ class PhotographController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Photograph  $photo
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Photograph $photograph)
     {
         //
@@ -122,13 +113,6 @@ class PhotographController extends Controller
         return view ('admin.gallery.photograph.edit', compact('photograph', 'topics'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Photograph  $photo
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Photograph $photograph)
     {
         //
@@ -155,6 +139,9 @@ class PhotographController extends Controller
         $photograph->display     = 1;
         $photograph->save();
 
+        $this->updated(3, 'Foto');
+
+
         return redirect ('admin/photograph')
                 ->with('message', 'Foto berhasil diperbarui !')
                 ->with('alert', 'alert-success text-success')
@@ -171,6 +158,9 @@ class PhotographController extends Controller
     {
         //
         Photograph::destroy($photograph->id);
+
+        $this->deleted(3, 'Foto');
+
 
         return redirect ('admin/photograph')
                 ->with('message', 'Foto berhasil dihapus !')

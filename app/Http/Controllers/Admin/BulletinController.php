@@ -10,9 +10,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use App\Traits\ActivityTrait;
 
 class BulletinController extends Controller
 {
+
+    use ActivityTrait;
+
     public function index()
     {
 
@@ -87,6 +91,8 @@ class BulletinController extends Controller
         $topic = Topic::find($request->topic_id);
         $topic->post_count = (int) $topic->post_count + 1;
         $topic->save();
+        $this->added(2, 'Berita');
+
 
         return redirect('admin/bulletin')
                    ->with('message', 'Data Berita Berhasil Ditambahkan !')
@@ -130,6 +136,8 @@ class BulletinController extends Controller
         $bulletin->display    = $request->display;
 
         $bulletin->save();
+        $this->updated(2, 'Berita');
+
 
         return redirect('admin/bulletin')
                 ->with('message', 'Data Berita Berhasil Diperbarui !')
@@ -144,6 +152,9 @@ class BulletinController extends Controller
         $topic = Topic::find($bulletin->topic_id);
         $topic->post_count = (int) $topic->post_count - 1;
         $topic->save();
+
+        $this->deleted(2, 'Berita');
+
 
         return redirect('admin/bulletin');
     }

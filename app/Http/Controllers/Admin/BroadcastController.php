@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ActivityTrait;
+
 
 class BroadcastController extends Controller
 {
+    use ActivityTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +52,8 @@ class BroadcastController extends Controller
             "date_finish"     => date('Y-m-d', strtotime($date_range[1])),
             "user_id"         => Auth::user()->nik
         ]);
+
+        $this->added(2, 'Pengumuman');
 
         return redirect ('admin/broadcast')
                 ->with('message', 'Data Pengumuman Berhasil Ditambahkan !')
@@ -104,6 +110,8 @@ class BroadcastController extends Controller
         $broadcast->user_id     = Auth::user()->nik;
         
         $broadcast->save();
+        $this->updated(2, 'Pengumuman');
+
 
         return redirect ('admin/broadcast')
                 ->with('message', 'Data Pengumuman Berhasil Diperbarui !')
@@ -120,7 +128,9 @@ class BroadcastController extends Controller
     public function destroy(Broadcast $broadcast)
     {
         //
-        Broadcast::find($broadcast->id);
+        Broadcast::destroy($broadcast->id);
+        $this->deleted(2, 'Pengumuman');
+
 
         return redirect ('admin/broadcast');
 

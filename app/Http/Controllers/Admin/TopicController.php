@@ -6,9 +6,13 @@ use App\Topic;
 use DataTables, Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\ActivityTrait;
 
 class TopicController extends Controller
 {
+
+    use ActivityTrait;
+
     public function index()
     {
         //        
@@ -33,6 +37,8 @@ class TopicController extends Controller
             "description" => ucfirst($request->description)
         ]);                                       
         
+        $this->added(2, 'Topik');
+
         return redirect('/admin/topic')
                 ->with('message', 'Data Topik Berhasil Ditambahkan !')
                 ->with('alert', 'alert-success text-success')
@@ -62,6 +68,8 @@ class TopicController extends Controller
         $topic->description = ucfirst($request->description);
 
         $topic->save();
+        $this->updated(2, 'Topik');
+
 
         return redirect ('/admin/topic')
                 ->with('message', 'Data Topik Berhasil Diperbarui !')
@@ -74,6 +82,8 @@ class TopicController extends Controller
     {
         //
         Topic::destroy($id);
+        $this->deleted(2, 'Topik');
+
 
         return redirect ('/admin/topic');
     }

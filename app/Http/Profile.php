@@ -25,6 +25,7 @@ class Profile extends Model
         'lineage',
         'status',
     ];
+    
     public function User()
     {
         return $this->hasMany('App\User');

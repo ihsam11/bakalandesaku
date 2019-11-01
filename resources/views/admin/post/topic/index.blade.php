@@ -124,7 +124,7 @@
 
         });
 
-        $('#delete').click(function(e) {
+        $(document).on('click', '#delete', function(e) {
             swal({
                 title: 'Anda Yakin?',
                 text: "Data yang telah dihapus tidak dapat dikembalikan!",

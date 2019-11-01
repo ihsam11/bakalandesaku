@@ -63,7 +63,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Galeri</a>
+                    <a class="nav-link" href="/galeri">Galeri</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="Organisasi" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Organisasi</a>
@@ -97,14 +97,14 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @auth
                             @if( Auth::user()->role_id == 2)
-                            <a class="dropdown-item" href="{{ url('profiles/'.Auth::user()->id.'/edit') }}">
+                            <a class="dropdown-item" href="{{ url('profile/'.Auth::user()->id.'/edit') }}">
                                 <i class="fa fa-gear"></i> Edit Profile
                             </a>
                             @else
                             <a class="dropdown-item" href="{{ route('admin.home') }}">
                                 <i class="fa fa-gear"></i> Admin Page
                             </a>
-                            <a class="dropdown-item" href="{{ url('profiles/'.Auth::user()->id.'/edit') }}">
+                            <a class="dropdown-item" href="{{ url('profile/'.Auth::user()->id.'/edit') }}">
                                 <i class="fa fa-gear"></i> Edit Profile
                             </a>
                             @endif
@@ -197,16 +197,22 @@
             &copy; <script>document.write(new Date().getFullYear());</script> Nalakab <br>
         </div>
         <div class="row text-white justify-content-center">
-            <p>Website ini dibuat oleh Rohmat Hidayat & Muhammad Ikhsan.</p>
+            <p>Website ini dibuat oleh 
+                <a href="https://wa.me/6285755667699" class="text-white">
+                <i class="fa fa-whatsapp" aria-hidden="true"> Rohmat Hidayat</i>
+                </a> &                 
+                <a href="https://wa.me/6285777937334" class="text-white">
+                    <i class="fa fa-whatsapp" aria-hidden="true"> Muhammad Ikhsan</i>
+                </a>
+            </p>
         </div>
     </div>
 </footer>
 
-
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -214,13 +220,9 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-{{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
 <script src="{{ asset('js/jquery.lettering.js') }}"></script>
 <script src="{{ asset('js/jquery.textillate.js') }}"></script>
 <script src="{{ asset('js/owl.carousel.js') }}"></script>
-{{-- <script>
-AOS.init();
-</script> --}}
 @yield('script')
 </div>
 </body>
