@@ -17,7 +17,7 @@ class CreateRecordingsTable extends Migration
             $table->bigIncrements('id');
             $table->string('url');
             $table->string('description')->nullable();
-            $table->boolean('display')->default(true);
+            $table->integer('display')->nullable();
             $table->timestamps();
         });
     }

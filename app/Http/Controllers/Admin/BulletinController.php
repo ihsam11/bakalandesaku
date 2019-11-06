@@ -120,7 +120,7 @@ class BulletinController extends Controller
             "title"      => [ 'required' ],
             "content"    => [ 'required' ]
         ])->validate();
-        
+
         $bulletin = Bulletin::find($bulletin->id);
 
         if ($request->file('image')) {

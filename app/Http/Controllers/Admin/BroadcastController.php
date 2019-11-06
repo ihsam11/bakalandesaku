@@ -40,16 +40,11 @@ class BroadcastController extends Controller
         Validator::make ($request->all(), [
             "title"          => [ 'required' ],
             "description"    => [ 'required' ],
-            "active_range"   => [ 'required' ]
         ])->validate();
-
-        $date_range = explode("-", $request->active_range);
 
         Broadcast::create([
             "title"           => $request->title,
             "description"     => $request->description,
-            "date_start"      => date('Y-m-d', strtotime($date_range[0])),
-            "date_finish"     => date('Y-m-d', strtotime($date_range[1])),
             "user_id"         => Auth::user()->nik
         ]);
 
@@ -62,30 +57,18 @@ class BroadcastController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
     public function show(Broadcast $broadcast)
     {
         //
-        $broadcast = Broadcast::find($broadcast->id);            
-        
+        $broadcast = Broadcast::find($broadcast->id);
+
         return View::make('admin.post.broadcast.show', compact('broadcast'))->render();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Broadcast $broadcast)
     {
         //
-        $broadcast = Broadcst::find($broadcast->id);
+        $broadcast = Broadcast::find($broadcast->id);
 
         return view ('admin.post.broadcast.edit', compact('broadcast'));
     }
@@ -96,7 +79,6 @@ class BroadcastController extends Controller
         Validator::make ($request->all(), [
             "title"          => [ 'required' ],
             "description"    => [ 'required' ],
-            "active_range"   => [ 'required' ]
         ])->validate();
 
         $date_range = explode("-", $request->active_range);
@@ -105,10 +87,8 @@ class BroadcastController extends Controller
 
         $broadcast->title       = $request->title;
         $broadcast->description = $request->description;
-        $broadcast->date_start  = $date_range[0];
-        $broadcast->date_finish = $date_range[1];
         $broadcast->user_id     = Auth::user()->nik;
-        
+
         $broadcast->save();
         $this->updated(2, 'Pengumuman');
 
@@ -119,12 +99,6 @@ class BroadcastController extends Controller
                 ->with('icon', 'fa-check');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Broadcast $broadcast)
     {
         //

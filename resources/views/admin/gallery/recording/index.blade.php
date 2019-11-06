@@ -69,10 +69,10 @@
                                             <td>{{ $list->display ? "Aktif" : "Nonaktif" }}</td>
                                             <td>
                                                 <a href="recording/{{ $list->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                                <button class="btn btn-sm btn-danger" type="button" id="delete"><i class="fas fa-trash"></i></button>
-                                                <form action="recording/{{ $list->id }}" method="POST" class="d-none" id="frmDelete">
+                                                <form action="recording/{{ $list->id }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger" type="button" onclick="return confirm('Anda yakin?')"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -123,10 +123,10 @@
                         visible: true,
                         text : 'Tidak, kembali!',
                         className: 'btn btn-danger'
-                    }        			
+                    }
                 }
             }).then((willDelete) => {
-                if (willDelete) {                    
+                if (willDelete) {
                     swal("Data Video telah berhasil dihapus !", {
                         icon: "success",
                         buttons: false
@@ -142,7 +142,7 @@
                         }
                     });
                 }
-            });        
+            });
         });
     </script>
 @endsection

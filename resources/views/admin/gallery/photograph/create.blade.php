@@ -87,12 +87,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="file">Upload Foto</label>
-                                    <input type="file" name="image" class="form-control">
+                                    <input type="file" name="image" class="form-control" onchange="readURL(this)">
                                     @error('image')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                    <img alt="Preview" class="d-none thumbnail mt-2 p-2" id="blah" width="85%" height="85%">
                                 </div>
                             </div>
 
@@ -136,6 +137,18 @@
                 $('#show .modal-content').html(data);
                 $('#show').modal('show');
             });
+        }
+
+        function readURL(input) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').removeClass('d-none');
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
         }
     </script>
 @endsection

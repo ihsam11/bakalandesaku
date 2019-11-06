@@ -33,7 +33,16 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 
-	@yield('style')
+		<style>
+			.logo > img {
+				width: 35px;
+				height: 40px;
+			}
+			.logo > h4 {
+				display:inline;
+				margin-left: 10px;
+			}
+		</style>
 </head>
 
 <body data-background-color="bg3">
@@ -42,8 +51,8 @@
 	      <!-- Logo Header -->
 	      <div class="logo-header" data-background-color="dark2">
 	        <a href="index.html" class="logo">
-	          <img src="{{ asset('img/logo-99.png') }}" alt="Bakalan Desa Logo" class="navbar-brand" width="50">
-			  <h4 style="display:inline"class="text-white"><strong>Admin Page</strong></h4>
+	          <img src="{{ asset('img/logo-99.png') }}" alt="Bakalan Desa Logo" class="navbar-brand">
+						<h4 class="text-white"><strong>Admin Page</strong></h4>
 	        </a>
 	        <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"><i class="icon-menu"></i></span>
@@ -59,20 +68,7 @@
 	      <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
 
 	        <div class="container-fluid">
-	          <div class="collapse" id="search-nav">
-	            <form class="navbar-left navbar-form nav-search mr-md-3">
-	              <div class="input-group">
-	                <div class="input-group-prepend">
-	                  <button type="submit" class="btn btn-search pr-1"><i class="fa fa-search search-icon"></i></button>
-	                </div>
-	                <input type="text" placeholder="Search ..." class="form-control">
-	              </div>
-	            </form>
-	          </div>
 	          <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-	            <li class="nav-item toggle-nav-search hidden-caret">
-	              <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav"><i class="fa fa-search"></i></a>
-	            </li>
 <!-- 	            <li class="nav-item dropdown hidden-caret">
 	              <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i></a>
 	              <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
@@ -165,8 +161,8 @@
 	            </li> -->
 	            <li class="nav-item dropdown hidden-caret">
 	              <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
-	                <div class="avatar-sm"><img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle"></div>																		
-	              </a>								
+	                <div class="avatar-sm"><img src="{{ asset('img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle"></div>
+	              </a>
 	              <ul class="dropdown-menu dropdown-user animated fadeIn">
 	                <div class="dropdown-user-scroll scrollbar-outer">
 	                  <li>
@@ -244,7 +240,7 @@
 								<li><a href="{{ url('admin/bulletin') }}"> <span class="sub-item"> Berita </span> </a></li>
 								<li><a href="{{ url('admin/agenda') }}"> <span class="sub-item"> Agenda </span> </a></li>
 								<li><a href="{{ url('admin/broadcast') }}"> <span class="sub-item"> Pengumuman </span> </a></li>
-								<li><a href="{{ url('admin/comments') }}"> <span class="sub-item"> Komentar </span> </a></li>
+								<li><a href="#"> <span class="sub-item"> Komentar </span> </a></li>
 							</ul>
 						</div>
 					</li>
@@ -280,13 +276,13 @@
 						</div>
 					</li>
 					<li class="nav-item ">
-						<a href="{{ url('admin/setting') }}" aria-expanded="false">
+						<a href="#" aria-expanded="false">
 							<i class="fas fa-cog"></i>
 							<p>Pengaturan</p>
 						</a>
 					</li>
 					<li class="nav-item ">
-						<a href="{{ route('admin.help') }}" aria-expanded="false">
+						<a href="#" aria-expanded="false">
 							<i class="fas fa-question-circle"></i>
 							<p>Bantuan</p>
 						</a>

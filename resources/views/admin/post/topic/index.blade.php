@@ -8,7 +8,7 @@
             <div class="page-header">
                 <h4 class="page-title">Halaman Topik Berita</h4>
                 <ul class="breadcrumbs">
-                    <li class="nav-home">                        
+                    <li class="nav-home">
                         <a href="{{ route('admin.home') }}">
                             <i class="flaticon-home"></i>
                         </a>
@@ -17,24 +17,24 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">                            
-                            Posting 
+                        <a href="#">
+                            Posting
                         </a>
-                    </li>                    
+                    </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/topic') }}">                            
+                        <a href="{{ url('admin/topic') }}">
                             Topik
                         </a>
-                    </li>                    
+                    </li>
                 </ul>
-            </div>        
-            <div class="card">        
+            </div>
+            <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <strong><i class="fas fa-hashtag"></i> &nbsp; Daftar Topik Berita</strong> 
+                        <strong><i class="fas fa-hashtag"></i> &nbsp; Daftar Topik Berita</strong>
                     </div>
                 </div>
                 <div class="card-body">
@@ -45,9 +45,9 @@
                             </a>
                             <a class="btn btn-sm btn-secondary" href="/admin/bulletin">
                                 <i class="fas fa-list"></i> &nbsp; Daftar Posting Berita
-                            </a>                            
+                            </a>
                         </div>
-                    </div>   
+                    </div>
                     @if ( session('message') )
                     <div class="row">
                         <div class="col">
@@ -55,15 +55,15 @@
                                 <button class="close" type="close" data-dismiss="alert">&times;</button>
                                 <i class="fas {{ session('icon') }}"></i> &nbsp;
                                 {{ session('message') }}
-                            </div>                            
+                            </div>
                         </div>
-                    </div>                 
+                    </div>
                     @endif
                     <div class="row">
-                        <div class="col-12">                            
+                        <div class="col-12">
                             <div class="card">
-                                <div class="card-body">                                                                            
-                                    <div class="table-responsive">                                    
+                                <div class="card-body">
+                                    <div class="table-responsive">
                                         <table class="table table-striped text-center" id="index">
                                             <thead>
                                                 <tr>
@@ -74,8 +74,8 @@
                                                     <th>AKSI</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>           
-                                                @foreach ( $topics as $list)                                     
+                                            <tbody>
+                                                @foreach ( $topics as $list)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $list->name }}</td>
@@ -90,18 +90,19 @@
                                                     <td>
                                                         <a class="btn btn-warning btn-sm" href="topic/{{ $list->id }}/edit">
                                                             <i class="fas fa-edit"></i>
-                                                        </a>       
-                                                        @if ($list->post_count < 1)                                                 
-                                                        <button class="btn btn-danger btn-sm" type="button" id="delete">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                        <form method="POST" action="topic/{{ $list->id }}" class="d-none" id="frmDelete">
-                                                            @csrf 
-                                                            @method('DELETE')                                                            
+                                                        </a>
+                                                        @if ($list->post_count < 1)
+                                                        <form method="POST" action="topic/{{ $list->id }}" class="d-inline" id="">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-danger btn-sm" type="submit"
+                                                                onclick="return confirm('Yakin mau menghapus?')">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         </form>
                                                         @endif
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -114,7 +115,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
 @endsection
 
@@ -123,45 +124,6 @@
         $('#index').DataTable ({
 
         });
-
-        $(document).on('click', '#delete', function(e) {
-            swal({
-                title: 'Anda Yakin?',
-                text: "Data yang telah dihapus tidak dapat dikembalikan!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Asiyap !',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        text : 'Tidak, kembali!',
-                        className: 'btn btn-danger'
-                    }        			
-                }
-            }).then((willDelete) => {
-                if (willDelete) {                    
-                    swal("Data topik telah berhasil dihapus !", {
-                        icon: "success",
-                        buttons: false
-                    });
-                    $('#frmDelete').submit();
-                } else {
-                    swal("Data Topik tidak dihapus!", {
-                        icon: "success",
-                        buttons : {
-                            confirm : {
-                                className: 'btn btn-success'
-                            }
-                        }
-                    });
-                }
-            });        
-        });
-
-		
-
     </script>
 
 @endsection

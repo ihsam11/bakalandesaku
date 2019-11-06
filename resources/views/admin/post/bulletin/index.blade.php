@@ -19,7 +19,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#">
-                            Posting 
+                            Posting
                         </a>
                     </li>
                     <li class="separator">
@@ -52,7 +52,8 @@
                     @if ( session('message') )
                     <div class="row">
                         <div class="col">
-                            <div class="alert {{ session('alert') }}">
+                            <div class="alert {{ session('alert') }} alert-dismissable">
+                                <button type="close" class="close" data-dismiss="alert">&times;</button>
                                 <i class="fas {{ session('icon') }}"></i> &nbsp;
                                 {{ session('message') }}
                             </div>
@@ -116,7 +117,7 @@
     <script type="text/javascript">
 
         $('#index').DataTable ({
-            
+
         });
 
         function show(id) {
@@ -125,43 +126,7 @@
                 $('#show .modal-content').html(data);
                 $('#show').modal('show');
             });
-        }        
-
-        $(document).on('click', '#delete', function() {
-            swal({
-                title: 'Anda Yakin?',
-                text: "Data yang telah dihapus tidak dapat dikembalikan!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Asiyap !',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        text : 'Tidak, kembali!',
-                        className: 'btn btn-danger'
-                    }        			
-                }
-            }).then((willDelete) => {
-                if (willDelete) {                    
-                    swal("Data Berita telah berhasil dihapus !", {
-                        icon: "success",
-                        buttons: false
-                    });
-                    $('#frmDelete').submit();
-                } else {
-                    swal("Data Berita tidak dihapus!", {
-                        icon: "success",
-                        buttons : {
-                            confirm : {
-                                className: 'btn btn-success'
-                            }
-                        }
-                    });
-                }
-            });        
-        });
+        }
 
 
     </script>

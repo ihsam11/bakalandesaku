@@ -48,6 +48,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col">
+                            <span class="pull-right">
+
+                            {{ $photographs->links() }}
+                            </span>
+                        </div>
                     </div>
                     <div class="media-items row">
                         @foreach ($photographs as $list)
@@ -62,7 +68,7 @@
                                         <form action="../admin/photograph/{{ $list->id }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button type="button" class="btn btn-sm btn-danger" ><i class="fas fa-trash"></i></button>
                                         </form>
                                 </div>
                             </div>
@@ -88,8 +94,7 @@
                                     <div class="icon">
                                         <i class="flaticon-file"></i>
                                     </div>
-                                    <h4 class="message">Drag and Drop files here</h4>
-                                    <div class="note">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</div>
+                                    <h4 class="message">Drag and Drop file foto nya disini</h4>
                                 </div>
                                 <div class="fallback">
                                     <input name="file" type="file" multiple />
@@ -118,5 +123,41 @@
                 $('#show').modal('show');
             });
         }
+
+        // $(document).on('click', '.delete', function() {
+        //     swal({
+        //         title: 'Anda Yakin?',
+        //         text: "Data yang telah dihapus tidak dapat dikembalikan!",
+        //         type: 'warning',
+        //         buttons:{
+        //             confirm: {
+        //                 text : 'Setuju !',
+        //                 className : 'btn btn-success'
+        //             },
+        //             cancel: {
+        //                 visible: true,
+        //                 text : 'Tidak, kembali!',
+        //                 className: 'btn btn-danger'
+        //             }
+        //         }
+        //     }).then((willDelete) => {
+        //         if (willDelete) {
+        //             swal("Foto telah berhasil dihapus !", {
+        //                 icon: "success",
+        //                 buttons: false
+        //             });
+        //             $('.frmDelete').submit();
+        //         } else {
+        //             swal("Foto tidak dihapus!", {
+        //                 icon: "success",
+        //                 buttons : {
+        //                     confirm : {
+        //                         className: 'btn btn-success'
+        //                     }
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 @endsection

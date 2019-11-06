@@ -13,7 +13,7 @@ use App\Traits\ActivityTrait;
 
 class RecordingController extends Controller
 {
-    
+
     use ActivityTrait;
 
     public function index()
@@ -55,17 +55,11 @@ class RecordingController extends Controller
                 ->with('icon', 'fa-check');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Recording  $recording
-     * @return \Illuminate\Http\Response
-     */
     public function show(Recording $recording)
     {
         //
         $recording = DB::table('recordings')
-                        ->where('recordings.id', $recording->id)                        
+                        ->where('recordings.id', $recording->id)
                         ->select('recordings.description', 'recordings.url', 'recordings.id')
                         ->first();
 
@@ -73,12 +67,6 @@ class RecordingController extends Controller
                 ->render();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Recording  $recording
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Recording $recording)
     {
         //
@@ -99,6 +87,8 @@ class RecordingController extends Controller
 
         $recording->description   = $request->description;
         $recording->url           = $request->url;
+        $recording->display       = $request->display;
+
 
         $recording->save();
         $this->updated(3, 'Video');

@@ -97,16 +97,16 @@
 									<div class="card-title fw-bold"><i class="la flaticon-clock-1 text-secondary"></i> &nbsp; Aktivitas Terkini</div>
 								</div>
 								<div class="card-body">
-									@if ($activities) 
-										<ol class="activity-feed">										
+									@if ($activities)
+										<ol class="activity-feed">
 											@foreach ($activities as $list)
 												<li class="feed-item feed-item-{{$list->theme}}">
 													<time class="date" datetime="{{ $list->created_at }}">{{ $list->created_at }}</time>
 													<span class="text"> {{ $list->description }}</span>
-												</li>	
+												</li>
 											@endforeach
 										</ol>
-									@else 
+									@else
 										<h3 class="text">Belum ada Aktivitas</h3>
 									@endif
 								</div>
@@ -115,14 +115,16 @@
 						<div class="col">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title fw-bold"><i class="la flaticon-hands text-info"></i> &nbsp; Popular Post</div>	
+									<div class="card-title fw-bold"><i class="la flaticon-hands text-info"></i> &nbsp; Popular Post</div>
 								</div>
-								<div class="card-body">									
+								<div class="card-body">
 										@foreach ($bulletins as $list)
 											<ol class="list-group">
-											  <li class="list-group-item">
-													{{ $list->title}}
-												</li>	
+												<li class="list-group-item">
+													{{ $loop->iteration }}
+													{{ $list->title }}
+
+												</li>
 											</ol>
 										@endforeach
 								</div>
@@ -153,7 +155,7 @@
 						</ul>
 					</nav>
 					<div class="copyright ml-auto">
-						2019, made with <i class="fa fa-heart heart text-danger"></i> by <a href="http://themekita.com">ThemeKita</a>		
+						2019, made with <i class="fa fa-heart heart text-danger"></i> by <a href="http://themekita.com">ThemeKita</a>
 					</div>
 				</div>
 			</footer>

@@ -18,7 +18,7 @@ class PhotographController extends Controller
     public function index()
     {
         //
-        $photographs = Photograph::paginate(10);
+        $photographs = Photograph::paginate(9);
 
         return view('admin.gallery.photograph.index', compact('photographs'));
     }
@@ -84,11 +84,12 @@ class PhotographController extends Controller
         $imageName = rand().".".$file->getClientOriginalExtension();
 
         request()->file->move(public_path('img/photograph'), $imageName);
-        
+
         Photograph::create ([
-            "title"         => "title",
+            "title"         => "Belum Ada Judul",
+            "topic_id"      => 2,
             "path"          => "/img/photograph/".$imageName,
-            "description"   => "description",
+            "description"   => "Belum Ada Keterangan",
             "display"       => 1
         ]);
 

@@ -12,7 +12,7 @@
 		<label for="description">Keterangan Pengumuman</label>
 		<span id="description" class="form-control">{{ $broadcast->description }}</span>
 	</div>
-	<div class="row">
+<!-- 	<div class="row">
 		<div class="col">
 			<div class="form-group">
 				<label for="date_start">Tanggal Tampil</label>
@@ -20,25 +20,25 @@
 					<div class="col">
 						<label for="">Tanggal Mulai</label>
 						<span id="date_start" class="form-control">{{ $broadcast->date_start }}</span>
-						
+
 
 					</div>
 					<div class="col">
-						<label for="">Tanggal Selesai</label>						
+						<label for="">Tanggal Selesai</label>
 						<span id="date_start" class="form-control">{{ $broadcast->date_finish }}</span>
-					
+
 					</div>
 				</div>
-			</div>			
+			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <div class="modal-footer">
 	<button class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 	<a class="btn btn-warning" href="broadcast/{{ $broadcast->id }}/edit">Edit</a>
-	<button type="button" id="delete" class="btn btn-danger">Hapus</button>
-	<form method="POST" action="broadcast/{{ $broadcast->id }" class="d-none">
+	<form method="POST" action="broadcast/{{ $broadcast->id }" class="d-inline">
 		@csrf
 		@method('DELETE')
+		<button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin?')">Hapus</button>
 	</form>
 </div>

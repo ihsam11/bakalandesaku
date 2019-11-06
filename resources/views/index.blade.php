@@ -71,6 +71,52 @@
                 </div>
             </div>
             <div class="card-body row d-flex justify-content-between">
+                <div class="card col-md-8 border-warning">
+                    <div class="card-header d-flex justify-content-center">
+                        <div class="hovereffect rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                            <img class="img-responsive" src="{{ asset('img/sekdes.jpeg') }}" alt="">
+                            <div class="overlay">
+                                <p>
+                                    <b>Abdul Gofar</b>
+                                    <br/><br/>
+                                    Sekretaris Desa
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-around" style="height: 100%;">
+                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                            <img class="img-responsive" src="{{ asset('img/-.jpeg') }}" alt="">
+                            <div class="overlay">
+                                <p>
+                                    <b>Sandi Cahyadi</b>
+                                    <br/><br/>
+                                    Kaur TU & Umum
+                                </p>
+                            </div>
+                        </div>
+                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                            <img class="img-responsive" src="{{ asset('img/keuangan.jpeg') }}" alt="">
+                            <div class="overlay">
+                                <p>
+                                    <b>Khusnul Khotimah</b>
+                                    <br/><br/>
+                                    Kaur Keuangan
+                                </p>
+                            </div>
+                        </div>
+                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
+                            <img class="img-responsive" src="{{ asset('img/-.jpeg') }}" alt="">
+                            <div class="overlay">
+                                <p>
+                                    <b>Suwito</b>
+                                    <br/><br/>
+                                    Kaur Perencana an
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card col-md-3">
                     <div class="d-flex flex-column bd-highlight mb-3">
                         <div class="card-body d-flex justify-content-center">
@@ -107,52 +153,6 @@
                                         Kasi Pelayanan
                                     </p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-md-8 border-warning">
-                    <div class="card-header d-flex justify-content-center">
-                        <div class="hovereffect rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
-                            <img class="img-responsive" src="{{ asset('img/sekdes.jpeg') }}" alt="">
-                            <div class="overlay">
-                                <p>
-                                    <b>Abdul Gofar</b>
-                                    <br/><br/>
-                                    Sekretaris Desa
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body row d-flex justify-content-around" style="height: 100%;">
-                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
-                            <img class="img-responsive" src="{{ asset('img/-.jpeg') }}" alt="">
-                            <div class="overlay">
-                                <p>
-                                    <b>Sandi Cahyadi</b>
-                                    <br/><br/>
-                                    Kaur TU & Umum
-                                </p>
-                            </div>
-                        </div>
-                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
-                            <img class="img-responsive" src="{{ asset('img/keuangan.jpeg') }}" alt="">
-                            <div class="overlay">
-                                <p>
-                                    <b>Khusnul Khotimah</b>
-                                    <br/><br/>
-                                    Kaur Keuangan
-                                </p>
-                            </div>
-                        </div>
-                        <div class="hovereffect my-3 rounded-lg" style="width:190px; height:190px;" ontouchstart="" ontouchend="">
-                            <img class="img-responsive" src="{{ asset('img/-.jpeg') }}" alt="">
-                            <div class="overlay">
-                                <p>
-                                    <b>Suwito</b>
-                                    <br/><br/>
-                                    Kaur Perencana an
-                                </p>
                             </div>
                         </div>
                     </div>

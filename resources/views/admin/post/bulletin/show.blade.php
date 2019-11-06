@@ -58,9 +58,9 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
     <a href="bulletin/{{ $bulletin->id }}/edit" class="btn btn-warning">Edit</a>
-    <button type="button" id="delete" class="btn btn-danger">Hapus</button>
-    <form action="bulletin/{{ $bulletin->id }}" method="POST" id="frmDelete" class="d-none">
+    <form action="bulletin/{{ $bulletin->id }}" method="POST" class="d-inline">
         @csrf
-        @method('DELETE')        
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin?')">Hapus</button>
     </form>
 </div>

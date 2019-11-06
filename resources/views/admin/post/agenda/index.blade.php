@@ -8,7 +8,7 @@
             <div class="page-header">
                 <h4 class="page-title">Halaman Posting Agenda</h4>
                 <ul class="breadcrumbs">
-                    <li class="nav-home">                        
+                    <li class="nav-home">
                         <a href="{{ route('admin.home') }}">
                             <i class="flaticon-home"></i>
                         </a>
@@ -17,24 +17,24 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">                            
+                        <a href="#">
                             Posting
                         </a>
-                    </li>                    
+                    </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/agenda') }}">                            
+                        <a href="{{ url('admin/agenda') }}">
                             Agenda
                         </a>
-                    </li>                    
+                    </li>
                 </ul>
-            </div>        
-            <div class="card">        
+            </div>
+            <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <strong><i class="fas fa-clipboard-list"></i> &nbsp; Daftar Agenda</strong> 
+                        <strong><i class="fas fa-clipboard-list"></i> &nbsp; Daftar Agenda</strong>
                     </div>
                 </div>
                 <div class="card-body">
@@ -44,22 +44,22 @@
                                 <i class="fas fa-plus-circle"></i> &nbsp; Tambah Agenda
                             </a>
                         </div>
-                    </div>                    
+                    </div>
                     @if (session('message'))
                         <div class="row">
                             <div class="col">
                                 <div class="alert {{ session('alert') }} alert-dismissable">
                                     <button type="close" data-dismiss="alert">&times;</button>
                                     <i class="fas {{ session('icon') }}"></i> &nbsp; {{ session('message') }}
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-12">                            
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="table-responsive">                                    
+                                    <div class="table-responsive">
                                         <table class="table table-striped" id="index">
                                             <thead>
                                                 <tr>
@@ -94,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
     <div class="modal fade" id="show">
         <div class="modal-dialog">
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-       
+
 
 @endsection
 
@@ -112,49 +112,14 @@
 
         });
 
-        function show(id) {            
+        function show(id) {
             $.get('agenda/'+ id, function (data) {
-                $('#show .modal-content').html('');                
+                $('#show .modal-content').html('');
                 $('#show .modal-content').html(data);
                 $('#show').modal('show');
             });
         }
 
-        $(document).on('click','#delete',function(e) {
-            swal({
-                title: 'Anda Yakin?',
-                text: "Data yang telah dihapus tidak dapat dikembalikan!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Asiyap !',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        text : 'Tidak, kembali!',
-                        className: 'btn btn-danger'
-                    }        			
-                }
-            }).then((willDelete) => {
-                if (willDelete) {                    
-                    swal("Data Agenda telah berhasil dihapus !", {
-                        icon: "success",
-                        buttons: false
-                    });
-                    $('#frmDelete').submit();
-                } else {
-                    swal("Data Agenda tidak dihapus!", {
-                        icon: "success",
-                        buttons : {
-                            confirm : {
-                                className: 'btn btn-success'
-                            }
-                        }
-                    });
-                }
-            });        
-        });
 
     </script>
 @endsection

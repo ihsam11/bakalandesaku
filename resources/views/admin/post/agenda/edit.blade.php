@@ -9,7 +9,7 @@
         <div class="page-header">
             <h4 class="page-title">Halaman Edit Agenda</h4>
             <ul class="breadcrumbs">
-                <li class="nav-home">                        
+                <li class="nav-home">
                     <a href="{{ route('admin.home') }}">
                         <i class="flaticon-home"></i>
                     </a>
@@ -18,27 +18,27 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">                            
+                    <a href="#">
                         Posting
                     </a>
-                </li>                    
+                </li>
                 <li class="separator">
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/agenda') }}">                            
+                    <a href="{{ url('admin/agenda') }}">
                         Agenda
                     </a>
-                </li>                    
+                </li>
             </ul>
         </div>
         <div class="card">
-            <div class="card-header bg-primary">                
+            <div class="card-header bg-primary">
                 <h4 class="card-title text-white">
                     <strong><i class="fas fa-plus-circle"></i> &nbsp; Edit Data Agenda</strong>
                 </h4>
             </div>
-            <form method="POST" action="../{{ $agenda->id }}">                
+            <form method="POST" action="../{{ $agenda->id }}">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
@@ -64,7 +64,7 @@
                                 @error('date_start')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
-                            </div>                            
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -73,7 +73,7 @@
                                 @error('date_finish')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -93,7 +93,7 @@
                                 @error('time_finish')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
-                            </div>                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,15 +101,15 @@
                     <div class="row">
                         <div class="col">
                             <div class="pull-right">
-                                <a class="btn btn-secondary" href="../agenda"><i class="fas fa-arrow-left"></i> &nbsp; Kembali</a>
-                                <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> &nbsp; Simpan</button>                        
+                                <a class="btn btn-secondary" href="{{ url('admin/agenda') }}"><i class="fas fa-arrow-left"></i> &nbsp; Kembali</a>
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> &nbsp; Simpan</button>
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
-            </form>                
+            </form>
         </div>
     </div>
 </div>
@@ -118,6 +118,6 @@
 
 @section ('script')
     <script type="text/javascript">
-        
+
     </script>
 @endsection

@@ -34,39 +34,79 @@
             <div class="card">
                 <div class="card-header bg-warning">
                     <div class="card-title text-white">
-                        <strong><i class="fas fa-plus-circle"></i> &nbsp; Edit Video</strong>
+                        <strong><i class="fas fa-edit"></i> &nbsp; Edit Video</strong>
                     </div>
                 </div>
                 <form action="../{{ $recording->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="card-body ">
-                        <div class="form-group">
-                            <label for="url">URL Video</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">http://www.youtube.com/embed/</span>
-                                    <input type="text" name="url" id="url" class="form-control @error('url') is-invalid @enderror" value="{{ old('url') }}" placeholder="Kode Video Youtube">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="url">URL Video</label>
+                                    <div class="input-group mb-20">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">http://youtube.com/embed/</span>
+                                        </div>
+                                        <input type="text"
+                                            name="url"
+                                            id="url"
+                                            class="form-control @error('url') is-invalid @enderror"
+                                            value="{{ $recording->url }}"
+                                            placeholder="Kode Video"
+                                            />
+                                    </div>
+                                    <div>
+                                        <small>contoh: https://www.youtube.com/watch?v=<strong class="text-danger">OoMxUneQtHE</strong></small>
+                                        <div>
+
+                                        <small><em>( kode video yang dimasukkan berwarna merah )</em></small>
+                                        </div>
+                                    </div>
+                                    @error('url')
+                                        <div class="alert alert-danger mt-2 col-4">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+
                                 </div>
                             </div>
-                            @error('url')
-                                <div class="alert alert-danger mt-2 col-4">
-                                    {{ $message }}
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="description">Keterangan</label>
+                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" placeholder="Masukkan Keterangan Video" >{{ $recording->description }}</textarea>
+                                    @error('description')
+                                        <div class="alert alert-danger mt-2 col-8">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            @enderror
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="description">Keterangan</label>
-                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror col-8">{{ $recording->description }}</textarea>
-                            @error('description')
-                                <div class="alert alert-danger mt-2 col-8">
-                                    {{ $message }}
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="">Preview Video</label>
+                                    <iframe class="form-control"
+                                         width="600"
+                                          height="600"
+                                          frameborder="0" src="http://www.youtube.com/embed/{{ $recording->url }}" id="blah"></iframe>
                                 </div>
-                            @enderror
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <label class="form-check-label" for="display">
+                                        <input type="checkbox" name="display" id="display" value="1" @if ($recording->display > 0) checked @endif>
+                                        <span class="form-check-sign">Tampilkan di Galeri</span>
+                                    </label>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="row">                            
+                        <div class="row">
                             <div class="col text-right">
                                 <a href="{{ url('admin/recording') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> &nbsp; Kembali</a>
                                 <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> &nbsp;Simpan</button>
@@ -99,5 +139,13 @@
                 $('#show').modal('show');
             });
         }
+
+        $(document).on('focusout', '#url', function() {
+            let kode = $(this).val();
+            let url = "http://www.youtube.com/embed/" + kode;
+            if (url) {
+                $('#blah').attr('src', url);
+            }
+        });
     </script>
 @endsection

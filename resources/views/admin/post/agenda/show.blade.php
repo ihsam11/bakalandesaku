@@ -31,16 +31,16 @@
 			<div class="form-group">
 				<label for="time_finish">Pukul Selesai</label>
 				<span id="time_finish" class="form-control">{{ date('H:i', strtotime($agenda->time_finish)) }}</span>
-			</div>		
+			</div>
 		</div>
 	</div>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 	<a class="btn btn-warning" href="agenda/{{ $agenda->id }}/edit">Edit</a>
-	<button type="button" id="delete" class="btn btn-danger">Hapus</button>
-	<form method="POST" action="agenda/{{ $agenda->id }}" class="d-none" id="frmDelete">
+	<form method="POST" action="agenda/{{ $agenda->id }}" class="d-inline">
 		@csrf
 		@method('DELETE')
+		<button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin?')">Hapus</button>
 	</form>
 </div>

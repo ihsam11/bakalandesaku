@@ -5,10 +5,10 @@
 @section ('content')
     <div class="content">
         <div class="page-inner">
-            <div class="page-header">                
+            <div class="page-header">
                 <h4 class="page-title">Halaman Tambah Topik Berita</h4>
                 <ul class="breadcrumbs">
-                    <li class="nav-home">                        
+                    <li class="nav-home">
                         <a href="{{ route('admin.home') }}">
                             <i class="flaticon-home"></i>
                         </a>
@@ -17,26 +17,18 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">                            
+                        <a href="#">
                              Posting
                         </a>
-                    </li>                    
+                    </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('admin/bulletin') }}">                            
-                             Berita
+                        <a href="{{ url('admin/topic') }}">
+                            Topik
                         </a>
-                    </li>                    
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ url('admin/topic') }}">                            
-                            Topik 
-                        </a>
-                    </li>                    
                 </ul>
             </div>
             <div class="page-body">
@@ -71,25 +63,25 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col">
-                                    @if (!(is_null($topics->first())))                                    
+                                    @if (!(is_null($topics->first())))
                                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#list"><i class="fas fa-list"></i> &nbsp; Daftar Topik </button>
                                     @endif
                                 </div>
-                                <div class="col">                                    
+                                <div class="col">
                                     <div class="pull-right">
                                         <a href="/admin/topic" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> &nbsp;Kembali</a>
                                         &nbsp;
                                         <button type="submit" class="btn btn-primary" id="send"><i class="fas fa-save"></i> &nbsp; Simpan</button>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
-                </div>                
-            </div>                
+                </div>
             </div>
-        </div>        
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="list">
@@ -99,24 +91,24 @@
                     <h4 class="modal-title text-white"><strong><i class="fas fa-list"></i> &nbsp; Daftar Topik </strong></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">  
-                        <table class="table">   
+                    <div class="table-responsive">
+                        <table class="table">
                             <thead>
-                                <tr>    
+                                <tr>
                                     <th>Topik</th>
                                     <th>Keterangan</th>
                                 </tr>
-                            </thead>        
-                            <tbody> 
-                                @foreach ( $topics as $list )                                
-                                    <tr>    
+                            </thead>
+                            <tbody class="overflow" height="100px">
+                                @foreach ( $topics as $list )
+                                    <tr>
                                         <td> {{ $list->name }} </td>
                                         <td> {{ $list->description }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody>                    
+                            </tbody>
                         </table>
-                    </div>                      
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn-secondary btn" type="button" data-dismiss="modal">  Tutup</button>
@@ -128,9 +120,10 @@
 @endsection
 
 @section ('script')
-    <script type="text/javascript">  
+    <script type="text/javascript">
 
-            $('#send').on('click', function () {
+            $('#send').on('click', function (e) {
+                e.preventDefault();
                 $('form').validate({
                     rules: {
                         name: {
@@ -152,13 +145,13 @@
                         $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
                     },
                     success: function(element) {
-                        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');                        
+                        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
                     },
-                });                                
+                });
 
-            });    
-        
+            });
+
 
     </script>
-    
+
 @endsection

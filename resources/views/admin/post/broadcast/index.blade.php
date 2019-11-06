@@ -65,7 +65,7 @@
                                                     <th>NO</th>
                                                     <th>JUDUL</th>
                                                     <th>KETERANGAN</th>
-                                                    <th>TANGGAL AKTIF</th>
+                                                    <th>TANGGAL DIBUAT</th>
                                                     <th>AKSI</th>
                                                 </tr>
                                             </thead>
@@ -75,7 +75,7 @@
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $list->title }}</td>
                                                         <td>{{ $list->description }}</td>
-                                                        <td>{{ $list->active_range }}</td>
+                                                        <td>{{ $list->created_at }}</td>
                                                         <td>
                                                             <button class="btn btn-sm btn-secondary" type="button" onclick="show({{ $list->id }})">
                                                                 <i class="fas fa-eye"></i>
@@ -119,41 +119,6 @@
             });
         }
 
-        $(document).on('click','#delete',function(e) {
-            swal({
-                title: 'Anda Yakin?',
-                text: "Data yang telah dihapus tidak dapat dikembalikan!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Asiyap !',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        text : 'Tidak, kembali!',
-                        className: 'btn btn-danger'
-                    }        			
-                }
-            }).then((willDelete) => {
-                if (willDelete) {                    
-                    swal("Data Pengumuman telah berhasil dihapus !", {
-                        icon: "success",
-                        buttons: false
-                    });
-                    $('#frmDelete').submit();
-                } else {
-                    swal("Data Pengumuman tidak dihapus!", {
-                        icon: "success",
-                        buttons : {
-                            confirm : {
-                                className: 'btn btn-success'
-                            }
-                        }
-                    });
-                }
-            });        
-        });
 
     </script>
 @endsection

@@ -30,13 +30,6 @@
                         <i class="fas fa-users"></i> &nbsp; Daftar Pengguna</strong> </div>
                 </div>
                 <div class="card-body">
-                    <!-- <div class="row mb-4">
-                        <div class="col-md-8 col-lg-6">
-                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create" >
-                                <i class="fas fa-plus-circle"></i> &nbsp; Tambah Data
-                            </button>
-                        </div>
-                    </div> -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -44,7 +37,8 @@
                                     @if (session('message'))
                                         <div class="row">
                                             <div class="col">
-                                                <div class="alert {{ session('alert') }}">
+                                                <div class="alert {{ session('alert') }} alert-dismissable">
+                                                    <button type="close" data-dismiss="alert">&times;</button>
                                                     <i class="fas {{ session('icon') }}"></i>
                                                     {{ session('message') }}
                                                 </div>
@@ -143,11 +137,11 @@
         });
 
         function appendButton(id) {
-            let open    = "<a class='btn btn-sm btn-warning' href='user/"+ id +"/edit'>";
-            let icon    = "<i class='fas fa-edit'></i>";
-            let close   = "</a>";
+            let button    = "<a class='btn btn-sm btn-warning' href='user/"+ id +"/edit'>";
+            button += "<i class='fas fa-edit'></i>";
+            button += "</a>";
 
-            return (open + icon + close);
+            return button;
         }
 
         function show(id) {

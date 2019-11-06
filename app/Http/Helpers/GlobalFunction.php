@@ -33,3 +33,7 @@ function tanggal($tanggal){
 
 	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
+
+function recentDate($date) {
+	
+}

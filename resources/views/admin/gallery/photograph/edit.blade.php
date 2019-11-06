@@ -79,13 +79,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="file">Upload Foto</label>
-                                    <input type="file" name="image" class="form-control">
+                                    <input type="file" name="image" class="form-control" onchange="readURL(this)">
                                     @error('image')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    <img src="{{ $photograph->path }}" alt="Gambar" width="200" height="150">
+                                    <img src="{{ $photograph->path }}" alt="Gambar" width="450px" height="450px" id="blah">
                                 </div>
                             </div>
 
@@ -95,7 +95,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col">
-                                <a href="../photograph" class="btn btn-warning">Kembali</a>
+                                <a href="{{url('admin/photograph')}}" class="btn btn-warning">Kembali</a>
 
                             </div>
                             <div class="col text-right">
@@ -120,6 +120,8 @@
 
 @section('script')
     <script>
+        var url = $('#blah').attr('src');
+
         $('#index').DataTable({
 
         });
@@ -129,6 +131,18 @@
                 $('#show .modal-content').html(data);
                 $('#show').modal('show');
             });
+        }
+
+        function readURL(input) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').removeClass('d-none');
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
         }
     </script>
 @endsection

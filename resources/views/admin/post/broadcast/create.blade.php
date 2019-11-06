@@ -9,7 +9,7 @@
         <div class="page-header">
             <h4 class="page-title">Halaman Tambah Pengumuman</h4>
             <ul class="breadcrumbs">
-                <li class="nav-home">                        
+                <li class="nav-home">
                     <a href="{{ route('admin.home') }}">
                         <i class="flaticon-home"></i>
                     </a>
@@ -18,27 +18,27 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">                            
+                    <a href="#">
                         Posting
                     </a>
-                </li>                    
+                </li>
                 <li class="separator">
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/broadcast') }}">                            
+                    <a href="{{ url('admin/broadcast') }}">
                         Pengumuman
                     </a>
-                </li>                    
+                </li>
             </ul>
         </div>
         <div class="card">
-            <div class="card-header bg-primary">                
+            <div class="card-header bg-primary">
                 <h4 class="card-title text-white">
                     <strong><i class="fas fa-plus-circle"></i> &nbsp; Tambah Data Pengumuman</strong>
                 </h4>
             </div>
-            <form method="POST" action="../broadcast">                
+            <form method="POST" action="../broadcast">
                 @csrf
                 <div class="card-body">
                     <div class="row">
@@ -56,9 +56,9 @@
                                 @error('description')
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
-                            </div>                            
+                            </div>
                         </div>
-                        <div class="col">
+<!--                         <div class="col">
                             <div class="form-group">
                                 <label for="active_range">Waktu Aktif</label>
                                 <input type="text" name="active_range" id="active_range" class="form-control  @error('active_range') is-invalid @enderror" placeholder="Masukkan Waktu Aktif Pengumuman">
@@ -66,7 +66,7 @@
                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="card-footer">
@@ -74,14 +74,14 @@
                         <div class="col">
                             <div class="pull-right">
                                 <a class="btn btn-secondary" href="../broadcast"><i class="fas fa-arrow-left"></i> &nbsp; Kembali</a>
-                                <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> &nbsp; Simpan</button>                        
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-save"></i> &nbsp; Simpan</button>
                             </div>
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
-            </form>                
+            </form>
         </div>
     </div>
 </div>
